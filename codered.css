@@ -330,6 +330,8 @@ body {
     font-style: italic;
 }
 
+
+
 /* Update the ::before gradient animation for all pages */
 .pricing::before, .aboutus::before, .trailer::before, .gallery::before {
     content: "";

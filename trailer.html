@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title> Trailler page </title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="codered.css">
+    </head>
+    <body>
+        <!-- Add accessibility menu -->
+        <button class="accessibility-menu" onclick="toggleAccessibilityMenu()">Menu</button>        <div class="accessibility-menu-content" id="accessibilityMenu">
+            <h2>Accessibility Menu</h2>
+            <hr style="background-color: #A6886D; height: 2px; border: none;">
+            <label>
+                <input type="checkbox" id="highContrastMode" onchange="toggleHighContrastMode()">
+                High Contrast Mode
+        
+            </label>
+            <label>
+                <input type="checkbox" id="extraReadableFont" onchange="toggleExtraReadableFont()">
+                Extra Readable Font
+            </label>
+            <br></br>
+            <h2>Contact / Feedback Form</h2>
+            <hr style="background-color: #A6886D; height: 2px; border: none;">
+
+            <button class="button" onclick="window.location.href='form.html'">
+    <span>Form </span>
+</button>
+        </div>
+        <div class="LoadingScreen">
+    <div class="spinner">
+        <div></div>   
+        <div></div>    
+        <div></div>    
+        <div></div>    
+        <div></div>    
+        <div></div>    
+        <div></div>    
+        <div></div>    
+        <div></div>    
+        <div></div>    
+    </div>
+</div>
+        
+                <div class="trailer">
+                <div class="trailer-extras"></div>
+                <div class="landing-content">
+                    <div class="trailer-content-inner">"Code Red"</div>
+                    <div class="trailer-video">
+    <iframe width="560" height="315"
+            src="https://www.youtube.com/watch?v=UoYMK1olf4s"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+            
+    </iframe>
+    
+                    </div>
+                    <div class="trailer-content-sub">Watch our gripping trailer "Code Red". Set in Soviet Russia, in a time of financial turmoil.</div>
+                    </div>
+            </div>
+ 
+
+                <!-- Update the navbar section in each .html file -->
+
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="index.html" onclick="return !isCurrentPage('index.html')">Landing</a></li>
+                <li><a href="trailer.html" onclick="return !isCurrentPage('trailer.html')">Trailer</a></li>
+                <li><a href="aboutus.html" onclick="return !isCurrentPage('aboutus.html')">About</a></li>
+                <li><a href="pricing.html" onclick="return !isCurrentPage('pricing.html')">Pricing</a></li>
+                <li><a href="gallery.html" onclick="return !isCurrentPage('gallery.html')">Gallery</a></li>
+            </ul>
+        </nav>
+
+
+            <script>
+    function wrapLetters(selector, delayIncrement = 0.3) {
+        const el = document.querySelector(selector);
+        if (!el) return;
+        const text = el.textContent;
+        el.innerHTML = '';
+        [...text].forEach((char, index) => {
+            const span = document.createElement('span');
+            span.textContent = char;
+            if (char === ' ') {
+                span.classList.add('space');
+            }
+            const floatDelay = (index * delayIncrement).toFixed(2);
+            span.style.animation = `flicker 3s infinite ease-in-out 0s, floatSingle 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1) ${floatDelay}s`;
+            el.appendChild(span);
+        });
+    }
+
+    // Update these selectors for each page
+    wrapLetters('.trailer-content-inner');
+    wrapLetters('.trailer-content-sub');
+
+
+
+    // Add to each page's script section
+function isCurrentPage(href) {
+    return window.location.pathname.endsWith(href);
+}
+
+// Add this to each page's script section, before the loading screen handler
+const currentPage = window.location.pathname.split('/').pop();
+const loadingScreen = document.querySelector('.LoadingScreen');
+const loadingContent = document.querySelector('.loading-content-inner');
+
+// Only show loading screen for actual page transitions
+if (document.referrer === '' || !document.referrer.includes(currentPage)) {
+    loadingScreen.style.display = 'flex';
+} else {
+    loadingScreen.style.display = 'none';
+}
+
+// Update the loading screen handler
+window.addEventListener('load', () => {
+    if (loadingScreen.style.display === 'flex') {
+        setTimeout(() => {
+            loadingScreen.style.opacity = '0';
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 1000);
+       }, 2000); // Changed to 2000ms (2 seconds)
+    }
+});
+
+// Update the fallback timeout
+setTimeout(() => {
+    if (loadingScreen.style.display === 'flex') {
+        loadingScreen.style.opacity = '0';
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+        }, 1000);
+    }
+}, 5000);
+
+// Accessibility functions
+            function toggleAccessibilityMenu() {
+                const menu = document.getElementById('accessibilityMenu');
+                menu.classList.toggle('show');
+            }
+
+            document.addEventListener('click', function(event) {
+                const menu = document.getElementById('accessibilityMenu');
+                const button = document.querySelector('.accessibility-menu');
+                if (!menu.contains(event.target) && !button.contains(event.target)) {
+                    menu.classList.remove('show');
+                }
+            });            function toggleExtraReadableFont() {
+                const checkbox = document.getElementById('extraReadableFont');
+                const body = document.body;
+
+                if (checkbox.checked) {
+                    body.classList.add('extra-readable-font');
+                    localStorage.setItem('extraReadableFont', 'true');
+                } else {
+                    body.classList.remove('extra-readable-font');
+                    localStorage.setItem('extraReadableFont', 'false');
+                }
+            }
+
+            function toggleHighContrastMode() {
+                const checkbox = document.getElementById('highContrastMode');
+                const body = document.body;
+
+                if (checkbox.checked) {
+                    body.classList.add('high-contrast-mode');
+                    localStorage.setItem('highContrastMode', 'true');
+                } else {
+                    body.classList.remove('high-contrast-mode');
+                    localStorage.setItem('highContrastMode', 'false');
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                // Check for saved font preference
+                const savedFont = localStorage.getItem('extraReadableFont');
+                if (savedFont === 'true') {
+                    document.body.classList.add('extra-readable-font');
+                    document.getElementById('extraReadableFont').checked = true;
+                }
+
+                // Check for saved contrast preference
+                const savedContrast = localStorage.getItem('highContrastMode');
+                if (savedContrast === 'true') {
+                    document.body.classList.add('high-contrast-mode');
+                    document.getElementById('highContrastMode').checked = true;
+                }
+            });
+        </script>
+        
+        <canvas id="background-canvas"></canvas>
+        <script>
+        // Moving background canvas effect
+        const canvas = document.getElementById('background-canvas');
+        const ctx = canvas.getContext('2d');
+        let width = window.innerWidth;
+        let height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+        canvas.style.position = 'fixed';
+        canvas.style.top = 0;
+        canvas.style.left = 0;
+        canvas.style.zIndex = '1'; // Set above gradient, below content
+        canvas.style.width = '100vw';
+        canvas.style.height = '100vh';
+        canvas.style.pointerEvents = 'none';
+
+        // Example: animated particles
+        const particles = [];
+        const particleCount = 60;
+        for (let i = 0; i < particleCount; i++) {
+            particles.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                r: 1 + Math.random() * 2,
+                dx: -0.5 + Math.random(),
+                dy: -0.5 + Math.random(),
+                alpha: 0.1 + Math.random() * 0.3
+            });
+        }
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            for (let p of particles) {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
+                ctx.fillStyle = `rgba(166, 136, 109, ${p.alpha})`;
+                ctx.shadowColor = '#A6886D';
+                ctx.shadowBlur = 8;
+                ctx.fill();
+                p.x += p.dx;
+                p.y += p.dy;
+                if (p.x < 0 || p.x > width) p.dx *= -1;
+                if (p.y < 0 || p.y > height) p.dy *= -1;
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+        window.addEventListener('resize', () => {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+        });
+        // ...existing code...
+        </script>
+    </body>
+</html>
+

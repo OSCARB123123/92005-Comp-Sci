@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="codered.css">
+        <title>1.2 base</title>
+    </head>
+    <body>
+<canvas id="background-canvas"></canvas>
+<!-- Accessibility menu (outside main content for consistent styling) -->
+<button class="accessibility-menu" onclick="toggleAccessibilityMenu()">Menu</button>
+<div class="accessibility-menu-content" id="accessibilityMenu">
+    <h2>Accessibility Menu</h2>
+    <hr style="background-color: #A6886D; height: 2px; border: none;">
+    <label>
+        <input type="checkbox" id="highContrastMode" onchange="toggleHighContrastMode()">
+        High Contrast Mode
+    </label>
+    <label>
+        <input type="checkbox" id="extraReadableFont" onchange="toggleExtraReadableFont()">
+        Extra Readable Font
+    </label>
+    <br></br>
+    <h2>Contact / Feedback Form</h2>
+    <hr style="background-color: #A6886D; height: 2px; border: none;">
+    <button class="button" onclick="window.location.href='form.html'">
+        <span>Form </span>
+    </button>
+</div>
+
+        <div class="LoadingScreen">
+            <div class="spinner">
+                <div></div>   
+                <div></div>    
+                <div></div>    
+                <div></div>    
+                <div></div>    
+                <div></div>    
+                <div></div>    
+                <div></div>    
+                <div></div>    
+                <div></div>    
+            </div>
+        </div>
+
+
+
+        <div class="landing">
+            <div class="landing-content">
+                <div class="landing-content-inner">"Code Red"</div>
+                <div class="landing-content-sub">Soviet Russia, 1976</div>
+                </div>
+                </div>
+        </div>
+
+
+
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="index.html" onclick="return !isCurrentPage('index.html')">Landing</a></li>
+                <li><a href="trailer.html" onclick="return !isCurrentPage('trailer.html')">Trailer</a></li>
+                <li><a href="aboutus.html" onclick="return !isCurrentPage('aboutus.html')">About</a></li>
+                <li><a href="pricing.html" onclick="return !isCurrentPage('pricing.html')">Pricing</a></li>
+                <li><a href="gallery.html" onclick="return !isCurrentPage('gallery.html')">Gallery</a></li>
+            </ul>
+        </nav>
+       
+        <script>
+            function wrapLetters(selector, delayIncrement = 0.3) {
+            const el = document.querySelector(selector);
+            if (!el) return;
+            const text = el.textContent;
+            el.innerHTML = '';
+            [...text].forEach((char, index) => {
+                const span = document.createElement('span');
+                span.textContent = char;
+                if (char === ' ') {
+                span.classList.add('space');
+                }
+                const floatDelay = (index * delayIncrement).toFixed(2);
+                span.style.animation = `flicker 3s infinite ease-in-out 0s, floatSingle 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1) ${floatDelay}s`;
+                el.appendChild(span);
+            });
+}
+
+
+            wrapLetters('.landing-content-inner');
+            wrapLetters('.landing-content-sub');
+
+
+
+            // Add this to each page's script section, before the loading screen handler
+            const currentPage = window.location.pathname.split('/').pop();
+            const loadingScreen = document.querySelector('.LoadingScreen');
+            const loadingContent = document.querySelector('.loading-content-inner');
+
+            // Only show loading screen for actual page transitions
+            if (document.referrer === '' || !document.referrer.includes(currentPage)) {
+                loadingScreen.style.display = 'flex';
+            } else {
+                loadingScreen.style.display = 'none';
+            }
+
+            // Loading screen handler
+            window.addEventListener('load', () => {
+                const loadingScreen = document.querySelector('.LoadingScreen');
+                setTimeout(() => {
+                    loadingScreen.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingScreen.style.display = 'none';
+                    }, 300);
+                }, 2000); // Changed to 2000ms (2 seconds)
+            });
+
+            // Add transition for smooth fade
+            loadingScreen.style.transition = 'opacity 0.3s ease';
+
+            // Fallback in case load event doesn't fire
+            setTimeout(() => {
+                if (loadingScreen.style.display === 'flex') {
+                    loadingScreen.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingScreen.style.display = 'none';
+                    }, 1000);
+                }
+            }, 5000);
+
+            // Add to each page's script section
+            function isCurrentPage(href) {
+                return window.location.pathname.endsWith(href);
+            }
+
+            // Add this to your script section
+            function toggleAccessibilityMenu() {
+                const menu = document.getElementById('accessibilityMenu');
+                menu.classList.toggle('show');
+            }
+
+            // Optional: Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                const menu = document.getElementById('accessibilityMenu');
+                const button = document.querySelector('.accessibility-menu');
+                if (!menu.contains(event.target) && !button.contains(event.target)) {
+                    menu.classList.remove('show');
+                }
+            });            function toggleExtraReadableFont() {
+                const checkbox = document.getElementById('extraReadableFont');
+                const body = document.body;
+
+                if (checkbox.checked) {
+                    body.classList.add('extra-readable-font');
+                    localStorage.setItem('extraReadableFont', 'true');
+                } else {
+                    body.classList.remove('extra-readable-font');
+                    localStorage.setItem('extraReadableFont', 'false');
+                }
+            }
+
+            function toggleHighContrastMode() {
+                const checkbox = document.getElementById('highContrastMode');
+                const body = document.body;
+                const menu = document.getElementById('accessibilityMenu');
+
+                if (checkbox.checked) {
+                    body.classList.add('high-contrast-mode');
+                    localStorage.setItem('highContrastMode', 'true');
+                } else {
+                    body.classList.remove('high-contrast-mode');
+                    localStorage.setItem('highContrastMode', 'false');
+                }
+                // Force reflow for menu and its children
+                if (menu) {
+                    menu.style.display = 'none';
+                    // Trigger reflow
+                    void menu.offsetWidth;
+                    if (menu.classList.contains('show')) {
+                        menu.style.display = 'block';
+                    }
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                // Add landing-page class to html and body to prevent scrollbars
+                document.body.classList.add('landing-page');
+                document.documentElement.classList.add('landing-page');
+
+                // Check for saved font preference
+                const savedFont = localStorage.getItem('extraReadableFont');
+                if (savedFont === 'true') {
+                    document.body.classList.add('extra-readable-font');
+                    document.getElementById('extraReadableFont').checked = true;
+                }
+
+                // Check for saved contrast preference
+                const savedContrast = localStorage.getItem('highContrastMode');
+                if (savedContrast === 'true') {
+                    document.body.classList.add('high-contrast-mode');
+                    document.getElementById('highContrastMode').checked = true;
+                }
+            });
+        </script>
+
+
+
+    </body>
+
+
+
+
+</html>

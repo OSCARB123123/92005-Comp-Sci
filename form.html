@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="codered.css">
+    </head>
+    <body>
+        <button onclick="window.location.href='index.html'" class="button" style="margin-top: 0px; margin-left: 30px;">Take Me Back</button>
+
+        <h2>
+            Contact Form
+        </h2>
+        <hr style="border: 3px solid #A6886D;
+    box-shadow:
+        0 0 10px #A6886D,
+        0 0 20px #40251C,
+        2px 2px 8px #100D04,
+        0 0 2px #575945; border-radius: 8px; margin: 24px auto; width: 600px; background: linear-gradient(90deg, #a6886d 0%, #fffbe6 100%);">
+        <div class="form-bg">
+            <div class="container">
+                <form action="action_page.php" method="POST">
+                    <label for="fname">Full Name (Optional)</label>
+                    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+                    <label for="lname"> Username </label>
+                    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+                    <label for="country">Country</label>
+                    <select id="country" name="country">
+                        <option value="australia">Australia</option>
+                        <option value="canada">Canada</option>
+                        <option value="usa">USA</option>
+                    </select>
+                    <label for="subject">Details (Contact or Feedback)</label>
+                    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+                    <input type="submit" value="Submit">
+                </form>
+                
+            </div>
+        </div>
+        <script>
+        // JavaScript for accessibility features
+        function toggleAccessibilityMenu() {
+            const menu = document.getElementById('accessibilityMenu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function toggleHighContrastMode() {
+            document.body.classList.toggle('high-contrast');
+        }
+
+        function toggleExtraReadableFont() {
+            document.body.classList.toggle('extra-readable-font');
+        }
+    </script>
+
+    <style>
+body {
+    background: linear-gradient(120deg, #2d2320 0%, #40251c 100%);
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Cinzel', serif;
+    
+}
+.form-bg {
+    border: 5px solid #A6886D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    background: rgba(32, 24, 20, 0.7);
+    backdrop-filter: blur(6px);
+    border-radius: 24px;
+    box-shadow: 0 0 10px #a6886d, 0 0 20px #40251c, 2px 2px 8px #100d04, 0 0 2px #575945;
+    padding: 2.5rem 1rem;
+    margin: 2rem auto;
+    max-width: 600px;
+    text-shadow: 0 0 10px #a6886d, 0 0 20px #40251c, 2px 2px 8px #100d04, 0 0 2px #575945;
+    
+}
+.container {
+    background: rgba(64, 61, 68, 0.7);
+    border-radius: 18px;
+    box-shadow: 0 0 10px #a6886d, 0 0 20px #40251c, 2px 2px 8px #100d04, 0 0 2px #575945;
+    padding: 2rem 3rem; /* Even left/right padding for alignment */
+    color: #dba576;
+    text-align: left;
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    position: relative;
+    z-index: 2;
+    border: 5px solid #A6886D;
+    text-shadow: 0 0 10px #a6886d, 0 0 20px #40251c, 2px 2px 8px #100d04, 0 0 2px #575945;
+}
+label {
+    margin: 0 0 0.3rem 0; /* Remove auto margin, only bottom margin for spacing */
+    color: #A6886D;
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    display: block;
+    text-shadow: 0 0 10px #a6886d, 0 0 20px #40251c, 2px 2px 8px #100d04, 0 0 2px #575945;
+}
+input[type=text], select, textarea {
+    width: 100%;
+    box-sizing: border-box; /* Ensures padding/border don't affect width */
+    padding: 12px 10px;
+    border: 3px solid #A6886D;
+    border-radius: 12px;
+    background: rgba(255, 251, 230, 0.08);
+    color: #dba576;
+    margin-top: 6px;
+    margin-bottom: 18px;
+    margin-left: 0;
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    box-shadow: 0 0 10px #a6886d, 0 0 20px #40251c, 2px 2px 8px #100d04, 0 0 2px #575945;
+    transition: border 0.2s, box-shadow 0.2s;
+    outline: none;
+    text-shadow: 0 0 10px #a6886d, 0 0 20px #40251c, 2px 2px 8px #100d04, 0 0 2px #575945;
+}
+input[type=text]:focus, select:focus, textarea:focus {
+    border: 3px solid #fffbe6;
+    box-shadow: 0 0 10px #a6886d, 0 0 20px #40251c, 2px 2px 8px #100d04, 0 0 2px #575945;
+    background: rgba(255, 251, 230, 0.15);
+}
+input[type=submit] {
+    
+    width: 100%;
+    background: linear-gradient(0deg, #a6886d 0%, #291913 100%);
+    color: #a6886d;
+    padding: 0.7rem;
+    border-radius: 10px;
+    border: 2.5px solid #a6886d;
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    box-shadow: 0 0 10px #a6886d, 0 0 20px #40251c, 2px 2px 8px #100d04, 0 0 2px #575945;
+    text-shadow: 0 0 10px #a6886d, 0 0 20px #40251c, 2px 2px 8px #100d04, 0 0 2px #575945;
+    cursor: pointer;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    
+
+}
+input[type=submit]:hover {
+    background: linear-gradient(0deg, #291913 0%, #a6886d 100%);
+    color: #A6886D;
+    box-shadow: 0 0 10px #ffffff, 0 0 20px #40251c, 2px 2px 8px #100d04, 0 0 2px #575945;
+    text-shadow: 0 0 10px #a6886d, 0 0 20px #40251c, 2px 2px 8px #100d04, 0 0 2px #575945;
+}
+h2 {
+    
+    position: relative;
+    z-index: 2;
+    color: #dba576;
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-size: 3.5vw;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    letter-spacing: 0.2em;
+    text-shadow: 0 0 10px #A6886D, 0 0 20px #40251C, 2px 2px 8px #100D04, 0 0 2px #575945;
+    animation: flicker 2.5s infinite alternate;
+}
+hr {
+    border: 3px solid #A6886D;
+    border-radius: 8px;
+    margin: 24px auto;
+    width: 60%;
+    background: linear-gradient(90deg, #a6886d 0%, #fffbe6 100%);
+    box-shadow: 0 0 10px #A6886D, 0 0 20px #40251C, 2px 2px 8px #100D04, 0 0 2px #575945;
+}
+@keyframes flicker {
+    0% { opacity: 1; }
+    50% { opacity: 0.85; text-shadow: 0 0 20px #a6886d, 0 0 40px #fffbe6; }
+    100% { opacity: 1; }
+}
+
+/* Prevent resizing of the subject textarea */
+textarea#subject {
+    resize: none;
+}
+    </style>
+
+    <?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST["firstname"];
+    $username = $_POST["lastname"];
+    $country = $_POST["country"];
+    $details = $_POST["subject"];
+    $entry = "Name: $name | Username: $username | Country: $country | Details: $details\n";
+    file_put_contents("submissions.txt", $entry, FILE_APPEND);
+    echo "Thank you for your submission!";
+}
+?>
+
+    </body>
+</html>

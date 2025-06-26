@@ -62,7 +62,7 @@ body {
     position: fixed;
     z-index: 1002;
     background: rgba(64, 61, 68, 0.8); /* Restored original background */
-    padding: 0.5rem;
+    padding: 0.9rem;
     border-radius: 8px;
         text-shadow:
         0 0 10px #A6886D,

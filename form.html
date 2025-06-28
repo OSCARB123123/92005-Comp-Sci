@@ -5,10 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Contact Form</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"
-  />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
   <style>
     body {
       background: linear-gradient(120deg, #2c3e50 0%, #1a1a1a 100%);
@@ -88,11 +85,7 @@
     }
     input[type="submit"] {
       width: 100%;
-      background: linear-gradient(
-        0deg,
-        #2c3e50 0%,
-        rgba(88, 88, 88, 0.575) 100%
-      );
+      background: linear-gradient(0deg, #2c3e50 0%, rgba(88, 88, 88, 0.575) 100%);
       color: #a6886d;
       padding: 0.7rem;
       border-radius: 10px;
@@ -108,11 +101,7 @@
       transition: background 0.3s, color 0.3s, box-shadow 0.3s;
     }
     input[type="submit"]:hover {
-      background: linear-gradient(
-        0deg,
-        rgba(88, 88, 88, 0.575) 0%,
-        #2c3e50 100%
-      );
+      background: linear-gradient(0deg, rgba(88, 88, 88, 0.575) 0%, #2c3e50 100%);
       box-shadow: 0 0 10px #ffffff, 0 0 20px #40251c, 2px 2px 8px #100d04,
         0 0 2px #575945;
     }
@@ -129,16 +118,9 @@
       animation: flicker 2.5s infinite alternate;
     }
     @keyframes flicker {
-      0% {
-        opacity: 1;
-      }
-      50% {
-        opacity: 0.85;
-        text-shadow: 0 0 20px #a6886d, 0 0 40px #fffbe6;
-      }
-      100% {
-        opacity: 1;
-      }
+      0% { opacity: 1; }
+      50% { opacity: 0.85; text-shadow: 0 0 20px #a6886d, 0 0 40px #fffbe6; }
+      100% { opacity: 1; }
     }
     .button {
       position: absolute;
@@ -162,7 +144,6 @@
     textarea#subject {
       resize: none;
     }
-    /* Choices.js fixes */
     .choices {
       width: 100%;
       border-radius: 12px !important;
@@ -230,11 +211,6 @@
       box-sizing: border-box !important;
       left: 0 !important;
     }
-    .choices__list--dropdown,
-    .choices__list[aria-expanded] {
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
     .choices__list--dropdown::-webkit-scrollbar,
     .choices__list[aria-expanded]::-webkit-scrollbar {
       display: none;
@@ -243,60 +219,45 @@
 </head>
 <body>
   <button onclick="window.location.href='index.html'" class="button">Take Me Back</button>
-
   <h2>Contact Form</h2>
-  <hr style="
-      border: 3px solid #a6886d;
-      box-shadow: 0 0 10px #a6886d, 0 0 20px #40251c, 2px 2px 8px #100d04, 0 0 2px #575945;
-      border-radius: 8px; margin: 24px auto; width: 600px;
-      background: linear-gradient(90deg, #a6886d 0%, #fffbe6 100%);
-  " />
-
+  <hr style="border: 3px solid #a6886d; box-shadow: 0 0 10px #a6886d, 0 0 20px #40251c, 2px 2px 8px #100d04, 0 0 2px #575945; border-radius: 8px; margin: 24px auto; width: 600px; background: linear-gradient(90deg, #a6886d 0%, #fffbe6 100%);" />
   <div class="form-bg">
     <div class="container">
-      <form
-        id="contactForm"
-        method="POST"
-        action="https://script.google.com/macros/s/AKfycbzeV76nNHNWzVYncnZH3VXNGlYTpBaZD4uib2fXdZm5B0wpyZwEZ1X2gKRgv_onjomF/exec"
-      >
+      <form id="contactForm" method="POST" action="https://script.google.com/macros/s/AKfycbzeV76nNHNWzVYncnZH3VXNGlYTpBaZD4uib2fXdZm5B0wpyZwEZ1X2gKRgv_onjomF/exec">
         <label for="fname">Full Name (Optional)</label>
         <input type="text" id="fname" name="firstname" placeholder="Your name.." />
-
         <label for="lname">Username</label>
         <input type="text" id="lname" name="lastname" placeholder="Your last name.." />
-
         <label for="country">Country</label>
         <select id="country" name="country"></select>
-
         <label for="subject">Details (Contact or Feedback)</label>
         <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
-
         <input type="submit" value="Submit" />
       </form>
+      <iframe name="hidden_iframe" style="display: none;"></iframe>
     </div>
   </div>
 
   <script>
-    const countryList = [
-      "Afghanistan","Albania","Algeria","Andorra","Angola","Argentina","Australia","Austria",
-      "Bangladesh","Belgium","Brazil","Canada","China","Denmark","Egypt","Finland","France",
-      "Germany","Greece","India","Indonesia","Ireland","Italy","Japan","Malaysia","Mexico",
-      "Netherlands","New Zealand","Nigeria","Norway","Pakistan","Philippines","Poland",
-      "Portugal","Russia","Saudi Arabia","Singapore","South Africa","South Korea","Spain",
-      "Sri Lanka","Sweden","Switzerland","Thailand","Turkey","United Arab Emirates",
-      "United Kingdom","United States","Vietnam","Zimbabwe"
-    ];
-
+    const countryList = ["Afghanistan","Albania","Algeria","Andorra","Angola","Argentina","Australia","Austria","Bangladesh","Belgium","Brazil","Canada","China","Denmark","Egypt","Finland","France","Germany","Greece","India","Indonesia","Ireland","Italy","Japan","Malaysia","Mexico","Netherlands","New Zealand","Nigeria","Norway","Pakistan","Philippines","Poland","Portugal","Russia","Saudi Arabia","Singapore","South Africa","South Korea","Spain","Sri Lanka","Sweden","Switzerland","Thailand","Turkey","United Arab Emirates","United Kingdom","United States","Vietnam","Zimbabwe"];
     document.addEventListener("DOMContentLoaded", () => {
       const sel = document.getElementById("country");
-      sel.innerHTML = countryList
-        .map(c => `<option value="${c.toLowerCase().replace(/ /g,'-')}">${c}</option>`)
-        .join("");
+      sel.innerHTML = countryList.map(c => `<option value="${c.toLowerCase().replace(/ /g,'-')}">${c}</option>`).join("");
       new Choices(sel, {
         searchEnabled: true,
         itemSelectText: '',
         searchPlaceholderValue: 'Search country...'
       });
+    });
+
+    // Custom submit behavior
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const form = e.target;
+      form.target = "hidden_iframe";
+      form.submit();
+      form.reset();
+      alert("Thanks! Your message was submitted.");
     });
   </script>
   <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>

@@ -7,13 +7,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
   <style>
-    body {
-      background: linear-gradient(120deg, #2c3e50 0%, #1a1a1a 100%);
-      min-height: 100vh;
-      margin: 0;
-      font-family: "Cinzel", serif;
-      overflow: hidden;
-    }
+        body {
+        background: linear-gradient(120deg, #2c3e50 0%, #1a1a1a 100%);
+        min-height: 100vh;
+        margin: 0;
+        font-family: "Cinzel", serif;
+
+        /* Allow scrolling but hide scrollbar */
+        overflow-y: scroll;
+        scrollbar-width: none;         /* Firefox */
+        -ms-overflow-style: none;      /* IE/Edge */
+        }
+        body::-webkit-scrollbar {
+        display: none;                 /* Chrome, Safari, Opera */
+        }
+
     .form-bg {
       border: 5px solid #a6886d;
       display: flex;

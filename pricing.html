@@ -54,36 +54,59 @@
 
 
 
-                <div class="pricing">
+<div class="pricing">
     <div class="pricing-content">
         <div class="pricing-content-inner">Pricing Options</div>
         <div class="pricing-section">
             <h2>Our Editions For Sale</h2>
             <p class="pricing-intro">We offer a range of editions to suit different preferences and budgets.</p>
             <div class="pricing-grid">
-                <div class="pricing-card">
+
+
+                <div class="pricing-card" onclick="toggleInfo(this)">
                     <h3>Standard Edition</h3>
                     <p>$25.99</p>
                     <p class="plan">Most popular Edition</p>
+                    <div class="info-box">
+                    This edition includes the base game with standard resolution and textures.
+                    </div>
                 </div>
-                <div class="pricing-card">
+
+                <div class="pricing-card" onclick="toggleInfo(this)">
                     <h3>Premium Edition</h3>
                     <p>$30.99</p>
                     <p class="plan">Upgraded resolution, enhanced textures</p>
+                    <div class="info-box">
+                        This edition includes upgraded resolution and enhanced textures.
+                    </div>
                 </div>
-                <div class="pricing-card">
+
+                <div class="pricing-card" onclick="toggleInfo(this)">
                     <h3>Ultimate Edition</h3>
                     <p>$35.99</p>
                     <p class="plan">All assets included</p>
+                    <div class="info-box">
+                        This edition includes all assets, including any future updates.
+                    </div>
                 </div>
-                <div class="pricing-card">
+
+                <div class="pricing-card" onclick="toggleInfo(this)">
                     <h3>Editors Cut</h3>
                     <p>$40.99</p>
                     <p class="plan">Extras included</p>
+                    <div class="info-box">
+                        This edition includes additional content and features not found in the other editions.
+                    </div>
+                </div>
+
                 </div>
             </div>
         </div>
     </div>
+
+
+
+
 
 
 
@@ -269,7 +292,25 @@
             canvas.width = width;
             canvas.height = height;
         });
-        // ...existing code...
+        
+
+        function toggleInfo(card) {
+            const boxes = document.querySelectorAll('.info-box');
+            boxes.forEach(box => {
+                if (box !== card.querySelector('.info-box')) {
+                    box.style.display = 'none';
+                }
+            });
+            const infoBox = card.querySelector('.info-box');
+            infoBox.style.display = infoBox.style.display === 'block' ? 'none' : 'block';
+        }
+
+        document.addEventListener('click', function (e) {
+            if (!e.target.closest('.pricing-card')) {
+                document.querySelectorAll('.info-box').forEach(box => box.style.display = 'none');
+            }
+        });
+
         </script>
     </body>
 

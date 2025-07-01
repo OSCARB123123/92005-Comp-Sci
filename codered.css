@@ -58,6 +58,7 @@ body {
 
 
 
+
 .button {
     position: fixed;
     z-index: 1002;
@@ -258,9 +259,20 @@ body {
     margin: 2rem auto;
     padding: 2rem;
     background: rgba(16, 13, 4, 0.85);
-    border: 1px solid #A6886D;
+    border: 3px solid #A6886D;
     border-radius: 12px;
-    box-shadow: 0 0 30px rgba(64, 37, 28, 0.3);
+          text-shadow:
+        0 0 10px #A6886D,
+        0 0 20px #40251C,
+        2px 2px 8px #100D04,
+        0 0 2px #575945;
+    animation: flicker 2.5s infinite alternate;
+  box-shadow:
+        0 0 10px #A6886D,
+        0 0 20px #40251C,
+        2px 2px 8px #100D04,
+        0 0 2px #575945;
+    animation: flicker 2.5s infinite alternate;
 }
 
 .pricing-intro {
@@ -284,10 +296,22 @@ body {
     background: rgba(64, 61, 68, 0.3);
     padding: 1.5rem;
     border-radius: 8px;
-    border: 1px solid #575945;
+    border: 3px solid #A6886D;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+      text-shadow:
+        0 0 10px #A6886D,
+        0 0 20px #40251C,
+        2px 2px 8px #100D04,
+        0 0 2px #575945;
+    animation: flicker 2.5s infinite alternate;
+  box-shadow:
+        0 0 10px #A6886D,
+        0 0 20px #40251C,
+        2px 2px 8px #100D04,
+        0 0 2px #575945;
+    animation: flicker 2.5s infinite alternate;
 }
 
 .pricing-card::before {
@@ -304,11 +328,58 @@ body {
 
 .pricing-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(166, 136, 109, 0.2);
+    box-shadow: 0 5px 15px rgb(211, 209, 177);
+    border: 3px solid 0 5px 15px rgb(211, 209, 177);
 }
 
 .pricing-card:hover::before {
     opacity: 1;
+}
+
+.info-box {
+  display: none;
+  margin-top: 10px;
+   background: 
+        linear-gradient(217deg, 
+            rgba(8, 12, 16, 0.98), /* Almost black */
+            rgba(15, 35, 30, 0.95) 25%, /* Murky forest */
+            rgba(12, 28, 32, 0.92) 45%, /* Deep murky teal */
+            rgba(18, 42, 38, 0.95) 75%, /* Dark swamp green */
+            rgba(8, 12, 16, 0.98) 100% /* Almost black */
+        ),
+        linear-gradient(127deg, 
+            rgba(14, 32, 28, 0.95), /* Dark moss */
+            rgba(20, 45, 40, 0.92)35%, /* Muted green */
+            rgba(12, 28, 25, 0.95) 55%, /* Deep forest */
+            rgba(8, 16, 24, 0.98) 100% /* Deep blue-black */
+        ),
+        linear-gradient(336deg, 
+            rgba(12, 25, 22, 0.95), /* Dark pine */
+            rgba(16, 38, 35, 0.92) 25%, /* Murky emerald */
+            rgba(22, 48, 45, 0.95) 55%, /* Deep sea green */
+            rgba(10, 20, 28, 0.98) 100% /* Navy blue */
+        );
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    z-index: 0;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #A6886D;
+  transition: all 0.3s ease;
+  border: 3px solid #A6886D;
+  text-shadow:
+        0 0 10px #A6886D,
+        0 0 20px #40251C,
+        2px 2px 8px #100D04,
+        0 0 2px #575945;
+    animation: flicker 2.5s infinite alternate;
+  box-shadow:
+        0 0 10px #A6886D,
+        0 0 20px #40251C,
+        2px 2px 8px #100D04,
+        0 0 2px #575945;
+    animation: flicker 2.5s infinite alternate;
 }
 
 .pricing-card h3 {

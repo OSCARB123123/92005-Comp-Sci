@@ -483,6 +483,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     min-height: 100vh;
+    position: relative;
     display: flex;
     flex-direction: column;
     color: #A6886D;
@@ -490,7 +491,7 @@ body {
     align-items: center;
     text-align: center;
     font-family: 'Cinzel', serif;
-    padding-top: 120px; /* Increased padding to avoid navbar overlap */
+    padding-top: 120px;
 }
 
 .aboutus-content {
@@ -511,10 +512,10 @@ body {
     color: #dba576;
     text-align: center;
     font-family: 'Cinzel', serif;    
-    font-size: 3.5vw; /* Reduced from 5vw */
+    font-size: 3.5vw;
     margin-top: 2rem;
     margin-bottom: 2rem;
-    letter-spacing: 0.2em; /* Reduced from 0.3em */
+    letter-spacing: 0.2em;
     text-shadow:
         0 0 10px #A6886D,
         0 0 20px #40251C,
@@ -553,32 +554,6 @@ body {
 
 
 
-.aboutus-content {
-    position: relative;
-    z-index: 2;
-    color: #A6886D;
-    text-align: center;
-    font-family: 'Cinzel', serif;
-    text-shadow: #40251C 4px 4px 5px;
-}
-
-.aboutus-content-inner {
-    position: relative;
-    z-index: 2;
-    color: #dba576;
-    text-align: center;
-    font-family: 'Cinzel', serif;
-    font-size: 3.5vw; /* Reduced from 5vw */
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    letter-spacing: 0.2em; /* Reduced from 0.3em */
-    text-shadow:
-        0 0 10px #A6886D,
-        0 0 20px #40251C,
-        2px 2px 8px #100D04,
-        0 0 2px #575945;
-    animation: flicker 2.5s infinite alternate;
-}
 
 
 .pricing-content {
@@ -715,37 +690,6 @@ body {
 }
 
 
-.aboutus-content {
-    position: relative;
-    z-index: 2;
-    color: #A6886D;
-    text-align: center;
-    font-family: 'Cinzel', serif;
-    text-shadow: #40251C 4px 4px 5px;
-}
-
-.aboutus-content-inner {
-    position: relative;
-    z-index: 2;
-    color: #dba576;
-    text-align: center;
-    font-family: 'Cinzel', serif;
-    font-size: 3.5vw; /* Reduced from 5vw */
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    letter-spacing: 0.2em; /* Reduced from 0.3em */
-    text-shadow:
-        0 0 10px #A6886D,
-        0 0 20px #40251C,
-        2px 2px 8px #100D04,
-        0 0 2px #575945;
-    animation: flicker 2.5s infinite alternate;
-}
-
-
-/* Replace .infopage with .gallery styles */
-
-
  
 .gallery-item {
     position: relative;
@@ -878,13 +822,24 @@ body {
 }
 
 .team-section {
-    max-width: min(1000px, 85vw); /* Slightly reduced */
+    max-width: min(1000px, 85vw);
     margin: 2rem auto;
     padding: 2rem;
     background: rgba(16, 13, 4, 0.85);
-    border: 1px solid #A6886D;
+    border: 3px solid #A6886D;
     border-radius: 12px;
-    box-shadow: 0 0 30px rgba(64, 37, 28, 0.3);
+          text-shadow:
+        0 0 10px #A6886D,
+        0 0 20px #40251C,
+        2px 2px 8px #100D04,
+        0 0 2px #575945;
+    animation: flicker 2.5s infinite alternate;
+  box-shadow:
+        0 0 10px #A6886D,
+        0 0 20px #40251C,
+        2px 2px 8px #100D04,
+        0 0 2px #575945;
+    animation: flicker 2.5s infinite alternate;
 }
 
 .team-intro {
@@ -907,10 +862,22 @@ body {
     background: rgba(64, 61, 68, 0.3);
     padding: 1.5rem;
     border-radius: 8px;
-    border: 1px solid #575945;
+    border: 3px solid #A6886D;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+      text-shadow:
+        0 0 10px #A6886D,
+        0 0 20px #40251C,
+        2px 2px 8px #100D04,
+        0 0 2px #575945;
+    animation: flicker 2.5s infinite alternate;
+  box-shadow:
+        0 0 10px #A6886D,
+        0 0 20px #40251C,
+        2px 2px 8px #100D04,
+        0 0 2px #575945;
+    animation: flicker 2.5s infinite alternate;
 }
 
 .team-card::before {
@@ -927,8 +894,17 @@ body {
 
 .team-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(166, 136, 109, 0.2);
+    box-shadow: 0 5px 15px rgb(211, 209, 177);
+    border: 3px solid 0 5px 15px rgb(211, 209, 177);
 }
+
+
+
+
+
+
+
+
 
 .team-card:hover::before {
     opacity: 1;
@@ -1016,11 +992,6 @@ body {
         padding-top: 100px;
     }
 
-    .aboutus-content-inner {
-        font-size: 5vw;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-    }
 
     .aboutus-content-sub {
         font-size: 2.5vw;

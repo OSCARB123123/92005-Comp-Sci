@@ -62,7 +62,7 @@ body {
 .button {
     position: fixed;
     z-index: 1002;
-    background: rgba(64, 61, 68, 0.8); /* Restored original background */
+    background: rgba(64, 61, 68, 0); /* Restored original background */
     padding: 0.9rem;
     border-radius: 8px;
         text-shadow:
@@ -1249,7 +1249,29 @@ body {
     bottom: 20px; /* Changed from top to bottom */
     right: 20px;
     z-index: 1002;
-    background: rgba(64, 61, 68, 0.8); /* Restored original background */
+       background: 
+        linear-gradient(217deg, 
+            rgba(8, 12, 16, 0.98), /* Almost black */
+            rgba(15, 35, 30, 0.95) 25%, /* Murky forest */
+            rgba(12, 28, 32, 0.92) 45%, /* Deep murky teal */
+            rgba(18, 42, 38, 0.95) 75%, /* Dark swamp green */
+            rgba(8, 12, 16, 0.98) 100% /* Almost black */
+        ),
+        linear-gradient(127deg, 
+            rgba(14, 32, 28, 0.95), /* Dark moss */
+            rgba(20, 45, 40, 0.92)35%, /* Muted green */
+            rgba(12, 28, 25, 0.95) 55%, /* Deep forest */
+            rgba(8, 16, 24, 0.98) 100% /* Deep blue-black */
+        ),
+        linear-gradient(336deg, 
+            rgba(12, 25, 22, 0.95), /* Dark pine */
+            rgba(16, 38, 35, 0.92) 25%, /* Murky emerald */
+            rgba(22, 48, 45, 0.95) 55%, /* Deep sea green */
+            rgba(10, 20, 28, 0.98) 100% /* Navy blue */
+        );
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+
     padding: 1.5rem;
     border-radius: 8px;
         text-shadow:
@@ -1282,7 +1304,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: rgba(48, 45, 53, 0.8);
+    background: rgba(16, 13, 4, 1);
     padding: 2rem;
     border: 5px solid #A6886D;
     box-shadow: 0 0 10px #A6886D, 0 0 20px #40251C, 2px 2px 8px #100D04, 0 0 2px #575945;
@@ -1297,7 +1319,7 @@ body {
     font-family: 'Cinzel', serif;
     color: #A6886D;
     z-index: 1001;
-    height: 300px;
+    height: 400px;
 }
 
 .accessibility-menu-content.show {

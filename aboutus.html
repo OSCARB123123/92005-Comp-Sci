@@ -59,33 +59,40 @@
             </ul>
         </nav>
 
-                <div class="aboutus">
+<div class="aboutus">
     <div class="aboutus-content">
         <div class="aboutus-content-inner">Who We Are</div>
         <div class="team-section">
             <h2>Our Development Team</h2>
             <p class="team-intro">We are a passionate team of developers creating immersive horror experiences set in historical settings. We take our inspiration from places locked in time since their abandonment.</p>
+            
             <div class="team-grid">
-                <div class="team-card">
+                <div class="team-card" onclick="toggleTeamInfo(this)">
                     <h3>Nikhil</h3>
                     <p>Web designer (front-end)</p>
                     <p class="role">About and pricing pages</p>
+                    <div class="info-box">Nikhil focused on layout and animations for the About and Pricing sections using CSS and JS.</div>
                 </div>
-                <div class="team-card">
+                <div class="team-card" onclick="toggleTeamInfo(this)">
                     <h3>Oscar</h3>
                     <p>Web designer (front-end)</p>
-                    <p class="role">Landing and trailer pages</p>
+                    <p class="role">Landing and gallery pages</p>
+                    <div class="info-box">Oscar focused on creating intuitive layouts and ensuring accessibility standards were met across all devices.</div>
                 </div>
-                <div class="team-card">
+                <div class="team-card" onclick="toggleTeamInfo(this)">
                     <h3>Matthew</h3>
                     <p>3D Modeler</p>
                     <p class="role">Game assets and props</p>
+                    <div class="info-box">Matthew created detailed 3D models for various game assets and props, enhancing the overall visual quality.</div>
                 </div>
-                <div class="team-card">
+
+                <div class="team-card" onclick="toggleTeamInfo(this)">
                     <h3>Finlay</h3>
                     <p>3D Modeler</p>
                     <p class="role">Hospital environment</p>
+                    <div class="info-box">Finlay designed the hospital environment, focusing on creating an eerie atmosphere with realistic textures and lighting.</div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -266,7 +273,28 @@ function isCurrentPage(href) {
             canvas.width = width;
             canvas.height = height;
         });
-        // ...existing code...
+        
+        function toggleTeamInfo(card) {
+            const boxes = document.querySelectorAll('.team-card .info-box');
+            boxes.forEach(box => {
+                if (box !== card.querySelector('.info-box') ) {
+                    box.style.display = 'none';
+                }
+            });
+           
+            const infoBox = card.querySelector('.info-box');
+            infoBox.style.display = infoBox.style.display === 'block' ? 'none' : 'block';
+
+        }
+
+    document.addEventListener('click', function (e) {
+    if (!e.target.closest('.team-card')) {
+        const boxes = document.querySelectorAll('.team-card .info-box');
+        boxes.forEach(box => {
+            box.style.display = 'none';
+        });
+    }
+})
         </script>
     </body>
 

@@ -668,6 +668,14 @@ body {
     
 }
 
+/* High Contrast Mode for trailer-content-sub */
+.high-contrast .trailer-content-sub {
+    color: #fff !important;
+    background: #000 !important;
+    border: 2px solid #fff !important;
+    text-shadow: 0 0 2px #fff, 0 0 8px #000 !important;
+}
+
 .pricing-content-sub {
     position: relative;
     z-index: 2;
@@ -687,6 +695,14 @@ body {
         0 0 2px #575945;
     animation: flicker 2.5s infinite alternate;
     
+}
+
+/* High Contrast Mode for pricing-content-sub */
+.high-contrast .pricing-content-sub {
+    color: #fff !important;
+    background: #000 !important;
+    border: 2px solid #fff !important;
+    text-shadow: 0 0 2px #fff, 0 0 8px #000 !important;
 }
 
 
@@ -709,6 +725,14 @@ body {
         2px 2px 8px #100D04,
         0 0 2px #575945;
     animation: flicker 2.5s infinite alternate;
+
+/* High Contrast Mode for gallery-item */
+.high-contrast .gallery-item {
+    color: #fff !important;
+    background: #000 !important;
+    border: 2px solid #fff !important;
+    text-shadow: 0 0 2px #fff, 0 0 8px #000 !important;
+}
 }
  
 .gallery-inner {
@@ -929,6 +953,44 @@ body {
     font-style: italic;
 }
 
+/* High Contrast Mode for team-card and its content */
+.high-contrast-mode .team-card {
+    background: #000 !important;
+    border: 2px solid #fff !important;
+    color: #fff !important;
+    box-shadow: none !important;
+}
+.high-contrast-mode .team-card h3,
+.high-contrast-mode .team-card p,
+.high-contrast-mode .team-card .role {
+    color: #fff !important;
+    text-shadow: none !important;
+}
+
+/* High Contrast Mode for pricing-card and its content */
+.high-contrast-mode .pricing-card {
+    background: #000 !important;
+    border: 2px solid #fff !important;
+    color: #fff !important;
+    box-shadow: none !important;
+}
+.high-contrast-mode .pricing-card h3,
+.high-contrast-mode .pricing-card p,
+.high-contrast-mode .pricing-card .plan {
+    color: #fff !important;
+    text-shadow: none !important;
+}
+
+/* High Contrast Mode for info-box (blurbs) */
+.high-contrast-mode .info-box {
+    background: #000 !important;
+    color: #fff !important;
+    border: 2px solid #fff !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+}
+
+/* Media Queries */
 @media screen and (max-width: 1200px) {
     .landing {
         font-size: 10vw;

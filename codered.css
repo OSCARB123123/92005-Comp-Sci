@@ -787,21 +787,24 @@ body {
     top: 0;
     width: 100%;
     z-index: 1000;
-    padding: 15px 0;
+    padding: 15px;
     letter-spacing: 0.5em;
     background: none;
     box-shadow: none;
     display: flex; /* FLEXBOX: Creates flexible team member layout */
     flex-wrap: wrap;
     justify-content: center;
-    gap: 3rem;
+    gap: 1rem;
+    box-sizing: border-box; /* Include padding in width calculation */
 }
 
 .nav-links {
     display: flex; /* FLEXBOX: Creates horizontal navigation menu */
     justify-content: center;
     align-items: center;
-    gap: 2rem; /* FLEXBOX: Adds equal spacing between nav items */
+    gap: 1rem; /* FLEXBOX: Adds equal spacing between nav items */
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    padding: 0 10px; /* Add some padding on the sides */
 }
 
 .nav-links li {
@@ -811,15 +814,15 @@ body {
 .nav-links li a {
     text-decoration: none;
     color: #A6886D; /* brighter for contrast */
-    font-size: 2vw;
-    padding: 10px 20px;
+    font-size: clamp(14px, 1.5vw, 24px); /* Responsive font size with min/max limits */
+    padding: 8px 12px;
     transition: color 0.3s ease;
-        text-shadow:
+    text-shadow:
         0 0 10px #A6886D,
         0 0 20px #40251C,
         2px 2px 8px #100D04,
         0 0 2px #575945;
-
+    white-space: nowrap; /* Keep text on one line */
 }
 .nav-links li a:hover {
     color: #dba576; /* lighter on hover */
@@ -1005,8 +1008,11 @@ body {
         font-size: 3vw;
     }
 
+    .nav-links {
+        gap: 0.75rem;
+    }
     .nav-links li a {
-        font-size: 1.8vw;
+        padding: 6px 10px;
     }
 }
 
@@ -1026,9 +1032,16 @@ body {
         letter-spacing: 0.2em;
     }
 
+    .navbar {
+        padding: 10px;
+    }
+    .nav-links {
+        gap: 0.5rem;
+        width: 100%;
+        justify-content: space-around;
+    }
     .nav-links li a {
-        font-size: 2.5vw;
-        padding: 8px 12px;
+        padding: 5px 8px;
     }
 
     .trailer-video {
@@ -1079,13 +1092,15 @@ body {
         top: 10px;
     }
 
-    .nav-links li a {
-        font-size: 3.5vw;
-        padding: 5px 8px;
-    }
-
     .navbar {
-        bottom: 950px;
+        padding: 8px 5px;
+    }
+    .nav-links {
+        gap: 0.25rem;
+    }
+    .nav-links li a {
+        padding: 4px 6px;
+        letter-spacing: 0.2em;
     }
 
     .features {

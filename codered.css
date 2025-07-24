@@ -16,15 +16,25 @@ body {
   scrollbar-width: none;
 }
 
+/* Remove default top margins that cause gaps */
+main, section, header {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+
 #background-canvas {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 1 !important; /* Ensure above gradient, below content */
+    z-index: -1;
+    display: block;
     pointer-events: none;
-}
+    }
 
 .LoadingScreen {
     position: fixed;
@@ -436,6 +446,8 @@ body {
     animation: gradientShift 15s ease infinite;
     z-index: 0;
 }
+
+
 
 /* Update the gradient animation keyframes */
 @keyframes gradientShift {

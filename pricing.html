@@ -1,78 +1,211 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- This tells the browser it's HTML5 -->
         <meta charset="utf-8">
-
-        <!-- Helps older versions of Internet Explorer display the site correctly -->
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-        <!-- This sets the page title (appears on the browser tab) -->
-        <title>1.2 base</title>
-
-        <!-- A brief description of the page (used by search engines) -->
+        <title></title>
         <meta name="description" content="">
-
-        <!-- Makes sure the site looks good on all screen sizes -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <!-- This links to our external CSS file where we style the website -->
         <link rel="stylesheet" href="codered.css">
+        <title>1.2 base</title>
     </head>
-
     <body>
-        <!-- A full-page canvas element, often used for background animations -->
-        <canvas id="background-canvas"></canvas>
-
-        <!-- Accessibility menu button and menu -->
-        <button class="accessibility-menu" onclick="toggleAccessibilityMenu()">Menu</button>
-
-        <div class="accessibility-menu-content" id="accessibilityMenu">
+        <!-- Add accessibility menu -->
+        <button class="accessibility-menu" onclick="toggleAccessibilityMenu()">Menu</button>        <div class="accessibility-menu-content" id="accessibilityMenu">
             <h2>Accessibility Menu</h2>
             <hr style="background-color: #A6886D; height: 2px; border: none;">
-
-            <!-- High Contrast Toggle -->
             <label>
                 <input type="checkbox" id="highContrastMode" onchange="toggleHighContrastMode()">
                 High Contrast Mode
+        
             </label>
-
-            <!-- Extra Readable Font Toggle -->
             <label>
                 <input type="checkbox" id="extraReadableFont" onchange="toggleExtraReadableFont()">
                 Extra Readable Font
             </label>
-
-            <!-- Feedback form link -->
-            <br><br>
+            <br></br>
             <h2>Contact / Feedback Form</h2>
             <hr style="background-color: #A6886D; height: 2px; border: none;">
+
             <button class="button" onclick="window.location.href='form.html'">
-                <span>Form</span>
-            </button>
-        </div>
+    <span>Form </span>
+</button>
 
-        <!-- Loading screen with animated spinner -->
+
+        </div>
+        
         <div class="LoadingScreen">
-            <div class="spinner">
-                <!-- These divs are for the spinner animation -->
-                <div></div><div></div><div></div><div></div><div></div>
-                <div></div><div></div><div></div><div></div><div></div>
-            </div>
-        </div>
+    <div class="spinner">
+        <div></div>   
+        <div></div>    
+        <div></div>    
+        <div></div>    
+        <div></div>    
+        <div></div>    
+        <div></div>    
+        <div></div>    
+        <div></div>    
+        <div></div>    
+    </div>
+</div>
 
-        <!-- Landing section with game title and subtitle -->
-        <div class="landing">
-            <div class="landing-content">
-                <div class="landing-content-inner">"Code Red"</div>
-                <div class="landing-content-sub">Soviet Russia, 1976</div>
-            </div>
-        </div>
+<canvas id="background-canvas"></canvas>
 
-        <!-- Main navigation bar -->
+
+
+
+<div class="pricing">
+    <div class="pricing-content">
+        <div class="pricing-content-inner">Pricing Options</div>
+        <div class="pricing-section">
+            <h2>Our Editions For Sale</h2>
+            <p class="pricing-intro">We offer a range of editions to suit different preferences and budgets.</p>
+            <div class="pricing-grid">
+
+
+                <div class="pricing-card"
+                    onclick="toggleInfo(this)"
+                    tabindex="0"
+                    role="button"
+                    onkeydown="if(event.key==='Enter'||event.key===' '){toggleInfo(this);}">
+                    <h3>Standard Edition</h3>
+                    <p>$25.99</p>
+                    <p class="plan">Most popular Edition</p>
+                    <div class="info-box">
+                    This edition includes the base game with standard resolution and textures.
+                    </div>
+                </div>
+
+                <div class="pricing-card"
+                    onclick="toggleInfo(this)"
+                    tabindex="0"
+                    role="button"
+                    onkeydown="if(event.key==='Enter'||event.key===' '){toggleInfo(this);}">
+                    <h3>Premium Edition</h3>
+                    <p>$30.99</p>
+                    <p class="plan">Upgraded resolution, enhanced textures</p>
+                    <div class="info-box">
+                        This edition includes upgraded resolution and enhanced textures.
+                    </div>
+                </div>
+
+                <div class="pricing-card"
+                    onclick="toggleInfo(this)"
+                    tabindex="0"
+                    role="button"
+                    onkeydown="if(event.key==='Enter'||event.key===' '){toggleInfo(this);}">
+                    <h3>Ultimate Edition</h3>
+                    <p>$35.99</p>
+                    <p class="plan">All assets included</p>
+                    <div class="info-box">
+                        This edition includes all assets, including any future updates.
+                    </div>
+                </div>
+
+                <div class="pricing-card"
+                    onclick="toggleInfo(this)"
+                    tabindex="0"
+                    role="button"
+                    onkeydown="if(event.key==='Enter'||event.key===' '){toggleInfo(this);}">
+                    <h3>Editors Cut</h3>
+                    <p>$40.99</p>
+                    <p class="plan">Extras included</p>
+                    <div class="info-box">
+                        This edition includes additional content and features not found in the other editions.
+                    </div>
+                </div>
+
+
+                
+                </div>
+                
+            </div>
+
+            <div class="scroll-indicator" style="
+                text-align: center;
+                margin-top: 3rem;
+                margin-bottom: 1rem;
+                opacity: 0.8;
+                animation: bounce 2s infinite;
+                transition: opacity 0.5s ease;
+            ">
+                <div style="
+                    color: #a6886d;
+                    font-family: 'Cinzel', serif;
+                    margin-bottom: 0.5rem;
+                ">Scroll for FAQ</div>
+                <div style="
+                    color: #a6886d;
+                    font-size: 1.5rem;
+                    text-shadow: 0 0 10px #a6886d;
+                ">↓</div>
+            </div>
+
+</div>
+
+
+</div>
+
+
+<!-- Floating scroll-to-top button using swallow__icon -->
+<!-- New scroll button styled like accessibility menu -->
+<button id="scrollBtn" class="scroll-menu-btn" aria-label="Scroll" style="position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:10001;">
+  <span id="scrollBtnText">↓</span>
+</button>
+
+    
+
+    <div class="pricing">
+    <div class="pricing-content">
+        <div class="pricing-content-inner">FAQ</div>
+        <div class="pricing-section" id="faq-section">
+            <h2 class="faq-title">Frequently Asked Questions</h2>
+            <div class="faq-grid">
+              <div class="pricing-card">
+                <strong>What is included in each edition?</strong>
+                <p>Each edition includes different levels of content and features. Please refer to the edition descriptions for specific details.</p>
+              </div>
+              <div class="pricing-card">
+                <strong>Can I upgrade my edition later?</strong>
+                <p>Yes, you can upgrade your edition at any time. Please contact our support team for assistance.</p>
+              </div>
+              <div class="pricing-card">
+                <strong>Do the editions include future updates?</strong>
+                <p>The Ultimate Edition includes all future updates and new assets at no extra cost. Other editions may require an upgrade or separate purchase for future content.</p>
+              </div>
+              <div class="pricing-card">
+                <strong>Is multiplayer supported in all editions?</strong>
+                <p>Yes, all editions support multiplayer features. However, some advanced multiplayer modes and exclusive content may only be available in Premium, Ultimate, or Editors Cut editions.</p>
+              </div>
+              <div class="pricing-card">
+                <strong>Can I transfer my progress if I upgrade?</strong>
+                <p>Your game progress and saved data will transfer automatically when you upgrade to a higher edition. No data will be lost.</p>
+              </div>
+              <div class="pricing-card">
+                <strong>What payment methods are accepted?</strong>
+                <p>We accept major credit cards, PayPal, and select local payment options. All transactions are securely processed.</p>
+              </div>
+              <div class="pricing-card">
+                <strong>Is there a refund policy?</strong>
+                <p>Yes, we offer a 14-day refund policy for all editions, provided the game has not been extensively played or content downloaded.</p>
+              </div>
+              <div class="pricing-card">
+                <strong>Are there any discounts available?</strong>
+                <p>We occasionally offer discounts and promotions. Please sign up for our newsletter to stay informed.</p>
+              </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
         <nav class="navbar">
             <ul class="nav-links">
-                <!-- Navigation links to other pages -->
                 <li><a href="index.html" onclick="return !isCurrentPage('index.html')">Landing</a></li>
                 <li><a href="trailer.html" onclick="return !isCurrentPage('trailer.html')">Trailer</a></li>
                 <li><a href="aboutus.html" onclick="return !isCurrentPage('aboutus.html')">About</a></li>
@@ -81,85 +214,254 @@
             </ul>
         </nav>
 
+        <style>
+        .faq-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 30px;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 20px;
+        }
+        .faq-item {
+          background: linear-gradient(45deg, rgba(24, 24, 24, 0.9), rgba(36, 36, 36, 0.9));
+          padding: 25px;
+          border: 2px solid #a6886d;
+          border-radius: 12px;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          backdrop-filter: blur(5px);
+          position: relative;
+          overflow: hidden;
+        }
+        .faq-item:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 6px 12px rgba(166, 136, 109, 0.2);
+          border-color: #c4a285;
+        }
+        .faq-item::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background: linear-gradient(90deg, transparent, #a6886d, transparent);
+          opacity: 0;
+          transition: opacity 0.3s;
+        }
+        .faq-item:hover::before {
+          opacity: 1;
+        }
+        .faq-item strong {
+          display: block;
+          font-family: 'Cinzel', serif;
+          color: #a6886d;
+          font-size: 1.2rem;
+          margin-bottom: 15px;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .faq-item p {
+          color: #e2d3b6;
+          font-size: 1rem;
+          line-height: 1.6;
+          margin: 0;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        @media (max-width: 768px) {
+          .faq-grid {
+            grid-template-columns: 1fr;
+            padding: 15px;
+            gap: 20px;
+          }
+        }
+        button {
+          border: none;
+          background: none;
+          padding: 0;
+          margin: 0;
+          cursor: pointer;
+          font-family: inherit;
+        }
+        .scroll-menu-btn {
+          min-width: 44px;
+          min-height: 44px;
+          padding: 0.5rem 1.2rem;
+      background: 
+        linear-gradient(217deg, 
+            rgba(8, 12, 16, 0.98), /* Almost black */
+            rgba(15, 35, 30, 0.95) 25%, /* Murky forest */
+            rgba(12, 28, 32, 0.92) 45%, /* Deep murky teal */
+            rgba(18, 42, 38, 0.95) 75%, /* Dark swamp green */
+            rgba(8, 12, 16, 0.98) 100% /* Almost black */
+        ),
+        linear-gradient(127deg, 
+            rgba(14, 32, 28, 0.95), /* Dark moss */
+            rgba(20, 45, 40, 0.92)35%, /* Muted green */
+            rgba(12, 28, 25, 0.95) 55%, /* Deep forest */
+            rgba(8, 16, 24, 0.98) 100% /* Deep blue-black */
+        ),
+        linear-gradient(336deg, 
+            rgba(12, 25, 22, 0.95), /* Dark pine */
+            rgba(16, 38, 35, 0.92) 25%, /* Murky emerald */
+            rgba(22, 48, 45, 0.95) 55%, /* Deep sea green */
+            rgba(10, 20, 28, 0.98) 100% /* Navy blue */
+        );
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+          border: 3px solid #A6886D;
+          border-radius: 12px;
+          color: #A6886D;
+          font-family: 'Cinzel', serif;
+          font-size: 1.5rem;
+          font-weight: bold;
+          box-shadow: 0 0 8px #575945;
+          cursor: pointer;
+          transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+          z-index: 10001;
+        }
+        .scroll-menu-btn:hover {
+          background-color: #A6886D;
+          color: #1D1D1F;
+          box-shadow: 0 0 16px #A6886D;
+        }
+        #scrollBtnText {
+          display: inline-block;
+          transition: transform 0.3s;
+        }
+        @keyframes bounce {
+          0%, 20%, 50%, 80%, 100% {
+            transform: translateY(0);
+          }
+          40% {
+            transform: translateY(-10px);
+          }
+          60% {
+            transform: translateY(-5px);
+          }
+        }
+        </style>
         <script>
-            // This function wraps each letter in a <span> so we can animate them
-            function wrapLetters(selector, delayIncrement = 0.3) {
-                const el = document.querySelector(selector);
-                if (!el) return;
-                const text = el.textContent;
-                el.innerHTML = '';
-                [...text].forEach((char, index) => {
-                    const span = document.createElement('span');
-                    span.textContent = char;
-                    if (char === ' ') {
-                        span.classList.add('space');
-                    }
-                    const floatDelay = (index * delayIncrement).toFixed(2);
-                    span.style.animation = `flicker 3s infinite ease-in-out 0s, floatSingle 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1) ${floatDelay}s`;
-                    el.appendChild(span);
-                });
+    function wrapLetters(selector, delayIncrement = 0.3) {
+        const el = document.querySelector(selector);
+        if (!el) return;
+        const text = el.textContent;
+        el.innerHTML = '';
+        [...text].forEach((char, index) => {
+            const span = document.createElement('span');
+            span.textContent = char;
+            if (char === ' ') {
+                span.classList.add('space');
             }
+            const floatDelay = (index * delayIncrement).toFixed(2);
+            span.style.animation = `flicker 3s infinite ease-in-out 0s, floatSingle 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1) ${floatDelay}s`;
+            el.appendChild(span);
+        });
+    }
 
-            // Apply the floating text effect to title and subtitle
-            wrapLetters('.landing-content-inner');
-            wrapLetters('.landing-content-sub');
+    // Update these selectors for each page
+    wrapLetters('.pricing-content-inner'); // For pricing.html
+    wrapLetters('.pricing-content-sub');
+    wrapLetters('.pricing-intro'); // For pricing.html	
+    wrapLetters('.pricing-section h2'); // For pricing.html
+    wrapLetters('.pricing-card h3'); // For pricing.html
+    wrapLetters('.pricing-card p'); // For pricing.html
+    wrapLetters('.plan'); // For pricing.html
 
-            // This grabs the current page name
-            const currentPage = window.location.pathname.split('/').pop();
-            const loadingScreen = document.querySelector('.LoadingScreen');
 
-            // Only show loading screen on page load if it's not the same as before
-            if (document.referrer === '' || !document.referrer.includes(currentPage)) {
-                loadingScreen.style.display = 'flex';
-            } else {
-                loadingScreen.style.display = 'none';
-            }
-
-            // Hide the loading screen smoothly when the page has fully loaded
-            window.addEventListener('load', () => {
-                setTimeout(() => {
-                    loadingScreen.style.opacity = '0';
-                    setTimeout(() => {
-                        loadingScreen.style.display = 'none';
-                    }, 300);
-                }, 2000); // 2 seconds before hiding
-            });
-
-            // Add fade effect to the loading screen
-            loadingScreen.style.transition = 'opacity 0.3s ease';
-
-            // If load doesn’t fire (e.g. on old browsers), hide screen anyway after 5s
+    // Handle scroll indicator visibility
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+            scrollIndicator.style.opacity = '0';
             setTimeout(() => {
-                if (loadingScreen.style.display === 'flex') {
-                    loadingScreen.style.opacity = '0';
-                    setTimeout(() => {
-                        loadingScreen.style.display = 'none';
-                    }, 1000);
-                }
-            }, 5000);
+                scrollIndicator.style.display = 'none';
+            }, 500);
+        }
+    });
 
-            // Function that checks if user is already on that page (so they don't reload it)
-            function isCurrentPage(href) {
-                return window.location.pathname.endsWith(href);
-            }
+    // New scroll button logic
+    const scrollBtn = document.getElementById('scrollBtn');
+    const scrollBtnText = document.getElementById('scrollBtnText');
+    function atBottom() {
+      return Math.ceil(window.innerHeight + window.scrollY) >= document.body.scrollHeight;
+    }
+    function atTop() {
+      return window.scrollY <= 0;
+    }
+    function updateScrollBtn() {
+      const nearBottom = (window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 100;
+      if (nearBottom) {
+        scrollBtn.style.display = 'none';
+      } else {
+        scrollBtn.style.display = 'block';
+        scrollBtnText.textContent = '↓';
+      }
+    }
+    window.addEventListener('scroll', updateScrollBtn);
+    window.addEventListener('resize', updateScrollBtn);
+    updateScrollBtn();
+    scrollBtn.addEventListener('click', () => {
+      const targetPosition = document.documentElement.scrollHeight - window.innerHeight;
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+      setTimeout(updateScrollBtn, 100);
+    });
 
-            // Toggle the accessibility menu on/off
+    // ...existing code...
+    const currentPage = window.location.pathname.split('/').pop();
+    const loadingScreen = document.querySelector('.LoadingScreen');
+    const loadingContent = document.querySelector('.loading-content-inner');
+
+    // Only show loading screen for actual page transitions
+    if (document.referrer === '' || !document.referrer.includes(currentPage)) {
+        loadingScreen.style.display = 'flex';
+    } else {
+        loadingScreen.style.display = 'none';
+    }
+
+    // Loading screen handler
+    window.addEventListener('load', () => {
+        if (loadingScreen.style.display === 'flex') {
+            setTimeout(() => {
+                loadingScreen.style.opacity = '0';
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 1000);
+         }, 2000); // Changed to 2000ms (2 seconds)
+        }
+    });
+
+    // Fallback in case load event doesn't fire
+    setTimeout(() => {
+        if (loadingScreen.style.display === 'flex') {
+            loadingScreen.style.opacity = '0';
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 1000);
+        }
+    }, 5000);
+
+    // Add to each page's script section
+    function isCurrentPage(href) {
+        return window.location.pathname.endsWith(href);
+    }
+
+            // Accessibility functions
             function toggleAccessibilityMenu() {
                 const menu = document.getElementById('accessibilityMenu');
                 menu.classList.toggle('show');
             }
 
-            // Automatically close the accessibility menu if the user clicks outside of it
             document.addEventListener('click', function(event) {
                 const menu = document.getElementById('accessibilityMenu');
                 const button = document.querySelector('.accessibility-menu');
                 if (!menu.contains(event.target) && !button.contains(event.target)) {
                     menu.classList.remove('show');
                 }
-            });
-
-            // Toggle readable font and save the user's choice
-            function toggleExtraReadableFont() {
+            });            function toggleExtraReadableFont() {
                 const checkbox = document.getElementById('extraReadableFont');
                 const body = document.body;
 
@@ -172,11 +474,9 @@
                 }
             }
 
-            // Toggle high contrast mode and save the user's choice
             function toggleHighContrastMode() {
                 const checkbox = document.getElementById('highContrastMode');
                 const body = document.body;
-                const menu = document.getElementById('accessibilityMenu');
 
                 if (checkbox.checked) {
                     body.classList.add('high-contrast-mode');
@@ -185,37 +485,99 @@
                     body.classList.remove('high-contrast-mode');
                     localStorage.setItem('highContrastMode', 'false');
                 }
-
-                // Force update of the menu's layout to fix visual bugs
-                if (menu) {
-                    menu.style.display = 'none';
-                    void menu.offsetWidth; // Force reflow
-                    if (menu.classList.contains('show')) {
-                        menu.style.display = 'block';
-                    }
-                }
             }
 
-            // Runs when the page finishes loading
             document.addEventListener('DOMContentLoaded', () => {
-                // Prevent scrollbars from showing on the landing screen
-                document.body.classList.add('landing-page');
-                document.documentElement.classList.add('landing-page');
-
-                // Check if the user had enabled readable font before
+                // Check for saved font preference
                 const savedFont = localStorage.getItem('extraReadableFont');
                 if (savedFont === 'true') {
                     document.body.classList.add('extra-readable-font');
                     document.getElementById('extraReadableFont').checked = true;
                 }
 
-                // Check if high contrast was saved from earlier
+                // Check for saved contrast preference
                 const savedContrast = localStorage.getItem('highContrastMode');
                 if (savedContrast === 'true') {
                     document.body.classList.add('high-contrast-mode');
                     document.getElementById('highContrastMode').checked = true;
                 }
             });
+
+            // Moving background canvas effect
+        const canvas = document.getElementById('background-canvas');
+        const ctx = canvas.getContext('2d');
+        let width = window.innerWidth;
+        let height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+        canvas.style.position = 'fixed';
+        canvas.style.top = 0;
+        canvas.style.left = 0;
+        canvas.style.zIndex = '1'; // Set above gradient, below content
+        canvas.style.width = '100vw';
+        canvas.style.height = '100vh';
+        canvas.style.pointerEvents = 'none';
+
+        // Example: animated particles
+        const particles = [];
+        const particleCount = 60;
+        for (let i = 0; i < particleCount; i++) {
+            particles.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                r: 1 + Math.random() * 2,
+                dx: -0.5 + Math.random(),
+                dy: -0.5 + Math.random(),
+                alpha: 0.1 + Math.random() * 0.3
+            });
+        }
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            for (let p of particles) {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
+                ctx.fillStyle = `rgba(166, 136, 109, ${p.alpha})`;
+                ctx.shadowColor = '#A6886D';
+                ctx.shadowBlur = 8;
+                ctx.fill();
+                p.x += p.dx;
+                p.y += p.dy;
+                if (p.x < 0 || p.x > width) p.dx *= -1;
+                if (p.y < 0 || p.y > height) p.dy *= -1;
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+        window.addEventListener('resize', () => {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+        });
+        
+
+        function toggleInfo(card) {
+            const boxes = document.querySelectorAll('.info-box');
+            boxes.forEach(box => {
+                if (box !== card.querySelector('.info-box')) {
+                    box.style.display = 'none';
+                }
+            });
+            const infoBox = card.querySelector('.info-box');
+            infoBox.style.display = infoBox.style.display === 'block' ? 'none' : 'block';
+        }
+
+        document.addEventListener('click', function (e) {
+            if (!e.target.closest('.pricing-card')) {
+                document.querySelectorAll('.info-box').forEach(box => box.style.display = 'none');
+            }
+        });
+
         </script>
     </body>
+
+
+
+
+
 </html>

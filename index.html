@@ -1,79 +1,66 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- Sets character encoding so the browser knows how to read text -->
         <meta charset="utf-8">
-
-        <!-- Makes the page work properly in older versions of Internet Explorer -->
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-        <!-- Gives the page a title (shown on the browser tab) -->
-        <title>1.2 base</title>
-
-        <!-- Gives a short description of the page (used in search engines) -->
+        <title></title>
         <meta name="description" content="">
-
-        <!-- Makes the site responsive on different devices (like phones) -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <!-- Links to the external CSS file to style the website -->
         <link rel="stylesheet" href="codered.css">
+        <title>1.2 base</title>
     </head>
-
     <body>
-        <!-- Canvas used for background effects or animations -->
-        <canvas id="background-canvas"></canvas>
+<canvas id="background-canvas"></canvas>
+<!-- Accessibility menu (outside main content for consistent styling) -->
+<button class="accessibility-menu" onclick="toggleAccessibilityMenu()">Menu</button>
+<div class="accessibility-menu-content" id="accessibilityMenu">
+    <h2>Accessibility Menu</h2>
+    <hr style="background-color: #A6886D; height: 2px; border: none;">
+    <label>
+        <input type="checkbox" id="highContrastMode" onchange="toggleHighContrastMode()">
+        High Contrast Mode
+    </label>
+    <label>
+        <input type="checkbox" id="extraReadableFont" onchange="toggleExtraReadableFont()">
+        Extra Readable Font
+    </label>
+    <br></br>
+    <h2>Contact / Feedback Form</h2>
+    <hr style="background-color: #A6886D; height: 2px; border: none;">
+    <button class="button" onclick="window.location.href='form.html'">
+        <span>Form </span>
+    </button>
+</div>
 
-        <!-- Accessibility menu button to toggle options for users who need help -->
-        <button class="accessibility-menu" onclick="toggleAccessibilityMenu()">Menu</button>
-
-        <!-- Content of the accessibility menu -->
-        <div class="accessibility-menu-content" id="accessibilityMenu">
-            <h2>Accessibility Menu</h2>
-            <hr style="background-color: #A6886D; height: 2px; border: none;">
-
-            <!-- Option to enable High Contrast Mode -->
-            <label>
-                <input type="checkbox" id="highContrastMode" onchange="toggleHighContrastMode()">
-                High Contrast Mode
-            </label>
-
-            <!-- Option to use a more readable font -->
-            <label>
-                <input type="checkbox" id="extraReadableFont" onchange="toggleExtraReadableFont()">
-                Extra Readable Font
-            </label>
-
-            <!-- Feedback form section -->
-            <br><br>
-            <h2>Contact / Feedback Form</h2>
-            <hr style="background-color: #A6886D; height: 2px; border: none;">
-            <button class="button" onclick="window.location.href='form.html'">
-                <span>Form </span>
-            </button>
-        </div>
-
-        <!-- Loading screen shown when the page is loading -->
         <div class="LoadingScreen">
             <div class="spinner">
-                <!-- These are the dots in the spinner animation -->
-                <div></div><div></div><div></div><div></div><div></div>
-                <div></div><div></div><div></div><div></div><div></div>
+                <div></div>   
+                <div></div>    
+                <div></div>    
+                <div></div>    
+                <div></div>    
+                <div></div>    
+                <div></div>    
+                <div></div>    
+                <div></div>    
+                <div></div>    
             </div>
         </div>
 
-        <!-- Main landing content (title and subtitle of the page) -->
+
+
         <div class="landing">
             <div class="landing-content">
                 <div class="landing-content-inner">"Code Red"</div>
                 <div class="landing-content-sub">Soviet Russia, 1976</div>
-            </div>
+                </div>
+                </div>
         </div>
 
-        <!-- Navigation bar for switching between pages -->
+
+
         <nav class="navbar">
             <ul class="nav-links">
-                <!-- Only reload the page if the user is on a different one -->
                 <li><a href="index.html" onclick="return !isCurrentPage('index.html')">Landing</a></li>
                 <li><a href="trailer.html" onclick="return !isCurrentPage('trailer.html')">Trailer</a></li>
                 <li><a href="aboutus.html" onclick="return !isCurrentPage('aboutus.html')">About</a></li>
@@ -81,55 +68,58 @@
                 <li><a href="gallery.html" onclick="return !isCurrentPage('gallery.html')">Gallery</a></li>
             </ul>
         </nav>
-
+       
         <script>
-            // Makes each letter float and flicker individually for a cool animation
             function wrapLetters(selector, delayIncrement = 0.3) {
-                const el = document.querySelector(selector);
-                if (!el) return;
-                const text = el.textContent;
-                el.innerHTML = '';
-                [...text].forEach((char, index) => {
-                    const span = document.createElement('span');
-                    span.textContent = char;
-                    if (char === ' ') {
-                        span.classList.add('space');
-                    }
-                    const floatDelay = (index * delayIncrement).toFixed(2);
-                    span.style.animation = `flicker 3s infinite ease-in-out 0s, floatSingle 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1) ${floatDelay}s`;
-                    el.appendChild(span);
-                });
-            }
+            const el = document.querySelector(selector);
+            if (!el) return;
+            const text = el.textContent;
+            el.innerHTML = '';
+            [...text].forEach((char, index) => {
+                const span = document.createElement('span');
+                span.textContent = char;
+                if (char === ' ') {
+                span.classList.add('space');
+                }
+                const floatDelay = (index * delayIncrement).toFixed(2);
+                span.style.animation = `flicker 3s infinite ease-in-out 0s, floatSingle 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1) ${floatDelay}s`;
+                el.appendChild(span);
+            });
+}
 
-            // Runs the text animation on title and subtitle
+
             wrapLetters('.landing-content-inner');
             wrapLetters('.landing-content-sub');
 
-            // Detects what page the user is on
+
+
+            // Add this to each page's script section, before the loading screen handler
             const currentPage = window.location.pathname.split('/').pop();
             const loadingScreen = document.querySelector('.LoadingScreen');
+            const loadingContent = document.querySelector('.loading-content-inner');
 
-            // Show the loading screen only if navigating to a new page
+            // Only show loading screen for actual page transitions
             if (document.referrer === '' || !document.referrer.includes(currentPage)) {
                 loadingScreen.style.display = 'flex';
             } else {
                 loadingScreen.style.display = 'none';
             }
 
-            // Hides the loading screen once the page fully loads
+            // Loading screen handler
             window.addEventListener('load', () => {
+                const loadingScreen = document.querySelector('.LoadingScreen');
                 setTimeout(() => {
                     loadingScreen.style.opacity = '0';
                     setTimeout(() => {
                         loadingScreen.style.display = 'none';
                     }, 300);
-                }, 2000); // loading screen lasts 2 seconds
+                }, 2000); // Changed to 2000ms (2 seconds)
             });
 
-            // Smooth transition for the loading screen
+            // Add transition for smooth fade
             loadingScreen.style.transition = 'opacity 0.3s ease';
 
-            // If loading event fails, hide the screen after 5 seconds just in case
+            // Fallback in case load event doesn't fire
             setTimeout(() => {
                 if (loadingScreen.style.display === 'flex') {
                     loadingScreen.style.opacity = '0';
@@ -139,30 +129,28 @@
                 }
             }, 5000);
 
-            // Checks if the link being clicked is for the current page
+            // Add to each page's script section
             function isCurrentPage(href) {
                 return window.location.pathname.endsWith(href);
             }
 
-            // Shows or hides the accessibility menu
+            // Add this to your script section
             function toggleAccessibilityMenu() {
                 const menu = document.getElementById('accessibilityMenu');
                 menu.classList.toggle('show');
             }
 
-            // Closes the accessibility menu if you click outside of it
+            // Optional: Close menu when clicking outside
             document.addEventListener('click', function(event) {
                 const menu = document.getElementById('accessibilityMenu');
                 const button = document.querySelector('.accessibility-menu');
                 if (!menu.contains(event.target) && !button.contains(event.target)) {
                     menu.classList.remove('show');
                 }
-            });
-
-            // Turns on/off a more readable font style
-            function toggleExtraReadableFont() {
+            });            function toggleExtraReadableFont() {
                 const checkbox = document.getElementById('extraReadableFont');
                 const body = document.body;
+
                 if (checkbox.checked) {
                     body.classList.add('extra-readable-font');
                     localStorage.setItem('extraReadableFont', 'true');
@@ -172,7 +160,6 @@
                 }
             }
 
-            // Turns on/off high contrast mode
             function toggleHighContrastMode() {
                 const checkbox = document.getElementById('highContrastMode');
                 const body = document.body;
@@ -185,10 +172,10 @@
                     body.classList.remove('high-contrast-mode');
                     localStorage.setItem('highContrastMode', 'false');
                 }
-
-                // Refreshes the menu display so changes apply immediately
+                // Force reflow for menu and its children
                 if (menu) {
                     menu.style.display = 'none';
+                    // Trigger reflow
                     void menu.offsetWidth;
                     if (menu.classList.contains('show')) {
                         menu.style.display = 'block';
@@ -196,20 +183,19 @@
                 }
             }
 
-            // When the page finishes loading, check saved preferences
             document.addEventListener('DOMContentLoaded', () => {
-                // Stops scrollbars from showing on landing page
+                // Add landing-page class to html and body to prevent scrollbars
                 document.body.classList.add('landing-page');
                 document.documentElement.classList.add('landing-page');
 
-                // Load font preference if it was saved
+                // Check for saved font preference
                 const savedFont = localStorage.getItem('extraReadableFont');
                 if (savedFont === 'true') {
                     document.body.classList.add('extra-readable-font');
                     document.getElementById('extraReadableFont').checked = true;
                 }
 
-                // Load contrast preference if it was saved
+                // Check for saved contrast preference
                 const savedContrast = localStorage.getItem('highContrastMode');
                 if (savedContrast === 'true') {
                     document.body.classList.add('high-contrast-mode');
@@ -217,5 +203,12 @@
                 }
             });
         </script>
+
+
+
     </body>
+
+
+
+
 </html>

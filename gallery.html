@@ -2,137 +2,94 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <!-- Compatibility mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Gallery Page</title>
     <meta name="description" content="" />
-    <!-- Responsive viewport for mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Link to external CSS stylesheet -->
     <link rel="stylesheet" href="codered.css" />
 </head>
 <body>
-    <!-- Canvas element used for rendering animated background particles -->
+    <!-- Canvas for background animation -->
     <canvas id="background-canvas" aria-hidden="true"></canvas>
 
-    <!-- Button to toggle the Accessibility Menu -->
+    <!-- Accessibility Menu Button -->
     <button
         class="accessibility-menu"
-        aria-haspopup="true"           <!-- Indicates this button controls a menu -->
-        aria-expanded="false"          <!-- Indicates whether menu is open -->
-        aria-controls="accessibilityMenu"  <!-- Associates button with menu element -->
+        aria-haspopup="true"
+        aria-expanded="false"
+        aria-controls="accessibilityMenu"
         onclick="toggleAccessibilityMenu()"
     >
         Menu
     </button>
 
-    <!-- Accessibility Menu region, marked as complementary landmark -->
-    <aside
-        class="accessibility-menu-content"
-        id="accessibilityMenu"
-        aria-label="Accessibility Menu"
-        hidden                         <!-- Hidden by default, toggled via script -->
-    >
+    <!-- Accessibility menu as a complementary region -->
+    <aside class="accessibility-menu-content" id="accessibilityMenu" aria-label="Accessibility Menu" hidden>
         <h2>Accessibility Menu</h2>
-        <!-- Decorative horizontal rule with custom color -->
         <hr style="background-color: #A6886D; height: 2px; border: none;" />
-
-        <!-- Form containing accessibility options -->
         <form>
-            <!-- High Contrast Mode toggle checkbox -->
             <label>
-                <input
-                    type="checkbox"
-                    id="highContrastMode"
-                    onchange="toggleHighContrastMode()"
-                />
+                <input type="checkbox" id="highContrastMode" onchange="toggleHighContrastMode()" />
                 High Contrast Mode
             </label><br />
-
-            <!-- Extra Readable Font toggle checkbox -->
             <label>
-                <input
-                    type="checkbox"
-                    id="extraReadableFont"
-                    onchange="toggleExtraReadableFont()"
-                />
+                <input type="checkbox" id="extraReadableFont" onchange="toggleExtraReadableFont()" />
                 Extra Readable Font
             </label>
         </form>
 
         <h2>Contact / Feedback Form</h2>
-        <!-- Decorative horizontal rule -->
         <hr style="background-color: #A6886D; height: 2px; border: none;" />
-
-        <!-- Button linking to external feedback form page -->
         <button class="button" onclick="window.location.href='form.html'">
             <span>Form</span>
         </button>
     </aside>
 
-    <!-- Loading screen shown while page or content is loading -->
-    <section
-        class="LoadingScreen"
-        role="status"
-        aria-live="polite"
-        aria-label="Loading content"
-    >
-        <!-- Spinner animation with 10 div elements for visual effect -->
+    <!-- Loading screen -->
+    <section class="LoadingScreen" role="status" aria-live="polite" aria-label="Loading content">
         <div class="spinner" aria-hidden="true">
-            <div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
     </section>
 
-    <!-- Main content area containing the image gallery slideshow -->
+    <!-- Main content -->
     <main class="gallery">
-        <section
-            class="gallery-content"
-            aria-label="Image gallery slideshow"
-        >
-            <!-- Container for all slideshow images and controls -->
+        <section class="gallery-content" aria-label="Image gallery slideshow">
             <div class="slide-show-container">
-                <!-- Each slide container with fade animation -->
-                <div class="mySlides fade">
-                    <!-- Image with descriptive alt text -->
-                    <img
-                        src="Pictures/hallwayshot.jpg"
-                        alt="This image depicts a hallway leading to the exit of a building. It shows a long corridor with walls and a door at the end."
-                    />
-                    <!-- Caption and additional info grouped in figcaption -->
-                    <figcaption class="image-info">
-                        <span class="numberText">1/6</span> <!-- Slide number -->
-                        <span class="Caption">Hallway to the exit</span> <!-- Caption text -->
-                        <time
-                            class="productionDate"
-                            datetime="1976-01-01"
-                        >1976/1/1</time> <!-- Date the image was produced -->
-                    </figcaption>
-                </div>
+        <div class="mySlides fade">
+            <img src="Pictures/hallwayshot.jpg" alt="This image depicts a hallway leading to the exit of a building. It shows a long corridor with walls and a door at the end." />
+            <figcaption class="image-info">
+                <span class="numberText">1/6</span>
+                <span class="Caption">Hallway to the exit</span>
+                <time class="productionDate" datetime="1976-01-01">1976/1/1</time>
+            </figcaption>
+        </div>
 
-                <!-- Repeat similar structure for other slides -->
 
-                <div class="mySlides fade">
-                    <div class="numberText">2/6</div>
-                    <img src="Pictures/Sky.jpg" alt="Sky image" />
-                    <figcaption>
-                        <span class="Caption">Image 2 Description</span>
-                        <time
-                            class="productionDate"
-                            datetime="1976-05-15"
-                        >1976/5/15</time>
-                    </figcaption>
-                </div>
+        <div class="mySlides fade">
+            <div class="numberText">2/6</div>
+            <img src="Pictures/Sky.jpg" alt="Sky image" />
+            <figcaption>
+                <span class="Caption">Image 2 Description</span>
+                <time class="productionDate" datetime="1976-05-15">1976/5/15</time>
+            </figcaption>
+        </div>
 
                 <div class="mySlides fade">
                     <div class="numberText">3/6</div>
                     <img src="Pictures/background 3.jpg" alt="Background image 3" />
                     <figcaption>
                         <span class="Caption">Image 3 Description</span>
-                        <time
-                            class="productionDate"
-                            datetime="1976-03-10"
-                        >1976/3/10</time>
+                        <time class="productionDate" datetime="1976-03-10">1976/3/10</time>
                     </figcaption>
                 </div>
 
@@ -141,10 +98,7 @@
                     <img src="Pictures/Sunset.jpg" alt="Sunset image" />
                     <figcaption>
                         <span class="Caption">Image 4 Description</span>
-                        <time
-                            class="productionDate"
-                            datetime="1976-07-20"
-                        >1976/7/20</time>
+                        <time class="productionDate" datetime="1976-07-20">1976/7/20</time>
                     </figcaption>
                 </div>
 
@@ -153,10 +107,7 @@
                     <img src="Pictures/Chairlift.jpg" alt="Chairlift image" />
                     <figcaption>
                         <span class="Caption">Image 5 Description</span>
-                        <time
-                            class="productionDate"
-                            datetime="1976-02-14"
-                        >1976/2/14</time>
+                        <time class="productionDate" datetime="1976-02-14">1976/2/14</time>
                     </figcaption>
                 </div>
 
@@ -165,168 +116,86 @@
                     <img src="Pictures/Chairlift2.jpg" alt="Chairlift image 2" />
                     <figcaption>
                         <span class="Caption">Image 6 Description</span>
-                        <time
-                            class="productionDate"
-                            datetime="1976-08-30"
-                        >1976/8/30</time>
+                        <time class="productionDate" datetime="1976-08-30">1976/8/30</time>
                     </figcaption>
                 </div>
 
-                <!-- Navigation buttons for previous and next slide -->
-                <button
-                    class="prev"
-                    aria-label="Previous slide"
-                    onclick="plusSlides(-1)"
-                >
-                    &#10094; <!-- Left arrow symbol -->
-                </button>
-                <button
-                    class="next"
-                    aria-label="Next slide"
-                    onclick="plusSlides(1)"
-                >
-                    &#10095; <!-- Right arrow symbol -->
-                </button>
+                <!-- Navigation buttons for slideshow -->
+                <button class="prev" aria-label="Previous slide" onclick="plusSlides(-1)">&#10094;</button>
+                <button class="next" aria-label="Next slide" onclick="plusSlides(1)">&#10095;</button>
             </div>
 
-            <!-- Slide navigation dots -->
-            <nav
-                aria-label="Slideshow navigation"
-                style="text-align:center; margin-top: 20px;"
-            >
-                <!-- Each button corresponds to a slide -->
-                <button
-                    class="dot"
-                    onclick="currentSlide(1)"
-                    title="Image 1"
-                    aria-label="Go to slide 1"
-                ></button>
-                <button
-                    class="dot"
-                    onclick="currentSlide(2)"
-                    title="Image 2"
-                    aria-label="Go to slide 2"
-                ></button>
-                <button
-                    class="dot"
-                    onclick="currentSlide(3)"
-                    title="Image 3"
-                    aria-label="Go to slide 3"
-                ></button>
-                <button
-                    class="dot"
-                    onclick="currentSlide(4)"
-                    title="Image 4"
-                    aria-label="Go to slide 4"
-                ></button>
-                <button
-                    class="dot"
-                    onclick="currentSlide(5)"
-                    title="Image 5"
-                    aria-label="Go to slide 5"
-                ></button>
-                <button
-                    class="dot"
-                    onclick="currentSlide(6)"
-                    title="Image 6"
-                    aria-label="Go to slide 6"
-                ></button>
+            <!-- Slide indicator dots -->
+            <nav aria-label="Slideshow navigation" style="text-align:center; margin-top: 20px;">
+                <button class="dot" onclick="currentSlide(1)" title="Image 1" aria-label="Go to slide 1"></button>
+                <button class="dot" onclick="currentSlide(2)" title="Image 2" aria-label="Go to slide 2"></button>
+                <button class="dot" onclick="currentSlide(3)" title="Image 3" aria-label="Go to slide 3"></button>
+                <button class="dot" onclick="currentSlide(4)" title="Image 4" aria-label="Go to slide 4"></button>
+                <button class="dot" onclick="currentSlide(5)" title="Image 5" aria-label="Go to slide 5"></button>
+                <button class="dot" onclick="currentSlide(6)" title="Image 6" aria-label="Go to slide 6"></button>
             </nav>
         </section>
     </main>
 
-    <!-- Primary site navigation bar -->
+    <!-- Navigation bar -->
     <nav class="navbar" aria-label="Primary site navigation">
         <ul class="nav-links">
-            <!-- Links with click handlers to prevent navigation to the current page -->
-            <li>
-                <a href="index.html" onclick="return !isCurrentPage('index.html')"
-                    >Landing</a
-                >
-            </li>
-            <li>
-                <a href="trailer.html" onclick="return !isCurrentPage('trailer.html')"
-                    >Trailer</a
-                >
-            </li>
-            <li>
-                <a href="aboutus.html" onclick="return !isCurrentPage('aboutus.html')"
-                    >About</a
-                >
-            </li>
-            <li>
-                <a href="pricing.html" onclick="return !isCurrentPage('pricing.html')"
-                    >Pricing</a
-                >
-            </li>
-            <li>
-                <a href="gallery.html" onclick="return !isCurrentPage('gallery.html')"
-                    >Gallery</a
-                >
-            </li>
+            <li><a href="index.html" onclick="return !isCurrentPage('index.html')">Landing</a></li>
+            <li><a href="trailer.html" onclick="return !isCurrentPage('trailer.html')">Trailer</a></li>
+            <li><a href="aboutus.html" onclick="return !isCurrentPage('aboutus.html')">About</a></li>
+            <li><a href="pricing.html" onclick="return !isCurrentPage('pricing.html')">Pricing</a></li>
+            <li><a href="gallery.html" onclick="return !isCurrentPage('gallery.html')">Gallery</a></li>
         </ul>
     </nav>
 
     <script>
-        // Wrap each letter of text inside the specified selector with a <span> element
-        // to apply animation effects with staggered delays
+        // Wrap letters for animation effect on given selectors
         function wrapLetters(selector, delayIncrement = 0.3) {
             const el = document.querySelector(selector);
-            if (!el) return; // Exit if element does not exist
-
+            if (!el) return;
             const text = el.textContent;
-            el.innerHTML = ''; // Clear current content
-
-            // Iterate over each character in the text
+            el.innerHTML = '';
             [...text].forEach((char, index) => {
                 const span = document.createElement('span');
                 span.textContent = char;
-
-                // Add 'space' class for spaces for potential styling
                 if (char === ' ') {
                     span.classList.add('space');
                 }
-
-                // Calculate delay for floating animation
                 const floatDelay = (index * delayIncrement).toFixed(2);
-
-                // Apply flicker and floating animations with staggered delay
                 span.style.animation = `flicker 3s infinite ease-in-out 0s, floatSingle 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1) ${floatDelay}s`;
-
-                // Append span to the element
                 el.appendChild(span);
             });
         }
 
-        // Apply text animation wrapping to elements with these classes on page load
+        // Apply text animations to info page elements
         wrapLetters('.gallery-inner');
         wrapLetters('.gallery-item');
 
-        // Variables for managing loading screen
+        // Loading screen logic
         const currentPage = window.location.pathname.split('/').pop();
         const loadingScreen = document.querySelector('.LoadingScreen');
         const loadingContent = document.querySelector('.loading-content-inner');
 
-        // Show loading screen only when navigating to a different page or first visit
+        // Show loading screen only for actual page transitions
         if (document.referrer === '' || !document.referrer.includes(currentPage)) {
             loadingScreen.style.display = 'flex';
         } else {
             loadingScreen.style.display = 'none';
         }
 
-        // Hide the loading screen smoothly after page load with delay
+        // Hide loading screen on load after delay
         window.addEventListener('load', () => {
             if (loadingScreen.style.display === 'flex') {
                 setTimeout(() => {
-                    loadingScreen.style.opacity = '0'; // Fade out
+                    loadingScreen.style.opacity = '0';
                     setTimeout(() => {
-                        loadingScreen.style.display = 'none'; // Remove from layout
+                        loadingScreen.style.display = 'none';
                     }, 1000);
                 }, 2000);
             }
         });
 
-        // Fallback: Hide loading screen after 5 seconds max, in case load event doesn't fire
+        // Fallback timeout to hide loading screen
         setTimeout(() => {
             if (loadingScreen.style.display === 'flex') {
                 loadingScreen.style.opacity = '0';
@@ -336,58 +205,50 @@
             }
         }, 5000);
 
-        // Helper to check if a navigation link href matches the current page
+        // Check if href matches current page
         function isCurrentPage(href) {
             return window.location.pathname.endsWith(href);
         }
 
-        // Slideshow control variables and functions
+        // Slideshow functionality
         let slideIndex = 1;
-
-        // Advance slides by n steps (positive or negative)
         function plusSlides(n) {
             showSlides(slideIndex += n);
         }
-
-        // Show specific slide number
         function currentSlide(n) {
             showSlides(slideIndex = n);
         }
-
-        // Main function to display slides and update dots
         function showSlides(n) {
-            const slides = document.getElementsByClassName("mySlides");
-            const dots = document.getElementsByClassName("dot");
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
 
-            // Wrap slideIndex if out of bounds
-            if (n > slides.length) slideIndex = 1;
-            if (n < 1) slideIndex = slides.length;
+            if (n > slides.length) {
+                slideIndex = 1;
+            }
+            if (n < 1) {
+                slideIndex = slides.length;
+            }
 
-            // Hide all slides and reset opacity
             for (let i = 0; i < slides.length; i++) {
                 slides[i].style.display = "none";
                 slides[i].style.opacity = "0";
             }
 
-            // Remove "active" class from all dots
             for (let i = 0; i < dots.length; i++) {
                 dots[i].className = dots[i].className.replace(" active", "");
             }
 
-            // Show current slide and fade it in
             slides[slideIndex - 1].style.display = "block";
             setTimeout(() => {
                 slides[slideIndex - 1].style.opacity = "1";
             }, 10);
-
-            // Highlight the active dot
             dots[slideIndex - 1].className += " active";
         }
 
         // Initialize slideshow on page load
         showSlides(slideIndex);
 
-        // Allow keyboard arrow key navigation for slideshow
+        // Keyboard navigation for slideshow
         document.addEventListener('keydown', (event) => {
             if (event.key === 'ArrowLeft') {
                 plusSlides(-1);
@@ -396,24 +257,23 @@
             }
         });
 
-        // Accessibility menu toggle function
+        // Accessibility menu toggle with ARIA updates
         function toggleAccessibilityMenu() {
             const menu = document.getElementById('accessibilityMenu');
             const button = document.querySelector('.accessibility-menu');
             const isShown = menu.classList.toggle('show');
 
-            // Toggle hidden attribute so screen readers recognize visibility
+            // Toggle hidden attribute for screen readers
             menu.hidden = !isShown;
 
-            // Update ARIA expanded state on the button
+            // Update aria-expanded attribute
             button.setAttribute('aria-expanded', isShown);
         }
 
-        // Close accessibility menu if clicking outside it or the toggle button
+        // Close accessibility menu when clicking outside
         document.addEventListener('click', function (event) {
             const menu = document.getElementById('accessibilityMenu');
             const button = document.querySelector('.accessibility-menu');
-
             if (!menu.contains(event.target) && !button.contains(event.target)) {
                 menu.classList.remove('show');
                 menu.hidden = true;
@@ -421,7 +281,7 @@
             }
         });
 
-        // Toggle extra readable font style based on checkbox
+        // Toggle extra readable font setting
         function toggleExtraReadableFont() {
             const checkbox = document.getElementById('extraReadableFont');
             const body = document.body;
@@ -435,7 +295,7 @@
             }
         }
 
-        // Toggle high contrast mode style based on checkbox
+        // Toggle high contrast mode setting
         function toggleHighContrastMode() {
             const checkbox = document.getElementById('highContrastMode');
             const body = document.body;
@@ -449,7 +309,7 @@
             }
         }
 
-        // On page load, apply saved accessibility settings from localStorage
+        // Apply saved accessibility preferences on DOMContentLoaded
         document.addEventListener('DOMContentLoaded', () => {
             const savedFont = localStorage.getItem('extraReadableFont');
             if (savedFont === 'true') {
@@ -464,72 +324,52 @@
             }
         });
 
-        // Setup for animated background particles on canvas
+        // Background canvas particle animation
         const canvas = document.getElementById('background-canvas');
         const ctx = canvas.getContext('2d');
-
-        // Initial canvas size based on window size
         let width = window.innerWidth;
         let height = window.innerHeight;
         canvas.width = width;
         canvas.height = height;
-
-        // Position canvas fixed behind other content but above background
         canvas.style.position = 'fixed';
         canvas.style.top = 0;
         canvas.style.left = 0;
-        canvas.style.zIndex = '1'; // Layer order
+        canvas.style.zIndex = '1'; // Above background but below content
         canvas.style.width = '100vw';
         canvas.style.height = '100vh';
-        canvas.style.pointerEvents = 'none'; // Ignore mouse events to avoid blocking UI
+        canvas.style.pointerEvents = 'none';
 
-        // Array to hold particle objects
         const particles = [];
-        const particleCount = 60; // Number of particles
-
-        // Initialize particles with random positions, sizes, velocities, and opacity
+        const particleCount = 60;
         for (let i = 0; i < particleCount; i++) {
             particles.push({
                 x: Math.random() * width,
                 y: Math.random() * height,
-                r: 1 + Math.random() * 2, // Radius between 1 and 3
-                dx: -0.5 + Math.random(), // Horizontal speed between -0.5 and 0.5
-                dy: -0.5 + Math.random(), // Vertical speed between -0.5 and 0.5
-                alpha: 0.1 + Math.random() * 0.3 // Opacity between 0.1 and 0.4
+                r: 1 + Math.random() * 2,
+                dx: -0.5 + Math.random(),
+                dy: -0.5 + Math.random(),
+                alpha: 0.1 + Math.random() * 0.3
             });
         }
 
-        // Animation loop to update and draw particles
         function animate() {
-            // Clear entire canvas each frame
             ctx.clearRect(0, 0, width, height);
-
-            // Draw each particle as a small circle with shadow
             for (let p of particles) {
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
-                ctx.fillStyle = `rgba(166, 136, 109, ${p.alpha})`; // Brownish color with opacity
+                ctx.fillStyle = `rgba(166, 136, 109, ${p.alpha})`;
                 ctx.shadowColor = '#A6886D';
                 ctx.shadowBlur = 8;
                 ctx.fill();
-
-                // Update particle position based on velocity
                 p.x += p.dx;
                 p.y += p.dy;
-
-                // Bounce particle off edges by reversing velocity
                 if (p.x < 0 || p.x > width) p.dx *= -1;
                 if (p.y < 0 || p.y > height) p.dy *= -1;
             }
-
-            // Request next animation frame recursively
             requestAnimationFrame(animate);
         }
-
-        // Start animation loop
         animate();
 
-        // Adjust canvas size on window resize to maintain full coverage
         window.addEventListener('resize', () => {
             width = window.innerWidth;
             height = window.innerHeight;

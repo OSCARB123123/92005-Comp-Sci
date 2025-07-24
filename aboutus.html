@@ -1,70 +1,56 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- Tells the browser how to read the webpage properly -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        
-        <!-- Sets the title of the webpage shown on the browser tab -->
-        <title>1.2 base</title>
-        
-        <!-- Gives search engines info (not really filled out here) -->
+        <title></title>
         <meta name="description" content="">
-        
-        <!-- Makes the website responsive (works well on phones, tablets, etc.) -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <!-- Links to our CSS file for custom styles -->
         <link rel="stylesheet" href="codered.css">
+        <title>1.2 base</title>
     </head>
     <body>
-
-        <!-- Accessibility Menu Button -->
-        <button class="accessibility-menu" onclick="toggleAccessibilityMenu()">Menu</button>
-
-        <!-- Menu content for accessibility features -->
-        <div class="accessibility-menu-content" id="accessibilityMenu">
+        <!-- Add accessibility menu -->
+        <button class="accessibility-menu" onclick="toggleAccessibilityMenu()">Menu</button>        <div class="accessibility-menu-content" id="accessibilityMenu">
             <h2>Accessibility Menu</h2>
-            <!-- Decorative line -->
             <hr style="background-color: #A6886D; height: 2px; border: none;">
-
-            <!-- Checkbox for high contrast mode -->
             <label>
                 <input type="checkbox" id="highContrastMode" onchange="toggleHighContrastMode()">
                 High Contrast Mode
+        
             </label>
-
-            <!-- Checkbox for extra readable font -->
             <label>
                 <input type="checkbox" id="extraReadableFont" onchange="toggleExtraReadableFont()">
                 Extra Readable Font
             </label>
-
-            <!-- Space before next section -->
-            <br><br>
-
+            <br></br>
             <h2>Contact / Feedback Form</h2>
             <hr style="background-color: #A6886D; height: 2px; border: none;">
 
-            <!-- Button that links to a form page -->
             <button class="button" onclick="window.location.href='form.html'">
-                <span>Form</span>
-            </button>
+    <span>Form </span>
+</button>
         </div>
-
-        <!-- Loading screen animation (spinner) shown during page load -->
+        
         <div class="LoadingScreen">
-            <div class="spinner">
-                <!-- Spinner parts (can be styled with CSS) -->
-                <div></div><div></div><div></div><div></div><div></div>
-                <div></div><div></div><div></div><div></div><div></div>
-            </div>
-        </div>
+    <div class="spinner">
+        <div></div>   
+        <div></div>    
+        <div></div>    
+        <div></div>    
+        <div></div>    
+        <div></div>    
+        <div></div>    
+        <div></div>    
+        <div></div>    
+        <div></div>    
+    </div>
+</div>
+    
 
-        <!-- Website navigation bar -->
+
         <nav class="navbar">
             <ul class="nav-links">
-                <!-- List of pages with navigation links -->
                 <li><a href="index.html" onclick="return !isCurrentPage('index.html')">Landing</a></li>
                 <li><a href="trailer.html" onclick="return !isCurrentPage('trailer.html')">Trailer</a></li>
                 <li><a href="aboutus.html" onclick="return !isCurrentPage('aboutus.html')">About</a></li>
@@ -73,181 +59,353 @@
             </ul>
         </nav>
 
-        <!-- About us section -->
-        <div class="aboutus">
-            <div class="aboutus-content">
-                <div class="aboutus-content-inner">Who We Are</div>
+<div class="aboutus">
+    <div class="aboutus-content">
+        <div class="aboutus-content-inner">Who We Are</div>
+        <div class="team-section">
+            <h2>Our Development Team</h2>
+            <p class="team-intro">We are a passionate team of developers creating immersive horror experiences set in historical settings. We take our inspiration from places locked in time since their abandonment.</p>
+            
+            <div class="team-grid">
+                <div class="team-card"
+                onclick="toggleTeamInfo(this)"
+                tabindex="0"
+                role="button"
+                onkeydown="if(event.key==='Enter'||event.key===' '){toggleTeamInfo(this);}">
+                    <h3>Nikhil</h3>
+                    <p>Web designer (front-end)</p>
+                    <p class="role">About and pricing pages</p>
+                    <div class="info-box">Nikhil focused on layout and animations for the About and Pricing sections using CSS and JS.</div>
+                </div>
+                <div class="team-card"
+                onclick="toggleTeamInfo(this)"
+                tabindex="0"
+                role="button"
+                onkeydown="if(event.key==='Enter'||event.key===' '){toggleTeamInfo(this);}">
+                    <h3>Oscar</h3>
+                    <p>Web designer (front-end)</p>
+                    <p class="role">Landing and gallery pages</p>
+                    <div class="info-box">Oscar focused on creating intuitive layouts and ensuring accessibility standards were met across all devices.</div>
+                </div>
+                <div class="team-card"
+                onclick="toggleTeamInfo(this)"
+                tabindex="0"
+                role="button"
+                onkeydown="if(event.key==='Enter'||event.key===' '){toggleTeamInfo(this);}">
+                    <h3>Matthew</h3>
+                    <p>3D Modeler</p>
+                    <p class="role">Game assets and props</p>
+                    <div class="info-box">Matthew created detailed 3D models for various game assets and props, enhancing the overall visual quality.</div>
+                </div>
 
-                <!-- Team section -->
-                <div class="team-section">
-                    <h2>Our Development Team</h2>
-                    <p class="team-intro">We are a passionate team... (introduction text)</p>
+                <div class="team-card"
+                onclick="toggleTeamInfo(this)"
+                tabindex="0"
+                role="button"
+                onkeydown="if(event.key==='Enter'||event.key===' '){toggleTeamInfo(this);}">
+                    <h3>Finlay</h3>
+                    <p>3D Modeler</p>
+                    <p class="role">Hospital environment</p>
+                    <div class="info-box">Finlay designed the hospital environment, focusing on creating an eerie atmosphere with realistic textures and lighting.</div>
+                </div>
 
-                    <!-- Grid showing team members -->
-                    <div class="team-grid">
-                        <!-- Each member card opens more info when clicked or Enter/Space is pressed -->
-                        <div class="team-card" onclick="toggleTeamInfo(this)" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){toggleTeamInfo(this);}">
-                            <h3>Nikhil</h3>
-                            <p>Web designer (front-end)</p>
-                            <p class="role">About and pricing pages</p>
-                            <div class="info-box">Extra info about Nikhil</div>
-                        </div>
-                        <!-- Repeat for other members -->
-                        <div class="team-card" onclick="toggleTeamInfo(this)" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){toggleTeamInfo(this);}">
-                            <h3>Oscar</h3>
-                            <p>Web designer (front-end)</p>
-                            <p class="role">Landing and gallery pages</p>
-                            <div class="info-box">Extra info about Oscar</div>
-                        </div>
-                        <div class="team-card" onclick="toggleTeamInfo(this)" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){toggleTeamInfo(this);}">
-                            <h3>Matthew</h3>
-                            <p>3D Modeler</p>
-                            <p class="role">Game assets and props</p>
-                            <div class="info-box">Extra info about Matthew</div>
-                        </div>
-                        <div class="team-card" onclick="toggleTeamInfo(this)" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){toggleTeamInfo(this);}">
-                            <h3>Finlay</h3>
-                            <p>3D Modeler</p>
-                            <p class="role">Hospital environment</p>
-                            <div class="info-box">Extra info about Finlay</div>
-                        </div>
+            </div>
+
+            <div class="scroll-indicator" style="
+                text-align: center;
+                margin-top: 3rem;
+                margin-bottom: 1rem;
+                opacity: 0.8;
+                animation: bounce 2s infinite;
+                transition: opacity 0.5s ease;
+            ">
+                <div style="
+                    color: #a6886d;
+                    font-family: 'Cinzel', serif;
+                    margin-bottom: 0.5rem;
+                ">Scroll for More</div>
+                <div style="
+                    color: #a6886d;
+                    font-size: 1.5rem;
+                    text-shadow: 0 0 10px #a6886d;
+                ">↓</div>
+            </div>
+
+            <div class="development-section" style="margin-top: 4rem; padding: 2rem 0;">
+                <h2 style="color: #a6886d; font-family: 'Cinzel', serif; text-align: center; margin-bottom: 2rem;">Development Process</h2>
+                <div style="max-width: 100%; overflow-x: auto; margin: 0 -1rem; padding: 0 1rem;">
+                <div class="process-timeline" style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    gap: 1.5rem;
+                    width: max-content;
+                    margin: 0 auto;
+                    padding: 2rem;
+                    overflow-x: auto;
+                    overflow-y: hidden;
+                    position: relative;
+                    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+                    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+                    scrollbar-width: thin;
+                    scrollbar-color: #a6886d rgba(24, 24, 24, 0.9);
+                    -webkit-overflow-scrolling: touch;
+                ">
+                    <div class="process-card" style="
+                        transform: scale(0.95);
+                        opacity: 0.95;
+                        background: linear-gradient(45deg, rgba(24, 24, 24, 0.9), rgba(36, 36, 36, 0.9));
+                        padding: 1.8rem;
+                        border: 2px solid #a6886d;
+                        border-radius: 12px;
+                        text-align: center;
+                        transition: all 0.3s ease;
+                        min-width: 180px;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                        backdrop-filter: blur(5px);
+                        cursor: pointer;
+                    "
+                    onmouseover="this.style.transform='scale(1.05)'; this.style.opacity='1'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.3)'"
+                    onmouseout="this.style.transform='scale(0.95)'; this.style.opacity='0.95'; this.style.boxShadow='0 4px 8px rgba(0,0,0,0.2)'"
+                    ">
+                        <h3 style="color: #a6886d; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Research</h3>
+                        <p style="color: #e2d3b6;">Historical research and location scouting.</p>
                     </div>
-
-                    <!-- Scroll down indicator -->
-                    <div class="scroll-indicator">
-                        <div>Scroll for More</div>
-                        <div>↓</div>
+                    <div class="process-arrow" style="color: #a6886d; font-size: 2rem; text-shadow: 0 0 10px #a6886d;">→</div>
+                    <div class="process-card" style="
+                        transform: scale(0.95);
+                        opacity: 0.95;
+                        background: linear-gradient(45deg, rgba(24, 24, 24, 0.9), rgba(36, 36, 36, 0.9));
+                        padding: 1.8rem;
+                        border: 2px solid #a6886d;
+                        border-radius: 12px;
+                        text-align: center;
+                        transition: all 0.3s ease;
+                        min-width: 180px;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                        backdrop-filter: blur(5px);
+                        cursor: pointer;"
+                    onmouseover="this.style.transform='scale(1.05)'; this.style.opacity='1'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.3)'"
+                    onmouseout="this.style.transform='scale(0.95)'; this.style.opacity='0.95'; this.style.boxShadow='0 4px 8px rgba(0,0,0,0.2)'"
+                    >
+                        <h3 style="color: #a6886d; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Concept</h3>
+                        <p style="color: #e2d3b6;">Initial artwork and game mechanics.</p>
                     </div>
-
-                    <!-- Development timeline (scrollable) -->
-                    <div class="development-section">
-                        <h2>Development Process</h2>
-                        <div class="process-timeline">
-                            <!-- Each stage in the development has a card -->
-                            <div class="process-card">
-                                <h3>Research</h3>
-                                <p>Historical research and location scouting.</p>
-                            </div>
-                            <div class="process-arrow">→</div>
-                            <div class="process-card">
-                                <h3>Concept</h3>
-                                <p>Initial artwork and game mechanics.</p>
-                            </div>
-                            <div class="process-arrow">→</div>
-                            <div class="process-card">
-                                <h3>Design</h3>
-                                <p>Environment and character design.</p>
-                            </div>
-                            <div class="process-arrow">→</div>
-                            <div class="process-card">
-                                <h3>Development</h3>
-                                <p>Core gameplay implementation.</p>
-                            </div>
-                            <div class="process-arrow">→</div>
-                            <div class="process-card">
-                                <h3>Testing</h3>
-                                <p>Quality assurance and refinement.</p>
-                            </div>
-                            <div class="process-arrow">→</div>
-                            <div class="process-card">
-                                <h3>Release</h3>
-                                <p>Final polish and launch.</p>
-                            </div>
-                        </div>
+                    <div class="process-arrow" style="color: #a6886d; font-size: 2rem;">→</div>
+                    <div class="process-card" style="
+                        transform: scale(0.95);
+                        opacity: 0.95;
+                        background: linear-gradient(45deg, rgba(24, 24, 24, 0.9), rgba(36, 36, 36, 0.9));
+                        padding: 1.8rem;
+                        border: 2px solid #a6886d;
+                        border-radius: 12px;
+                        text-align: center;
+                        transition: all 0.3s ease;
+                        min-width: 180px;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                        backdrop-filter: blur(5px);
+                        cursor: pointer;"
+                    onmouseover="this.style.transform='scale(1.05)'; this.style.opacity='1'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.3)'"
+                    onmouseout="this.style.transform='scale(0.95)'; this.style.opacity='0.95'; this.style.boxShadow='0 4px 8px rgba(0,0,0,0.2)'"
+                    >
+                        <h3 style="color: #a6886d; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Design</h3>
+                        <p style="color: #e2d3b6;">Environment and character design.</p>
                     </div>
-
-                    <!-- Social media section -->
-                    <div class="connect-section">
-                        <h2>Connect With Us</h2>
-                        <div class="social-links">
-                            <!-- Replace # with real links -->
-                            <a href="#">Twitter</a>
-                            <a href="#">Discord</a>
-                            <a href="#">Instagram</a>
-                        </div>
+                    <div class="process-arrow" style="color: #a6886d; font-size: 2rem;">→</div>
+                    <div class="process-card" style="
+                        transform: scale(0.95);
+                        opacity: 0.95;
+                        background: linear-gradient(45deg, rgba(24, 24, 24, 0.9), rgba(36, 36, 36, 0.9));
+                        padding: 1.8rem;
+                        border: 2px solid #a6886d;
+                        border-radius: 12px;
+                        text-align: center;
+                        transition: all 0.3s ease;
+                        min-width: 180px;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                        backdrop-filter: blur(5px);
+                        cursor: pointer;"
+                    onmouseover="this.style.transform='scale(1.05)'; this.style.opacity='1'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.3)'"
+                    onmouseout="this.style.transform='scale(0.95)'; this.style.opacity='0.95'; this.style.boxShadow='0 4px 8px rgba(0,0,0,0.2)'"
+                    >
+                        <h3 style="color: #a6886d; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Development</h3>
+                        <p style="color: #e2d3b6;">Core gameplay implementation.</p>
                     </div>
+                    <div class="process-arrow" style="color: #a6886d; font-size: 2rem;">→</div>
+                    <div class="process-card" style="
+                        transform: scale(0.95);
+                        opacity: 0.95;
+                        background: linear-gradient(45deg, rgba(24, 24, 24, 0.9), rgba(36, 36, 36, 0.9));
+                        padding: 1.8rem;
+                        border: 2px solid #a6886d;
+                        border-radius: 12px;
+                        text-align: center;
+                        transition: all 0.3s ease;
+                        min-width: 180px;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                        backdrop-filter: blur(5px);
+                        cursor: pointer;"
+                    onmouseover="this.style.transform='scale(1.05)'; this.style.opacity='1'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.3)'"
+                    onmouseout="this.style.transform='scale(0.95)'; this.style.opacity='0.95'; this.style.boxShadow='0 4px 8px rgba(0,0,0,0.2)'"
+                    >
+                        <h3 style="color: #a6886d; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Testing</h3>
+                        <p style="color: #e2d3b6;">Quality assurance and refinement.</p>
+                    </div>
+                    <div class="process-arrow" style="color: #a6886d; font-size: 2rem;">→</div>
+                    <div class="process-card" style="
+                        transform: scale(0.95);
+                        opacity: 0.95;
+                        background: linear-gradient(45deg, rgba(24, 24, 24, 0.9), rgba(36, 36, 36, 0.9));
+                        padding: 1.8rem;
+                        border: 2px solid #a6886d;
+                        border-radius: 12px;
+                        text-align: center;
+                        transition: all 0.3s ease;
+                        min-width: 180px;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                        backdrop-filter: blur(5px);
+                        cursor: pointer;"
+                    onmouseover="this.style.transform='scale(1.05)'; this.style.opacity='1'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.3)'"
+                    onmouseout="this.style.transform='scale(0.95)'; this.style.opacity='0.95'; this.style.boxShadow='0 4px 8px rgba(0,0,0,0.2)'"
+                    >
+                        <h3 style="color: #a6886d; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Release</h3>
+                        <p style="color: #e2d3b6;">Final polish and launch.</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="connect-section" style="
+                text-align: center;
+                margin-top: 4rem;
+                padding: 2rem 0;
+            ">
+                <h2 style="color: #a6886d; font-family: 'Cinzel', serif; margin-bottom: 2rem;">Connect With Us</h2>
+                <div class="social-links" style="
+                    display: flex;
+                    justify-content: center;
+                    gap: 2rem;
+                    margin-bottom: 2rem;
+                ">
+                    <a href="#" class="social-link" style="
+                        color: #a6886d;
+                        text-decoration: none;
+                        font-family: 'Cinzel', serif;
+                        padding: 0.5rem 1rem;
+                        border: 2px solid #a6886d;
+                        border-radius: 8px;
+                        transition: all 0.3s ease;
+                    ">Twitter</a>
+                    <a href="#" class="social-link" style="
+                        color: #a6886d;
+                        text-decoration: none;
+                        font-family: 'Cinzel', serif;
+                        padding: 0.5rem 1rem;
+                        border: 2px solid #a6886d;
+                        border-radius: 8px;
+                        transition: all 0.3s ease;
+                    ">Discord</a>
+                    <a href="#" class="social-link" style="
+                        color: #a6886d;
+                        text-decoration: none;
+                        font-family: 'Cinzel', serif;
+                        padding: 0.5rem 1rem;
+                        border: 2px solid #a6886d;
+                        border-radius: 8px;
+                        transition: all 0.3s ease;
+                    ">Instagram</a>
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
-        <!-- Moving background canvas for particle animation -->
-        <canvas id="background-canvas"></canvas>
+<canvas id="background-canvas"></canvas>
+             
+            </div>
+       
 
-        <!-- JavaScript section to add interactivity -->
         <script>
-            // Animates letters to float and flicker
-            function wrapLetters(selector, delayIncrement = 0.3) {
-                const el = document.querySelector(selector);
-                if (!el) return;
-                const text = el.textContent;
-                el.innerHTML = '';
-                [...text].forEach((char, index) => {
-                    const span = document.createElement('span');
-                    span.textContent = char;
-                    if (char === ' ') span.classList.add('space');
-                    span.style.animation = `flicker 3s infinite ease-in-out 0s, floatSingle 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1) ${(index * delayIncrement).toFixed(2)}s`;
-                    el.appendChild(span);
-                });
+    function wrapLetters(selector, delayIncrement = 0.3) {
+        const el = document.querySelector(selector);
+        if (!el) return;
+        const text = el.textContent;
+        el.innerHTML = '';
+        [...text].forEach((char, index) => {
+            const span = document.createElement('span');
+            span.textContent = char;
+            if (char === ' ') {
+                span.classList.add('space');
             }
+            const floatDelay = (index * delayIncrement).toFixed(2);
+            span.style.animation = `flicker 3s infinite ease-in-out 0s, floatSingle 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1) ${floatDelay}s`;
+            el.appendChild(span);
+        });
+    }
 
-            wrapLetters('.aboutus-content-inner');
-            wrapLetters('.team-intro');
+    // Update these selectors
 
-            // Show loading screen briefly on page load
-            const currentPage = window.location.pathname.split('/').pop();
-            const loadingScreen = document.querySelector('.LoadingScreen');
-            if (document.referrer === '' || !document.referrer.includes(currentPage)) {
-                loadingScreen.style.display = 'flex';
-            } else {
-                loadingScreen.style.display = 'none';
-            }
+    wrapLetters('.aboutus-content-inner');
+    wrapLetters('.team-intro');
 
-            // Hide loading screen after a short delay
-            window.addEventListener('load', () => {
-                if (loadingScreen.style.display === 'flex') {
-                    setTimeout(() => {
-                        loadingScreen.style.opacity = '0';
-                        setTimeout(() => {
-                            loadingScreen.style.display = 'none';
-                        }, 1000);
-                    }, 2000);
-                }
-            });
 
-            // Extra fallback timeout
+
+
+    // Add this to each page's script section, before the loading screen handler
+const currentPage = window.location.pathname.split('/').pop();
+const loadingScreen = document.querySelector('.LoadingScreen');
+const loadingContent = document.querySelector('.loading-content-inner');
+
+// Only show loading screen for actual page transitions
+if (document.referrer === '' || !document.referrer.includes(currentPage)) {
+    loadingScreen.style.display = 'flex';
+} else {
+    loadingScreen.style.display = 'none';
+}
+
+// Update the loading screen handler
+window.addEventListener('load', () => {
+    if (loadingScreen.style.display === 'flex') {
+        setTimeout(() => {
+            loadingScreen.style.opacity = '0';
             setTimeout(() => {
-                if (loadingScreen.style.display === 'flex') {
-                    loadingScreen.style.opacity = '0';
-                    setTimeout(() => {
-                        loadingScreen.style.display = 'none';
-                    }, 3000);
-                }
-            }, 5000);
+                loadingScreen.style.display = 'none';
+            }, 1000);
+        }, 2000);
+    }
+});
 
-            // Stops users from clicking links to pages they’re already on
-            function isCurrentPage(href) {
-                return window.location.pathname.endsWith(href);
-            }
+// Update the fallback timeout
+setTimeout(() => {
+    if (loadingScreen.style.display === 'flex') {
+        loadingScreen.style.opacity = '0';
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+        }, 3000); // Changed to 3000ms (3 seconds)
+    }
+}, 5000);
 
-            // Shows/hides the accessibility menu
+// Add to each page's script section
+function isCurrentPage(href) {
+    return window.location.pathname.endsWith(href);
+}
+
+// Accessibility functions
             function toggleAccessibilityMenu() {
                 const menu = document.getElementById('accessibilityMenu');
                 menu.classList.toggle('show');
             }
 
-            // Hide accessibility menu if you click outside it
             document.addEventListener('click', function(event) {
                 const menu = document.getElementById('accessibilityMenu');
                 const button = document.querySelector('.accessibility-menu');
                 if (!menu.contains(event.target) && !button.contains(event.target)) {
                     menu.classList.remove('show');
                 }
-            });
-
-            // Toggle more readable font
-            function toggleExtraReadableFont() {
+            });            function toggleExtraReadableFont() {
                 const checkbox = document.getElementById('extraReadableFont');
                 const body = document.body;
+
                 if (checkbox.checked) {
                     body.classList.add('extra-readable-font');
                     localStorage.setItem('extraReadableFont', 'true');
@@ -257,12 +415,9 @@
                 }
             }
 
-            // Toggle high contrast mode
             function toggleHighContrastMode() {
                 const checkbox = document.getElementById('highContrastMode');
                 const body = document.body;
-                // Many things are updated here: cards, arrows, links, etc.
-                // Switch between white text and dark background for accessibility
                 const processCards = document.querySelectorAll('.process-card');
                 const socialLinks = document.querySelectorAll('.social-link');
                 const arrows = document.querySelectorAll('.process-arrow');
@@ -272,70 +427,105 @@
                 if (checkbox.checked) {
                     body.classList.add('high-contrast-mode');
                     localStorage.setItem('highContrastMode', 'true');
+                    
+                    // Update process cards
                     processCards.forEach(card => {
                         card.style.background = 'linear-gradient(45deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9))';
                         card.style.border = '2px solid white';
-                        card.querySelector('h3').style.color = 'white';
-                        card.querySelector('p').style.color = 'white';
+                        const heading = card.querySelector('h3');
+                        const paragraph = card.querySelector('p');
+                        if (heading) heading.style.color = 'white';
+                        if (paragraph) paragraph.style.color = 'white';
                     });
+
+                    // Update arrows
                     arrows.forEach(arrow => {
                         arrow.style.color = 'white';
                         arrow.style.textShadow = '0 0 10px white';
                     });
+
+                    // Update social links
                     socialLinks.forEach(link => {
                         link.style.color = 'white';
                         link.style.border = '2px solid white';
                     });
+
+                    // Update section titles
                     sectionTitles.forEach(title => {
                         title.style.color = 'white';
                     });
+
+                    // Update scroll indicator
                     if (scrollIndicator) {
-                        scrollIndicator.querySelector('div:first-child').style.color = 'white';
-                        scrollIndicator.querySelector('div:last-child').style.color = 'white';
-                        scrollIndicator.querySelector('div:last-child').style.textShadow = '0 0 10px white';
+                        const scrollText = scrollIndicator.querySelector('div:first-child');
+                        const scrollArrow = scrollIndicator.querySelector('div:last-child');
+                        if (scrollText) scrollText.style.color = 'white';
+                        if (scrollArrow) {
+                            scrollArrow.style.color = 'white';
+                            scrollArrow.style.textShadow = '0 0 10px white';
+                        }
                     }
                 } else {
                     body.classList.remove('high-contrast-mode');
                     localStorage.setItem('highContrastMode', 'false');
-                    // Restore original colours
+                    
+                    // Restore process cards
                     processCards.forEach(card => {
                         card.style.background = 'linear-gradient(45deg, rgba(24, 24, 24, 0.9), rgba(36, 36, 36, 0.9))';
                         card.style.border = '2px solid #a6886d';
-                        card.querySelector('h3').style.color = '#a6886d';
-                        card.querySelector('p').style.color = '#e2d3b6';
+                        const heading = card.querySelector('h3');
+                        const paragraph = card.querySelector('p');
+                        if (heading) heading.style.color = '#a6886d';
+                        if (paragraph) paragraph.style.color = '#e2d3b6';
                     });
+
+                    // Restore arrows
                     arrows.forEach(arrow => {
                         arrow.style.color = '#a6886d';
                         arrow.style.textShadow = '0 0 10px #a6886d';
                     });
+
+                    // Restore social links
                     socialLinks.forEach(link => {
                         link.style.color = '#a6886d';
                         link.style.border = '2px solid #a6886d';
                     });
+
+                    // Restore section titles
                     sectionTitles.forEach(title => {
                         title.style.color = '#a6886d';
                     });
+
+                    // Restore scroll indicator
                     if (scrollIndicator) {
-                        scrollIndicator.querySelector('div:first-child').style.color = '#a6886d';
-                        scrollIndicator.querySelector('div:last-child').style.color = '#a6886d';
-                        scrollIndicator.querySelector('div:last-child').style.textShadow = '0 0 10px #a6886d';
+                        const scrollText = scrollIndicator.querySelector('div:first-child');
+                        const scrollArrow = scrollIndicator.querySelector('div:last-child');
+                        if (scrollText) scrollText.style.color = '#a6886d';
+                        if (scrollArrow) {
+                            scrollArrow.style.color = '#a6886d';
+                            scrollArrow.style.textShadow = '0 0 10px #a6886d';
+                        }
                     }
                 }
             }
 
-            // Apply saved accessibility settings on page load
             document.addEventListener('DOMContentLoaded', () => {
-                if (localStorage.getItem('extraReadableFont') === 'true') {
+                // Check for saved font preference
+                const savedFont = localStorage.getItem('extraReadableFont');
+                if (savedFont === 'true') {
                     document.body.classList.add('extra-readable-font');
                     document.getElementById('extraReadableFont').checked = true;
                 }
-                if (localStorage.getItem('highContrastMode') === 'true') {
+
+                // Check for saved contrast preference
+                const savedContrast = localStorage.getItem('highContrastMode');
+                if (savedContrast === 'true') {
                     document.getElementById('highContrastMode').checked = true;
-                    toggleHighContrastMode();
+                    toggleHighContrastMode(); // This will apply all the high contrast styles
                 }
             });
 
-            // Hide scroll indicator when user scrolls down
+            // Handle scroll indicator visibility
             const scrollIndicator = document.querySelector('.scroll-indicator');
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 100) {
@@ -346,74 +536,84 @@
                 }
             });
 
-            // Particle background animation
-            const canvas = document.getElementById('background-canvas');
-            const ctx = canvas.getContext('2d');
-            let width = window.innerWidth;
-            let height = window.innerHeight;
+            // Moving background canvas effect
+        const canvas = document.getElementById('background-canvas');
+        const ctx = canvas.getContext('2d');
+        let width = window.innerWidth;
+        let height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+        canvas.style.position = 'fixed';
+        canvas.style.top = 0;
+        canvas.style.left = 0;
+        canvas.style.zIndex = '1'; // Set above gradient, below content
+        canvas.style.width = '100vw';
+        canvas.style.height = '100vh';
+        canvas.style.pointerEvents = 'none';
+
+        // Example: animated particles
+        const particles = [];
+        const particleCount = 60;
+        for (let i = 0; i < particleCount; i++) {
+            particles.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                r: 1 + Math.random() * 2,
+                dx: -0.5 + Math.random(),
+                dy: -0.5 + Math.random(),
+                alpha: 0.1 + Math.random() * 0.3
+            });
+        }
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            for (let p of particles) {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
+                ctx.fillStyle = `rgba(166, 136, 109, ${p.alpha})`;
+                ctx.shadowColor = '#A6886D';
+                ctx.shadowBlur = 8;
+                ctx.fill();
+                p.x += p.dx;
+                p.y += p.dy;
+                if (p.x < 0 || p.x > width) p.dx *= -1;
+                if (p.y < 0 || p.y > height) p.dy *= -1;
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+        window.addEventListener('resize', () => {
+            width = window.innerWidth;
+            height = window.innerHeight;
             canvas.width = width;
             canvas.height = height;
-            canvas.style.position = 'fixed';
-            canvas.style.top = 0;
-            canvas.style.left = 0;
-            canvas.style.zIndex = '1'; // Behind content
-            canvas.style.width = '100vw';
-            canvas.style.height = '100vh';
-            canvas.style.pointerEvents = 'none';
-
-            // Make animated particles float around
-            const particles = [];
-            const particleCount = 60;
-            for (let i = 0; i < particleCount; i++) {
-                particles.push({
-                    x: Math.random() * width,
-                    y: Math.random() * height,
-                    r: 1 + Math.random() * 2,
-                    dx: -0.5 + Math.random(),
-                    dy: -0.5 + Math.random(),
-                    alpha: 0.1 + Math.random() * 0.3
-                });
-            }
-
-            function animate() {
-                ctx.clearRect(0, 0, width, height);
-                for (let p of particles) {
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
-                    ctx.fillStyle = `rgba(166, 136, 109, ${p.alpha})`;
-                    ctx.shadowColor = '#A6886D';
-                    ctx.shadowBlur = 8;
-                    ctx.fill();
-                    p.x += p.dx;
-                    p.y += p.dy;
-                    if (p.x < 0 || p.x > width) p.dx *= -1;
-                    if (p.y < 0 || p.y > height) p.dy *= -1;
-                }
-                requestAnimationFrame(animate);
-            }
-            animate();
-
-            // Show/hide team info cards when clicked
-            function toggleTeamInfo(card) {
-                const boxes = document.querySelectorAll('.team-card .info-box');
-                boxes.forEach(box => {
-                    if (box !== card.querySelector('.info-box')) {
-                        box.style.display = 'none';
-                    }
-                });
-                const infoBox = card.querySelector('.info-box');
-                infoBox.style.display = infoBox.style.display === 'block' ? 'none' : 'block';
-            }
-
-            // Hide team info if clicking outside
-            document.addEventListener('click', function (e) {
-                if (!e.target.closest('.team-card')) {
-                    const boxes = document.querySelectorAll('.team-card .info-box');
-                    boxes.forEach(box => {
-                        box.style.display = 'none';
-                    });
+        });
+        
+        function toggleTeamInfo(card) {
+            const boxes = document.querySelectorAll('.team-card .info-box');
+            boxes.forEach(box => {
+                if (box !== card.querySelector('.info-box') ) {
+                    box.style.display = 'none';
                 }
             });
+           
+            const infoBox = card.querySelector('.info-box');
+            infoBox.style.display = infoBox.style.display === 'block' ? 'none' : 'block';
+
+        }
+
+    document.addEventListener('click', function (e) {
+    if (!e.target.closest('.team-card')) {
+        const boxes = document.querySelectorAll('.team-card .info-box');
+        boxes.forEach(box => {
+            box.style.display = 'none';
+        });
+    }
+})
         </script>
     </body>
+
+
+
+
+
 </html>

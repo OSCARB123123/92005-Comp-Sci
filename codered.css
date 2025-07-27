@@ -201,7 +201,7 @@ main, section, header {
 }
 
 .landing { 
-    background-image: url('Pictures/background 3.jpg'); /* Increases contrast and darkens image */
+    background-image: url('Pictures/hospitalbedshot.jpg'); /* Increases contrast and darkens image */
     filter: contrast(140%) brightness(70%);
     background-size: cover;
     background-position: center;

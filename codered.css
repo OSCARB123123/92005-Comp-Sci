@@ -6,6 +6,22 @@ html, body {
     /* Remove forced overflow-y, let browser handle vertical scroll naturally */
 }
 
+figure {
+    margin: 0;
+    padding: 0;
+    border: none;
+    display: inline-block; /* or block, depending on layout */
+}
+
+figcaption {
+    margin: 0;
+    padding: 0.5em 0 0 0; /* adjust as needed */
+    text-align: center;   /* or left/right */
+    color: #ccc;          /* or whatever fits your theme */
+    font-size: 0.9rem;    /* optional */
+}
+
+
 /* Chrome, Safari */
 body::-webkit-scrollbar {
   display: none;

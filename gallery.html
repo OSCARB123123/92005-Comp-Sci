@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
     <title>Gallery Page</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" >
+    <meta name="viewport" content="width=device-width, initial-scale=1" >
     
-    <link rel="stylesheet" href="codered.css" />
+    <link rel="stylesheet" href="codered.css" >
 </head>
 <body>
     <!-- Canvas for background animation -->
@@ -27,20 +27,20 @@
     <!-- Accessibility menu as a complementary region -->
     <aside class="accessibility-menu-content" id="accessibilityMenu" aria-label="Accessibility Menu" hidden>
         <h2>Accessibility Menu</h2>
-        <hr style="background-color: #A6886D; height: 2px; border: none;" />
+        <hr style="background-color: #A6886D; height: 2px; border: none;" >
         <form>
             <label>
-                <input type="checkbox" id="highContrastMode" onchange="toggleHighContrastMode()" />
+                <input type="checkbox" id="highContrastMode" onchange="toggleHighContrastMode()" >
                 High Contrast Mode
-            </label><br />
+            </label><br >
             <label>
-                <input type="checkbox" id="extraReadableFont" onchange="toggleExtraReadableFont()" />
+                <input type="checkbox" id="extraReadableFont" onchange="toggleExtraReadableFont()" >
                 Extra Readable Font
             </label>
         </form>
 
         <h2>Contact / Feedback Form</h2>
-        <hr style="background-color: #A6886D; height: 2px; border: none;" />
+        <hr style="background-color: #A6886D; height: 2px; border: none;">
         <button class="button" onclick="window.location.href='form.html'">
             <span>Form</span>
         </button>
@@ -66,59 +66,72 @@
     <main class="gallery">
         <section class="gallery-content" aria-label="Image gallery slideshow">
             <div class="slide-show-container">
+
         <div class="mySlides fade">
-            <img src="Pictures/hallwayshot.jpg" alt="This image depicts a hallway leading to the exit of a building. It shows a long corridor with walls and a door at the end." />
+            <figure>
+            <img src="Pictures/hallwayshot.jpg" alt="This image depicts a hallway leading to the exit of a building. It shows a long corridor with walls and a door at the end." >
             <figcaption class="image-info">
                 <span class="numberText">1/6</span>
                 <span class="Caption">Hallway to the exit</span>
                 <time class="productionDate" datetime="1976-01-01">1976/1/1</time>
             </figcaption>
+            </figure>
         </div>
 
 
         <div class="mySlides fade">
+            <figure>
             <div class="numberText">2/6</div>
-            <img src="Pictures/glassjarshot.jpg" alt="This image depicts a glass jar filled with blood. It is a close-up shot that highlights the jar's intricate details and the rich color of the liquid inside." />
+            <img src="Pictures/glassjarshot.jpg" alt="This image depicts a glass jar filled with blood. It is a close-up shot that highlights the jar's intricate details and the rich color of the liquid inside." >
             <figcaption>
                 <span class="Caption">Glass Jar with Blood</span>
                 <time class="productionDate" datetime="1976-05-15">1976/5/15</time>
             </figcaption>
+            </figure>
         </div>
 
                 <div class="mySlides fade">
+                    <figure>
                     <div class="numberText">3/6</div>
-                    <img src="Pictures/tableshot.jpg" alt="This image depicts the table at which some rusted scalpels lay on top." />
+                    <img src="Pictures/tableshot.jpg" alt="This image depicts the table at which some rusted scalpels lay on top." >
                     <figcaption>
                         <span class="Caption">Table adorned with scalpels.</span>
                         <time class="productionDate" datetime="1976-03-10">1976/3/10</time>
                     </figcaption>
+                    </figure>
                 </div>
 
                 <div class="mySlides fade">
+                    <figure>
                     <div class="numberText">4/6</div>
-                    <img src="Pictures/lowshotofglassjars.jpg" alt="This image depicts a low-angle shot of glass jars filled with various liquids. The focus is on the intricate details of the jars and the vibrant colors of the liquids." />
+                    <img src="Pictures/lowshotofglassjars.jpg" alt="This image depicts a low-angle shot of glass jars filled with various liquids. The focus is on the intricate details of the jars and the vibrant colors of the liquids." >
                     <figcaption>
                         <span class="Caption">Low Shot of Glass Jars</span>
                         <time class="productionDate" datetime="1976-07-20">1976/7/20</time>
                     </figcaption>
+                    </figure>
                 </div>
 
                 <div class="mySlides fade">
+                    <figure>
                     <div class="numberText">5/6</div>
-                    <img src="Pictures/redlightshot.jpg" alt="This image depicts a red emergency light on the ceiling of the hospital." />
+                    <img src="Pictures/redlightshot.jpg" alt="This image depicts a red emergency light on the ceiling of the hospital." >
                     <figcaption>
                         <span class="Caption">Red Emergency Light</span>
                         <time class="productionDate" datetime="1976-02-14">1976/2/14</time>
                     </figcaption>
+                    </figure>
                 </div>
 
                 <div class="mySlides fade">
+                    <figure>
                     <div class="numberText">6/6</div>
-                    <img src="Pictures/scalpelshot.jpg" alt="This image depicts a rusted scalped sitting on top of one of the old beaten-up tables." />
+                    <img src="Pictures/scalpelshot.jpg" alt="This image depicts a rusted scalped sitting on top of one of the old beaten-up tables." >
                     <figcaption>
                         <span class="Caption">Rusted Scalpel</span>
                         <time class="productionDate" datetime="1976-08-30">1976/8/30</time>
                     </figcaption>
+                    </figure>
                 </div>
 
                 <!-- Navigation buttons for slideshow -->

@@ -21,7 +21,6 @@ figcaption {
     font-size: 0.9rem;    /* optional */
 }
 
-
 /* Chrome, Safari */
 body::-webkit-scrollbar {
   display: none;
@@ -482,7 +481,7 @@ main, section, header {
 .pricing-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgb(211, 209, 177);
-    border: 3px solid 0 5px 15px rgb(211, 209, 177);
+    border: 3px solid rgb(211, 209, 177);
 }
 
 .pricing-card:hover::before {
@@ -880,7 +879,7 @@ main, section, header {
         2px 2px 8px #100D04,
         0 0 2px #575945;
     animation: flicker 2.5s infinite alternate;
-
+}
 /* High Contrast Mode for gallery-item */
 .high-contrast .gallery-item {
     color: #fff !important;
@@ -888,8 +887,8 @@ main, section, header {
     border: 2px solid #fff !important;
     text-shadow: 0 0 2px #fff, 0 0 8px #000 !important;
 }
-}
- 
+
+
 .gallery-inner {
     position: relative;
     z-index: 2;
@@ -981,7 +980,7 @@ main, section, header {
 .nav-links li a:hover {
     color: #dba576; /* lighter on hover */
     text-decoration: underline;
-    text-shadow: 0 12px 40px 0 #7c7980, 0 4px 16px #71706c;
+    text-shadow: 0 12px 40px #7c7980, 0 4px 16px #71706c;
 }
 
 .trailer-video {
@@ -1077,9 +1076,8 @@ main, section, header {
 .team-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgb(211, 209, 177);
-    border: 3px solid 0 5px 15px rgb(211, 209, 177);
+    border: 3px solid rgb(211, 209, 177);
 }
-
 
 
 
@@ -1236,7 +1234,7 @@ main, section, header {
     }
     
     .landing-content-inner {
-        font-size: vw;
+        font-size: 3vw;
         letter-spacing: 0.5em;
     }
     

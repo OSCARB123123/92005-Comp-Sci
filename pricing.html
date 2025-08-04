@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
+        <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="codered.css">
@@ -23,6 +23,7 @@
                 <input type="checkbox" id="extraReadableFont" onchange="toggleExtraReadableFont()">
                 Extra Readable Font
             </label>
+            <br></br>
             <h2>Contact / Feedback Form</h2>
             <hr style="background-color: #A6886D; height: 2px; border: none;">
 
@@ -155,7 +156,7 @@
     
 
     <div class="pricing">
-    <div class="pricing-content"></div>
+    <div class="pricing-content">
         <div class="pricing-content-inner">FAQ</div>
         <div class="pricing-section" id="faq-section">
             <h2 class="faq-title">Frequently Asked Questions</h2>
@@ -213,7 +214,133 @@
             </ul>
         </nav>
 
-
+        <style>
+        .faq-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 30px;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 20px;
+        }
+        .faq-item {
+          background: linear-gradient(45deg, rgba(24, 24, 24, 0.9), rgba(36, 36, 36, 0.9));
+          padding: 25px;
+          border: 2px solid #a6886d;
+          border-radius: 12px;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          backdrop-filter: blur(5px);
+          position: relative;
+          overflow: hidden;
+        }
+        .faq-item:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 6px 12px rgba(166, 136, 109, 0.2);
+          border-color: #c4a285;
+        }
+        .faq-item::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background: linear-gradient(90deg, transparent, #a6886d, transparent);
+          opacity: 0;
+          transition: opacity 0.3s;
+        }
+        .faq-item:hover::before {
+          opacity: 1;
+        }
+        .faq-item strong {
+          display: block;
+          font-family: 'Cinzel', serif;
+          color: #a6886d;
+          font-size: 1.2rem;
+          margin-bottom: 15px;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .faq-item p {
+          color: #e2d3b6;
+          font-size: 1rem;
+          line-height: 1.6;
+          margin: 0;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        @media (max-width: 768px) {
+          .faq-grid {
+            grid-template-columns: 1fr;
+            padding: 15px;
+            gap: 20px;
+          }
+        }
+        button {
+          border: none;
+          background: none;
+          padding: 0;
+          margin: 0;
+          cursor: pointer;
+          font-family: inherit;
+        }
+        .scroll-menu-btn {
+          min-width: 44px;
+          min-height: 44px;
+          padding: 0.5rem 1.2rem;
+      background: 
+        linear-gradient(217deg, 
+            rgba(8, 12, 16, 0.98), /* Almost black */
+            rgba(15, 35, 30, 0.95) 25%, /* Murky forest */
+            rgba(12, 28, 32, 0.92) 45%, /* Deep murky teal */
+            rgba(18, 42, 38, 0.95) 75%, /* Dark swamp green */
+            rgba(8, 12, 16, 0.98) 100% /* Almost black */
+        ),
+        linear-gradient(127deg, 
+            rgba(14, 32, 28, 0.95), /* Dark moss */
+            rgba(20, 45, 40, 0.92)35%, /* Muted green */
+            rgba(12, 28, 25, 0.95) 55%, /* Deep forest */
+            rgba(8, 16, 24, 0.98) 100% /* Deep blue-black */
+        ),
+        linear-gradient(336deg, 
+            rgba(12, 25, 22, 0.95), /* Dark pine */
+            rgba(16, 38, 35, 0.92) 25%, /* Murky emerald */
+            rgba(22, 48, 45, 0.95) 55%, /* Deep sea green */
+            rgba(10, 20, 28, 0.98) 100% /* Navy blue */
+        );
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+          border: 3px solid #A6886D;
+          border-radius: 12px;
+          color: #A6886D;
+          font-family: 'Cinzel', serif;
+          font-size: 1.5rem;
+          font-weight: bold;
+          box-shadow: 0 0 8px #575945;
+          cursor: pointer;
+          transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+          z-index: 10001;
+        }
+        .scroll-menu-btn:hover {
+          background-color: #A6886D;
+          color: #1D1D1F;
+          box-shadow: 0 0 16px #A6886D;
+        }
+        #scrollBtnText {
+          display: inline-block;
+          transition: transform 0.3s;
+        }
+        @keyframes bounce {
+          0%, 20%, 50%, 80%, 100% {
+            transform: translateY(0);
+          }
+          40% {
+            transform: translateY(-10px);
+          }
+          60% {
+            transform: translateY(-5px);
+          }
+        }
+        </style>
         <script>
     function wrapLetters(selector, delayIncrement = 0.3) {
         const el = document.querySelector(selector);
@@ -448,6 +575,9 @@
 
         </script>
     </body>
+
+
+
 
 
 </html>

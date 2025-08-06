@@ -6,6 +6,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="codered.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         <title>1.2 base</title>
     </head>
     <body>
@@ -29,7 +30,7 @@
 
 <!-- Explicit Content Warning -->
 <div id="blur-overlay" class="blur-overlay"></div>
-<div id="explicit-warning" class="explicit-popup" style="display:none;">
+<div id="explicit-warning" class="explicit-popup">
   <p>This gallery contains content some users may find disturbing or explicit. (R-15)</p>
   <div class="popup-buttons">
     <button onclick="proceedToGallery()">I Understand, Proceed</button>
@@ -60,7 +61,7 @@
                 <li><a href="trailer.html" onclick="return !isCurrentPage('trailer.html')">Trailer</a></li>
                 <li><a href="aboutus.html" onclick="return !isCurrentPage('aboutus.html')">About</a></li>
                 <li><a href="pricing.html" onclick="return !isCurrentPage('pricing.html')">Pricing</a></li>
-                <li><a href="gallery.html" onclick="return !isCurrentPage('gallery.html')">Gallery</a></li>
+                <li><a href="gallery.html" onclick="return showExplicitWarning(event)">Gallery</a></li>
             </ul>
         </nav>
 
@@ -391,37 +392,35 @@ if (floatingButton && floatingMenu) {
 
 // Accessibility toggles for high contrast and extra readable font with localStorage persistence
 
-function toggleHighContrastMode() {
-  const isActive = document.body.classList.toggle('high-contrast-mode');
-  localStorage.setItem('highContrastMode', isActive);
-  const btn = document.getElementById('highContrastToggle');
-  if (btn) btn.setAttribute('aria-pressed', isActive);
-  // Your original style updates for process cards, arrows, etc can be called here if needed
-  // (Omitted here for brevity - add them if you want the detailed style toggling)
-}
+    // Accessibility toggles with persistence
+    function toggleHighContrastMode() {
+        const isActive = document.body.classList.toggle('high-contrast-mode');
+        localStorage.setItem('highContrastMode', isActive);
+        // Update toggle button aria-pressed if exists
+        const btn = document.getElementById('highContrastToggle');
+        if(btn) btn.setAttribute('aria-pressed', isActive);
+    }
 
-function toggleExtraReadableFont() {
-  const isActive = document.body.classList.toggle('extra-readable-font');
-  localStorage.setItem('extraReadableFont', isActive);
-  const btn = document.getElementById('readableFontToggle');
-  if (btn) btn.setAttribute('aria-pressed', isActive);
-}
+    function toggleExtraReadableFont() {
+        const isActive = document.body.classList.toggle('extra-readable-font');
+        localStorage.setItem('extraReadableFont', isActive);
+        const btn = document.getElementById('readableFontToggle');
+        if(btn) btn.setAttribute('aria-pressed', isActive);
+    }
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Restore persisted accessibility preferences
-  if (localStorage.getItem('highContrastMode') === 'true') {
-    document.body.classList.add('high-contrast-mode');
-    const btn = document.getElementById('highContrastToggle');
-    if (btn) btn.setAttribute('aria-pressed', true);
-  }
-  if (localStorage.getItem('extraReadableFont') === 'true') {
-    document.body.classList.add('extra-readable-font');
-    const btn = document.getElementById('readableFontToggle');
-    if (btn) btn.setAttribute('aria-pressed', true);
-  }
-});
-
-// Explicit content popup functions
+    // Load persisted accessibility preferences on DOM ready
+    document.addEventListener('DOMContentLoaded', () => {
+        if (localStorage.getItem('highContrastMode') === 'true') {
+            document.body.classList.add('high-contrast-mode');
+            const btn = document.getElementById('highContrastToggle');
+            if(btn) btn.setAttribute('aria-pressed', true);
+        }
+        if (localStorage.getItem('extraReadableFont') === 'true') {
+            document.body.classList.add('extra-readable-font');
+            const btn = document.getElementById('readableFontToggle');
+            if(btn) btn.setAttribute('aria-pressed', true);
+        }
+    });// Explicit content popup functions
 function showExplicitWarning(event) {
   event.preventDefault();
   document.getElementById('explicit-warning').style.display = 'block';

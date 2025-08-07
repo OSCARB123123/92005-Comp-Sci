@@ -11,12 +11,13 @@
 </head>
 <body>
   <!-- Explicit Content Warning -->
-  <div id="blur-overlay" class="blur-overlay"></div>
-  <div id="explicit-warning" class="explicit-popup">
-    <p>This gallery contains content some users may find disturbing or explicit. (R-15)</p>
-    <div class="popup-buttons">
-      <button onclick="proceedToGallery()">I Understand, Proceed</button>
-      <button onclick="stayOnLanding()">Take Me Back</button>
+  <div class="blur-overlay"></div>
+  <div class="explicit-popup">
+    <h2>Explicit Content Warning</h2>
+    <p>The following page contains images that some viewers may find disturbing. Please proceed with caution.</p>
+    <div class="button-container">
+        <button onclick="proceedToGallery()" class="proceed-btn">Proceed</button>
+        <button onclick="stayOnLanding()" class="stay-btn">Go Back</button>
     </div>
   </div>
 

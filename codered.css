@@ -1504,16 +1504,15 @@ a {
       display: none;
     }
     .explicit-popup {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(0, 0, 0, 0.95);
+      position: absolute;
+      top: 100px; left: 50%;
+      transform: translateX(-50%) translateY(-20px);
+      background: rgba(0, 0, 0, 0.85);
       box-shadow: 0 0 10px #A6886D, 0 0 20px #40251C, 2px 2px 8px #100D04, 0 0 2px #575945;
       color: #A6886D;
       border: 3px solid #A6886D;
       font-family: 'Cinzel', serif;
-      padding: 2rem;
+      padding: 1.3rem;
       border-radius: 12px;
       z-index: 1001;
       width: 80%;
@@ -1525,9 +1524,9 @@ a {
     }
     
     .explicit-popup.show {
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .explicit-popup p {
       margin-bottom: 1rem;
@@ -1647,41 +1646,14 @@ a {
 }
 
 .popup-buttons {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  width: 100% !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
   padding: 10px 0;
   gap: 8px; /* spacing between buttons */
 }
 
-.popup-buttons button {
-  margin: 0 auto;
-  padding: 12px 24px;
-  width: 85%;
-  min-width: 200px;
-  max-width: 400px;
-  height: 50px;
-  background: #0c0a06;
-  color: #A6886D;
-  border: 2px solid #A6886D;
-  font-family: 'Cinzel', serif;
-  font-size: 1.2rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-shadow: 0 0 5px #A6886D, 0 0 10px #40251C;
-  box-shadow: 0 0 6px rgba(166, 136, 109, 0.3), 0 0 10px rgba(64, 37, 28, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.popup-buttons button:hover {
-  background: rgba(166, 136, 109, 0.15);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(166, 136, 109, 0.4);
-}
 
     .float-element:hover {
       background-color: #ffffff;
@@ -2219,11 +2191,45 @@ button {
   text-align: center;
 }
 
+#explicit-warning .popup-buttons,
 .explicit-popup .popup-buttons {
   width: 100%;
+  display: none; /* hide buttons by default */
+  flex-direction: column;
+  align-items: center;
+  gap: 12px; /* spacing between buttons */
   margin-top: 12px;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  gap: 12px !important;
+}
+
+#explicit-warning.show .popup-buttons,
+.explicit-popup.show .popup-buttons {
+  display: flex; /* show buttons as vertical flex when popup visible */
+}
+
+#explicit-warning .popup-buttons button {
+  margin: 0 auto;
+  padding: 12px 24px;
+  width: 85%;
+  min-width: 200px;
+  max-width: 400px;
+  height: 50px;
+  background: #0c0a06;
+  color: #A6886D;
+  border: 2px solid #A6886D;
+  font-family: 'Cinzel', serif;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 5px #A6886D, 0 0 10px #40251C;
+  box-shadow: 0 0 6px rgba(166, 136, 109, 0.3), 0 0 10px rgba(64, 37, 28, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#explicit-warning .popup-buttons button:hover {
+  background: rgba(166, 136, 109, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(166, 136, 109, 0.4);
 }

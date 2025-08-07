@@ -62,6 +62,17 @@
         </div>
     </section>
 
+    <!-- Explicit Content Warning -->
+    <div id="blur-overlay" class="blur-overlay" role="dialog" aria-hidden="true"></div>
+    <div id="explicit-warning" class="explicit-popup" role="alertdialog" aria-labelledby="warning-title" aria-describedby="warning-desc">
+        <h2 id="warning-title" class="sr-only">Content Warning</h2>
+        <p id="warning-desc">This gallery contains content some users may find disturbing or explicit. (R-15)</p>
+        <div class="popup-buttons">
+            <button onclick="proceedToGallery()" aria-label="Proceed to gallery">I Understand, Proceed</button>
+            <button onclick="stayOnLanding()" aria-label="Return to previous page">Take Me Back</button>
+        </div>
+    </div>
+
     <!-- Main content -->
     <main class="gallery">
         <section class="gallery-content" aria-label="Image gallery slideshow">
@@ -163,6 +174,69 @@
     </nav>
 
     <script>
+        // Explicit content warning functions
+        function showExplicitWarning(event) {
+            event.preventDefault();
+            const warning = document.getElementById('explicit-warning');
+            const overlay = document.getElementById('blur-overlay');
+            warning.style.display = 'block';
+            overlay.style.display = 'block';
+            warning.setAttribute('aria-hidden', 'false');
+            overlay.setAttribute('aria-hidden', 'false');
+            
+            // Trap focus within the warning dialog
+            const focusableElements = warning.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            const firstFocusableElement = focusableElements[0];
+            const lastFocusableElement = focusableElements[focusableElements.length - 1];
+            
+            // Focus the first button
+            firstFocusableElement.focus();
+            
+            // Handle keyboard navigation
+            function handleTab(e) {
+                if (e.key === 'Tab') {
+                    if (e.shiftKey) {
+                        if (document.activeElement === firstFocusableElement) {
+                            e.preventDefault();
+                            lastFocusableElement.focus();
+                        }
+                    } else {
+                        if (document.activeElement === lastFocusableElement) {
+                            e.preventDefault();
+                            firstFocusableElement.focus();
+                        }
+                    }
+                }
+                if (e.key === 'Escape') {
+                    stayOnLanding();
+                }
+            }
+            
+            warning.addEventListener('keydown', handleTab);
+            return false;
+        }
+
+        function proceedToGallery() {
+            const hasAccepted = localStorage.getItem('galleryWarningAccepted');
+            if (!hasAccepted) {
+                localStorage.setItem('galleryWarningAccepted', 'true');
+            }
+            document.getElementById('explicit-warning').style.display = 'none';
+            document.getElementById('blur-overlay').style.display = 'none';
+        }
+
+        function stayOnLanding() {
+            window.location.href = 'index.html';
+        }
+
+        // Check if user has already accepted the warning
+        document.addEventListener('DOMContentLoaded', () => {
+            const hasAccepted = localStorage.getItem('galleryWarningAccepted');
+            if (!hasAccepted) {
+                showExplicitWarning({ preventDefault: () => {} });
+            }
+        });
+
         // Wrap letters for animation effect on given selectors
         function wrapLetters(selector, delayIncrement = 0.3) {
             const el = document.querySelector(selector);

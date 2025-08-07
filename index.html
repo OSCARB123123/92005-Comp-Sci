@@ -36,19 +36,25 @@
       <li><a href="trailer.html" onclick="return !isCurrentPage('trailer.html')">Trailer</a></li>
       <li><a href="aboutus.html" onclick="return !isCurrentPage('aboutus.html')">About</a></li>
       <li><a href="pricing.html" onclick="return !isCurrentPage('pricing.html')">Pricing</a></li>
-      <li><a href="gallery.html" onclick="return showExplicitWarning(event)">Gallery</a></li>
+      <li><a href="gallery.html" onclick="return showExplicitWarning(event)" aria-label="Gallery (Content Warning)">Gallery</a></li>
     </ul>
   </nav>
 
-  <!-- Explicit Content Warning -->
-  <div id="blur-overlay" class="blur-overlay"></div>
-  <div id="explicit-warning" class="explicit-popup">
-    <p>This gallery contains content some users may find disturbing or explicit. (R-15)</p>
-    <div class="popup-buttons">
-      <button onclick="proceedToGallery()">I Understand, Proceed</button>
-      <button onclick="stayOnLanding()">Take Me Back</button>
-    </div>
+<!-- Simplified Explicit Content Warning -->
+<div id="blur-overlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); z-index: 9998; display: none;"></div>
+
+<div id="explicit-warning" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 2rem; border: 2px solid black; z-index: 9999; display: none;" role="alertdialog" aria-labelledby="warning-title" aria-describedby="warning-desc" aria-hidden="true">
+
+  <h2 id="warning-title">Content Warning</h2>
+  <p id="warning-desc">This gallery contains content some users may find disturbing or explicit. (R-15)</p>
+
+  <!-- Plain buttons -->
+  <div style="margin-top: 1rem;">
+    <button onclick="proceedToGallery()">I Understand, Proceed</button>
+    <button onclick="stayOnLanding()">Take Me Back</button>
   </div>
+</div>
+
 
 <!-- Floating Soviet-style Icon Menu -->
 <div class="floating-container" aria-label="Accessibility and contact menu" role="navigation">
@@ -121,17 +127,70 @@
     // Explicit content warning functions
     function showExplicitWarning(event) {
       event.preventDefault();
-      document.getElementById('explicit-warning').style.display = 'block';
-      document.getElementById('blur-overlay').style.display = 'block';
+      const warning = document.getElementById('explicit-warning');
+      const overlay = document.getElementById('blur-overlay');
+      warning.style.display = 'block';
+      overlay.style.display = 'block';
+      warning.setAttribute('aria-hidden', 'false');
+      overlay.setAttribute('aria-hidden', 'false');
+      
+      // Trap focus within the warning dialog
+      const focusableElements = warning.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      const firstFocusableElement = focusableElements[0];
+      const lastFocusableElement = focusableElements[focusableElements.length - 1];
+      
+      // Focus the first button
+      firstFocusableElement.focus();
+      
+      // Handle keyboard navigation
+      function handleTab(e) {
+        if (e.key === 'Tab') {
+          if (e.shiftKey) {
+            if (document.activeElement === firstFocusableElement) {
+              e.preventDefault();
+              lastFocusableElement.focus();
+            }
+          } else {
+            if (document.activeElement === lastFocusableElement) {
+              e.preventDefault();
+              firstFocusableElement.focus();
+            }
+          }
+        }
+        if (e.key === 'Escape') {
+          stayOnLanding();
+        }
+      }
+      
+      warning.addEventListener('keydown', handleTab);
       return false;
     }
+
     function proceedToGallery() {
+      const hasAccepted = localStorage.getItem('galleryWarningAccepted');
+      if (!hasAccepted) {
+        localStorage.setItem('galleryWarningAccepted', 'true');
+      }
       window.location.href = 'gallery.html';
     }
+
     function stayOnLanding() {
-      document.getElementById('explicit-warning').style.display = 'none';
-      document.getElementById('blur-overlay').style.display = 'none';
+      const warning = document.getElementById('explicit-warning');
+      const overlay = document.getElementById('blur-overlay');
+      warning.style.display = 'none';
+      overlay.style.display = 'none';
+      warning.setAttribute('aria-hidden', 'true');
+      overlay.setAttribute('aria-hidden', 'true');
     }
+
+    // Check if user has already accepted the warning
+    document.addEventListener('DOMContentLoaded', () => {
+      const currentPage = window.location.pathname.split('/').pop();
+      const hasAccepted = localStorage.getItem('galleryWarningAccepted');
+      if (currentPage === 'gallery.html' && !hasAccepted) {
+        showExplicitWarning({ preventDefault: () => {} });
+      }
+    });
 
     // Accessibility toggles with persistence
     const highContrastCheckbox = document.getElementById('highContrastMode');

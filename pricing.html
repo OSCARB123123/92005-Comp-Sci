@@ -40,13 +40,13 @@
 </div>
 
 <!-- Explicit Content Warning -->
-<div class="blur-overlay"></div>
-<div class="explicit-popup">
-    <h2>Explicit Content Warning</h2>
-    <p>The following page contains images that some viewers may find disturbing. Please proceed with caution.</p>
-    <div class="button-container">
-        <button onclick="proceedToGallery()" class="proceed-btn">Proceed</button>
-        <button onclick="stayOnLanding()" class="stay-btn">Go Back</button>
+<div id="blur-overlay" class="blur-overlay" role="dialog" aria-hidden="true"></div>
+<div id="explicit-warning" class="explicit-popup" role="alertdialog" aria-labelledby="warning-title" aria-describedby="warning-desc">
+    <h2 id="warning-title" class="sr-only">Content Warning</h2>
+    <p id="warning-desc">This gallery contains content some users may find disturbing or explicit. (R-15)</p>
+    <div class="popup-buttons">
+        <button onclick="proceedToGallery()" aria-label="Proceed to gallery">I Understand, Proceed</button>
+        <button onclick="stayOnLanding()" aria-label="Return to current page">Take Me Back</button>
     </div>
 </div>
 
@@ -211,83 +211,11 @@
                 <li><a href="trailer.html" onclick="return !isCurrentPage('trailer.html')">Trailer</a></li>
                 <li><a href="aboutus.html" onclick="return !isCurrentPage('aboutus.html')">About</a></li>
                 <li><a href="pricing.html" onclick="return !isCurrentPage('pricing.html')">Pricing</a></li>
-                <li><a href="#" onclick="return showExplicitWarning(event)">Gallery</a></li>
+                <li><a href="gallery.html" onclick="return showExplicitWarning(event)" aria-label="Gallery (Content Warning)">Gallery</a></li>
             </ul>
         </nav>
 
         <style>
-        /* Explicit Content Warning Styles */
-        .blur-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(8px);
-            z-index: 9998;
-        }
-
-        .explicit-popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: linear-gradient(45deg, rgba(29, 29, 31, 0.95), rgba(40, 40, 42, 0.95));
-            padding: 2rem;
-            border-radius: 15px;
-            border: 3px solid #A6886D;
-            box-shadow: 0 0 20px rgba(166, 136, 109, 0.3);
-            z-index: 9999;
-            text-align: center;
-            max-width: 90%;
-            width: 400px;
-        }
-
-        .explicit-popup h2 {
-            color: #A6886D;
-            font-family: 'Cinzel', serif;
-            margin-bottom: 1rem;
-            font-size: 1.8rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .explicit-popup p {
-            color: #e2d3b6;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-            font-size: 1.1rem;
-        }
-
-        .button-container {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        .proceed-btn, .stay-btn {
-            padding: 0.8rem 1.5rem;
-            border: 2px solid #A6886D;
-            border-radius: 8px;
-            background: transparent;
-            color: #A6886D;
-            font-family: 'Cinzel', serif;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .proceed-btn:hover, .stay-btn:hover {
-            background: #A6886D;
-            color: #1D1D1F;
-            box-shadow: 0 0 15px rgba(166, 136, 109, 0.4);
-        }
-
-        .blur-overlay.show, .explicit-popup.show {
-            display: block;
-        }
 
         .faq-grid {
           display: grid;
@@ -416,23 +344,59 @@
         }
         </style>
         <script>
-    // Gallery warning functions
+    // Explicit content warning functions
     function showExplicitWarning(event) {
         event.preventDefault();
-        document.querySelector('.blur-overlay').classList.add('show');
-        document.querySelector('.explicit-popup').classList.add('show');
+        const warning = document.getElementById('explicit-warning');
+        const overlay = document.getElementById('blur-overlay');
+        warning.style.display = 'block';
+        overlay.style.display = 'block';
+        warning.setAttribute('aria-hidden', 'false');
+        overlay.setAttribute('aria-hidden', 'false');
+        
+        // Trap focus within the warning dialog
+        const focusableElements = warning.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        const firstFocusableElement = focusableElements[0];
+        const lastFocusableElement = focusableElements[focusableElements.length - 1];
+        
+        // Focus the first button
+        firstFocusableElement.focus();
+        
+        // Handle keyboard navigation
+        function handleTab(e) {
+            if (e.key === 'Tab') {
+                if (e.shiftKey) {
+                    if (document.activeElement === firstFocusableElement) {
+                        e.preventDefault();
+                        lastFocusableElement.focus();
+                    }
+                } else {
+                    if (document.activeElement === lastFocusableElement) {
+                        e.preventDefault();
+                        firstFocusableElement.focus();
+                    }
+                }
+            }
+            if (e.key === 'Escape') {
+                stayOnLanding();
+            }
+        }
+        
+        warning.addEventListener('keydown', handleTab);
         return false;
     }
 
     function proceedToGallery() {
-        document.querySelector('.blur-overlay').classList.remove('show');
-        document.querySelector('.explicit-popup').classList.remove('show');
+        const hasAccepted = localStorage.getItem('galleryWarningAccepted');
+        if (!hasAccepted) {
+            localStorage.setItem('galleryWarningAccepted', 'true');
+        }
         window.location.href = 'gallery.html';
     }
 
     function stayOnLanding() {
-        document.querySelector('.blur-overlay').classList.remove('show');
-        document.querySelector('.explicit-popup').classList.remove('show');
+        document.getElementById('explicit-warning').style.display = 'none';
+        document.getElementById('blur-overlay').style.display = 'none';
     }
 
     // Floating menu toggle logic

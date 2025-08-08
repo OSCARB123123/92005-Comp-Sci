@@ -10,16 +10,19 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-  <!-- Explicit Content Warning -->
-  <div id="blur-overlay" class="blur-overlay" role="dialog" aria-hidden="true"></div>
-  <div id="explicit-warning" class="explicit-popup" role="alertdialog" aria-labelledby="warning-title" aria-describedby="warning-desc">
-    <h2 id="warning-title" class="sr-only">Content Warning</h2>
-    <p id="warning-desc">This gallery contains content some users may find disturbing or explicit. (R-15)</p>
-    <div class="popup-buttons">
-      <button onclick="proceedToGallery()" aria-label="Proceed to gallery">I Understand, Proceed</button>
-      <button onclick="stayOnLanding()" aria-label="Return to current page">Take Me Back</button>
+  <!-- Explicit Content Warning Dialog -->
+  <div id="explicit-warning" class="warning-dialog" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="warning-title">
+    <h2 id="warning-title">Age Restriction Warning - 15+</h2>
+    <p>The gallery contains content that may not be suitable for viewers under 15 years of age.</p>
+    <p>By proceeding, you confirm that you are at least 15 years old.</p>
+    <div class="warning-buttons">
+      <button onclick="proceedToGallery()" class="proceed-btn" aria-label="Proceed to gallery">Proceed</button>
+      <button onclick="stayOnLanding()" class="stay-btn" aria-label="Stay on current page">Go Back</button>
     </div>
   </div>
+  <div id="blur-overlay"></div>
+
+  <canvas id="background-canvas"></canvas>
 
   <!-- Floating Soviet-style Icon Menu -->
   <div class="floating-container" aria-label="Accessibility and contact menu" role="navigation">
@@ -47,15 +50,8 @@
   <div class="trailer">
     <div class="trailer-extras"></div>
     <div class="landing-content">
-      <div class="trailer-content-inner">"Code Red"</div>
       <div class="trailer-video">
-        <iframe width="560" height="315"
-                src="https://www.youtube.com"
-                title="YouTube video player"
-                style="border: none;"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen>
-        </iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com" title="YouTube video player" style="border: none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
       <div class="trailer-content-sub">Set in a place trapped in time since the 70's, "Code Red" follows the story of a blood stained recovery centre. It paints a picture of desperation and hope, exploring the human condition in the face of adversity.</div>
     </div>
@@ -72,44 +68,23 @@
     </ul>
   </nav>
 
+
   <script>
-    function wrapLetters(selector, delayIncrement = 0.3) {
-      const el = document.querySelector(selector);
-      if (!el) return;
-      const text = el.textContent;
-      el.innerHTML = '';
-      [...text].forEach((char, index) => {
-        const span = document.createElement('span');
-        span.textContent = char;
-        if (char === ' ') span.classList.add('space');
-        const floatDelay = (index * delayIncrement).toFixed(2);
-        span.style.animation = `flicker 3s infinite ease-in-out 0s, floatSingle 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1) ${floatDelay}s`;
-        el.appendChild(span);
-      });
-    }
-
-    wrapLetters('.trailer-content-inner');
-    wrapLetters('.trailer-content-sub');
-
-    // Explicit content warning functions
     function showExplicitWarning(event) {
       event.preventDefault();
       const warning = document.getElementById('explicit-warning');
       const overlay = document.getElementById('blur-overlay');
+
       warning.style.display = 'block';
-      overlay.style.display = 'block';
+      overlay.classList.add('active');
       warning.setAttribute('aria-hidden', 'false');
       overlay.setAttribute('aria-hidden', 'false');
-      
-      // Trap focus within the warning dialog
+
       const focusableElements = warning.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
       const firstFocusableElement = focusableElements[0];
       const lastFocusableElement = focusableElements[focusableElements.length - 1];
-      
-      // Focus the first button
       firstFocusableElement.focus();
-      
-      // Handle keyboard navigation
+
       function handleTab(e) {
         if (e.key === 'Tab') {
           if (e.shiftKey) {
@@ -128,28 +103,48 @@
           stayOnLanding();
         }
       }
-      
       warning.addEventListener('keydown', handleTab);
       return false;
     }
 
     function proceedToGallery() {
-      const hasAccepted = localStorage.getItem('galleryWarningAccepted');
-      if (!hasAccepted) {
-        localStorage.setItem('galleryWarningAccepted', 'true');
-      }
+      localStorage.setItem('galleryWarningAccepted', 'true');
+      document.getElementById('explicit-warning').style.display = 'none';
+      document.getElementById('blur-overlay').classList.remove('active');
       window.location.href = 'gallery.html';
     }
 
     function stayOnLanding() {
       document.getElementById('explicit-warning').style.display = 'none';
-      document.getElementById('blur-overlay').style.display = 'none';
+      document.getElementById('blur-overlay').classList.remove('active');
     }
+    
+    
+    function wrapLetters(selector, delayIncrement = 0.3) {
+      const el = document.querySelector(selector);
+      if (!el) return;
+      const text = el.textContent;
+      el.innerHTML = '';
+      [...text].forEach((char, index) => {
+        const span = document.createElement('span');
+        span.textContent = char;
+        if (char === ' ') span.classList.add('space');
+        const floatDelay = (index * delayIncrement).toFixed(2);
+        span.style.animation = `flicker 3s infinite ease-in-out 0s, floatSingle 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1) ${floatDelay}s`;
+        el.appendChild(span);
+      });
+    }
+
+    wrapLetters('.trailer-content-inner');
+    wrapLetters('.trailer-content-sub');
+
+
 
     function isCurrentPage(href) {
       return window.location.pathname.endsWith(href);
     }
 
+    // Loading screen logic
     const currentPage = window.location.pathname.split('/').pop();
     const loadingScreen = document.querySelector('.LoadingScreen');
 
@@ -168,7 +163,6 @@
           }, 1000);
         }, 2000);
       }
-
       // Slide down navbar
       document.querySelector('.navbar').classList.add('slide-down');
     });
@@ -182,30 +176,7 @@
       }
     }, 5000);
 
-    function showExplicitWarning(event) {
-      event.preventDefault();
-      const warning = document.getElementById('explicit-warning');
-      const overlay = document.getElementById('blur-overlay');
-      warning.style.display = 'block';
-      overlay.style.display = 'block';
-      warning.setAttribute('aria-hidden', 'false');
-      overlay.setAttribute('aria-hidden', 'false');
-      return false;
-    }
-
-    function proceedToGallery() {
-      window.location.href = 'gallery.html';
-    }
-
-    function stayOnLanding() {
-      const warning = document.getElementById('explicit-warning');
-      const overlay = document.getElementById('blur-overlay');
-      warning.style.display = 'none';
-      overlay.style.display = 'none';
-      warning.setAttribute('aria-hidden', 'true');
-      overlay.setAttribute('aria-hidden', 'true');
-    }
-
+    // Accessibility toggles with persistence
     const highContrastCheckbox = document.getElementById('highContrastMode');
     const readableFontCheckbox = document.getElementById('extraReadableFont');
 
@@ -243,6 +214,7 @@
       }
     });
 
+    // Floating menu toggle logic
     const floatingButton = document.querySelector('.floating-button');
     const floatingMenu = document.getElementById('floatingMenu');
 

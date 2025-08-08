@@ -10,6 +10,23 @@
         <title>1.2 base</title>
     </head>
     <body>
+
+
+        <!-- Explicit Content Warning Dialog -->
+  <div id="explicit-warning" class="warning-dialog" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="warning-title">
+    <h2 id="warning-title">Age Restriction Warning - 15+</h2>
+    <p>The gallery contains content that may not be suitable for viewers under 15 years of age.</p>
+    <p>By proceeding, you confirm that you are at least 15 years old.</p>
+    <div class="warning-buttons">
+      <button onclick="proceedToGallery()" class="proceed-btn" aria-label="Proceed to gallery">Proceed</button>
+      <button onclick="stayOnLanding()" class="stay-btn" aria-label="Stay on current page">Go Back</button>
+    </div>
+  </div>
+  <div id="blur-overlay"></div>
+
+  <canvas id="background-canvas"></canvas>
+
+
 <!-- Floating Soviet-style Icon Menu -->
 <div class="floating-container" aria-label="Accessibility and contact menu" role="navigation">
   <div class="floating-button" aria-expanded="false" aria-controls="floatingMenu" aria-label="Toggle menu">+</div>
@@ -28,16 +45,9 @@
   </div>
 </div>
 
-<!-- Explicit Content Warning -->
-<div id="blur-overlay" class="blur-overlay" role="dialog" aria-hidden="true"></div>
-<div id="explicit-warning" class="explicit-popup" role="alertdialog" aria-labelledby="warning-title" aria-describedby="warning-desc">
-    <h2 id="warning-title" class="sr-only">Content Warning</h2>
-    <p id="warning-desc">This gallery contains content some users may find disturbing or explicit. (R-15)</p>
-    <div class="popup-buttons">
-        <button onclick="proceedToGallery()" aria-label="Proceed to gallery">I Understand, Proceed</button>
-        <button onclick="stayOnLanding()" aria-label="Return to current page">Take Me Back</button>
-    </div>
-</div>
+
+
+
         
         <div class="LoadingScreen">
     <div class="spinner">
@@ -62,7 +72,7 @@
                 <li><a href="trailer.html" onclick="return !isCurrentPage('trailer.html')">Trailer</a></li>
                 <li><a href="aboutus.html" onclick="return !isCurrentPage('aboutus.html')">About</a></li>
                 <li><a href="pricing.html" onclick="return !isCurrentPage('pricing.html')">Pricing</a></li>
-                <li><a href="gallery.html" onclick="return showExplicitWarning(event)">Gallery</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
             </ul>
         </nav>
 
@@ -321,60 +331,55 @@
        
 
         <script>
-        // Explicit content warning functions
-        function showExplicitWarning(event) {
-            event.preventDefault();
-            const warning = document.getElementById('explicit-warning');
-            const overlay = document.getElementById('blur-overlay');
-            warning.style.display = 'block';
-            overlay.style.display = 'block';
-            warning.setAttribute('aria-hidden', 'false');
-            overlay.setAttribute('aria-hidden', 'false');
-            
-            // Trap focus within the warning dialog
-            const focusableElements = warning.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-            const firstFocusableElement = focusableElements[0];
-            const lastFocusableElement = focusableElements[focusableElements.length - 1];
-            
-            // Focus the first button
-            firstFocusableElement.focus();
-            
-            // Handle keyboard navigation
-            function handleTab(e) {
-                if (e.key === 'Tab') {
-                    if (e.shiftKey) {
-                        if (document.activeElement === firstFocusableElement) {
-                            e.preventDefault();
-                            lastFocusableElement.focus();
-                        }
-                    } else {
-                        if (document.activeElement === lastFocusableElement) {
-                            e.preventDefault();
-                            firstFocusableElement.focus();
-                        }
-                    }
-                }
-                if (e.key === 'Escape') {
-                    stayOnLanding();
-                }
-            }
-            
-            warning.addEventListener('keydown', handleTab);
-            return false;
-        }
 
-        function proceedToGallery() {
-            const hasAccepted = localStorage.getItem('galleryWarningAccepted');
-            if (!hasAccepted) {
-                localStorage.setItem('galleryWarningAccepted', 'true');
-            }
-            window.location.href = 'gallery.html';
-        }
+function showExplicitWarning(event) {
+      event.preventDefault();
+      const warning = document.getElementById('explicit-warning');
+      const overlay = document.getElementById('blur-overlay');
 
-        function stayOnLanding() {
-            document.getElementById('explicit-warning').style.display = 'none';
-            document.getElementById('blur-overlay').style.display = 'none';
+      warning.style.display = 'block';
+      overlay.classList.add('active');
+      warning.setAttribute('aria-hidden', 'false');
+      overlay.setAttribute('aria-hidden', 'false');
+
+      const focusableElements = warning.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      const firstFocusableElement = focusableElements[0];
+      const lastFocusableElement = focusableElements[focusableElements.length - 1];
+      firstFocusableElement.focus();
+
+      function handleTab(e) {
+        if (e.key === 'Tab') {
+          if (e.shiftKey) {
+            if (document.activeElement === firstFocusableElement) {
+              e.preventDefault();
+              lastFocusableElement.focus();
+            }
+          } else {
+            if (document.activeElement === lastFocusableElement) {
+              e.preventDefault();
+              firstFocusableElement.focus();
+            }
+          }
         }
+        if (e.key === 'Escape') {
+          stayOnLanding();
+        }
+      }
+      warning.addEventListener('keydown', handleTab);
+      return false;
+    }
+
+    function proceedToGallery() {
+      localStorage.setItem('galleryWarningAccepted', 'true');
+      document.getElementById('explicit-warning').style.display = 'none';
+      document.getElementById('blur-overlay').classList.remove('active');
+      window.location.href = 'gallery.html';
+    }
+
+    function stayOnLanding() {
+      document.getElementById('explicit-warning').style.display = 'none';
+      document.getElementById('blur-overlay').classList.remove('active');
+    }
 
         // Wrap letters for flicker and float animation
         function wrapLetters(selector, delayIncrement = 0.3) {
@@ -476,20 +481,7 @@ if (floatingButton && floatingMenu) {
             const btn = document.getElementById('readableFontToggle');
             if(btn) btn.setAttribute('aria-pressed', true);
         }
-    });// Explicit content popup functions
-function showExplicitWarning(event) {
-  event.preventDefault();
-  document.getElementById('explicit-warning').style.display = 'block';
-  document.getElementById('blur-overlay').style.display = 'block';
-  return false;
-}
-function proceedToGallery() {
-  window.location.href = 'gallery.html';
-}
-function stayOnLanding() {
-  document.getElementById('explicit-warning').style.display = 'none';
-  document.getElementById('blur-overlay').style.display = 'none';
-}
+    });
 
 // Scroll indicator fade on scroll
 const scrollIndicator = document.querySelector('.scroll-indicator');

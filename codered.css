@@ -31,61 +31,6 @@ body {
   scrollbar-width: none;
 }
 
-/* Trailer Page Styles */
-.trailer {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    padding: 4rem 2rem;
-    box-sizing: border-box;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.trailer-video {
-    margin: 0 auto;
-    padding: 0 20px;
-    width: 100%;
-    max-width: 1000px;
-    text-align: center;
-    position: relative;
-}
-
-.trailer-video iframe {
-    max-width: 100%;
-    box-shadow: 0 0 20px rgba(166, 136, 109, 0.3);
-    border: 3px solid #A6886D;
-    border-radius: 12px;
-    aspect-ratio: 16/9;
-    width: 100%;
-    height: auto;
-}
-
-.trailer-content-inner {
-    font-size: 3.5rem;
-    margin-bottom: 2rem;
-    text-align: center;
-    color: #A6886D;
-    text-shadow: 0 0 15px rgba(166, 136, 109, 0.5);
-}
-
-.trailer-content-sub {
-    max-width: 1000px;
-    width: 90%;
-    margin: 0 auto;
-    padding: 2rem;
-    font-size: 1.6rem;
-    line-height: 1.8;
-    text-align: center;
-    color: #e2d3b6;
-    background: rgba(0, 0, 0, 0.6);
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(166, 136, 109, 0.3);
-    border: 2px solid #A6886D;
-}
 
 @media screen and (max-width: 1200px) {
     .trailer-content-sub {
@@ -174,30 +119,6 @@ body {
     border: 2px solid #A6886D;
 }
 
-@media screen and (max-width: 768px) {
-    .trailer {
-        padding: 1rem;
-    }
-    
-    .trailer-content-sub {
-        font-size: 1.1rem;
-        padding: 1rem;
-        margin: 1.5rem auto;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .trailer-video {
-        padding: 0 10px;
-    }
-    
-    .trailer-content-sub {
-        font-size: 1rem;
-        padding: 0.8rem;
-        margin: 1rem auto;
-        line-height: 1.5;
-    }
-}
 
 /* Remove default top margins that cause gaps */
 main, section, header {
@@ -252,144 +173,7 @@ main, section, header {
 
 
 
-.blur-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    z-index: 99998;
-}
 
-.explicit-popup {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(29, 29, 31, 0.95);
-    border: 3px solid #A6886D;
-    padding: 2.5rem;
-    border-radius: 15px;
-    z-index: 99999;
-    text-align: center;
-    max-width: 90%;
-    width: 450px;
-    box-shadow: 
-        0 0 30px rgba(166, 136, 109, 0.4),
-        0 0 60px rgba(64, 37, 28, 0.3);
-}
-
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
-}
-
-.explicit-popup p {
-    color: #A6886D;
-    font-size: 1.3rem;
-    margin-bottom: 2.5rem;
-    line-height: 1.6;
-    font-family: 'Cinzel', serif;
-    text-shadow: 0 0 15px rgba(166, 136, 109, 0.3);
-}
-
-.popup-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    position: relative;
-    z-index: 100000;
-}
-
-.explicit-popup .popup-buttons button {
-    all: unset;
-    display: inline-block;
-    padding: 1.2rem 2rem;
-    border: 3px solid #A6886D;
-    border-radius: 10px;
-    background: rgba(29, 29, 31, 0.98) !important;
-    color: #A6886D !important;
-    cursor: pointer;
-    font-family: 'Cinzel', serif !important;
-    font-size: 1.2rem;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    min-width: 160px;
-    text-align: center;
-    box-shadow: 
-        0 0 20px rgba(166, 136, 109, 0.4),
-        0 0 40px rgba(64, 37, 28, 0.3),
-        inset 0 0 15px rgba(166, 136, 109, 0.2);
-    text-shadow:
-        0 0 10px rgba(166, 136, 109, 0.6);
-}
-
-.explicit-popup .popup-buttons button:hover {
-    background: #A6886D !important;
-    color: #1D1D1F !important;
-    box-shadow: 
-        0 0 25px rgba(166, 136, 109, 0.6),
-        0 0 50px rgba(64, 37, 28, 0.4),
-        inset 0 0 20px rgba(29, 29, 31, 0.3);
-    text-shadow: none;
-    transform: translateY(-2px);
-}
-
-.explicit-popup .popup-buttons button:active {
-    transform: translateY(1px);
-    box-shadow: 
-        0 0 15px rgba(166, 136, 109, 0.4),
-        0 0 30px rgba(64, 37, 28, 0.3),
-        inset 0 0 10px rgba(29, 29, 31, 0.2);
-}
-
-.high-contrast .explicit-popup {
-    background: #000000;
-    border: 3px solid #FFFFFF;
-}
-
-.high-contrast .explicit-popup p {
-    color: #FFFFFF;
-}
-
-.high-contrast .popup-buttons button {
-    border: 3px solid #FFFFFF;
-    color: #FFFFFF;
-    background: #000000;
-    text-shadow: none;
-}
-
-.high-contrast .popup-buttons button:hover {
-    background: #FFFFFF;
-    color: #000000;
-    box-shadow: none;
-}
-
-.high-contrast .explicit-popup {
-    background: #000000;
-    border: 2px solid #FFFFFF;
-}
-
-.high-contrast .popup-buttons button {
-    border-color: #FFFFFF;
-    color: #FFFFFF;
-    background: #000000;
-}
-
-.high-contrast .popup-buttons button:hover {
-    background: #333333;
-}
 
 .button {
     position: fixed;
@@ -673,6 +457,7 @@ main, section, header {
     z-index: 2;
     letter-spacing: 0.1em; /* Added for better spacing */
 } 
+
 
 .trailer { 
     min-height: 100vh;
@@ -1000,10 +785,10 @@ main, section, header {
     color: #dba576;
     text-align: center;
     font-family: 'Cinzel', serif;
-    font-size: 8vw;
+    font-size: 6vw;
     top: -30px;
-    margin-top: 5rem;
-    margin-bottom: 5rem;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
     letter-spacing: 0.3em;
     text-shadow:
         0 0 10px #A6886D,
@@ -1116,9 +901,10 @@ main, section, header {
     color: #dba576;
     text-align: center;
     font-family: 'Cinzel', serif;   
-    font-size: 3vw;
-    margin: 7rem auto;
+   font-size: clamp(1rem, 2vw, 1.8rem);
+    margin: 6rem auto;
     max-width: 90%;
+    padding: 15px;
     letter-spacing: 0.2em;
     text-shadow:
         0 0 10px #A6886D,
@@ -1290,17 +1076,21 @@ main, section, header {
     text-shadow: 0 12px 40px #7c7980, 0 4px 16px #71706c;
 }
 
+
+
 .trailer-video {
     position: relative;
-    width: 70vw;
-    max-width: 800px;
-    margin: 1rem auto;
+    width: clamp(800px, 90%, 900px); /* min 300px, preferred 70% of container, max 900px */
+    margin: 10rem auto;
+    margin-top: 6vw;
     aspect-ratio: 16/9;
+    padding: 2px;
     background: #403D44;
     border-radius: 18px;
     box-shadow: 0 4px 32px #100D04;
     overflow: hidden;
 }
+
 
 .trailer-video iframe {
     width: 100%;
@@ -1784,23 +1574,7 @@ a {
   text-decoration: none;
 }
 
-/* Toggle Show/Hide for Overlays and Info Boxes */
-.blur-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: blur(10px);
-  background: rgba(8, 12, 16, 0.6);
-  z-index: 1000;
-  display: none;
-}
-
-.blur-overlay.show {
-  display: block;
-}
-
+/* Info Box Toggle */
 .info-box {
   display: none;
 }
@@ -1809,40 +1583,7 @@ a {
   display: block;
 }
 
-/* Explicit Popup Styling */
-.explicit-popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.95);
-  box-shadow: 0 0 20px #A6886D, 0 0 40px #40251C;
-  color: #A6886D;
-  border: 3px solid #A6886D;
-  font-family: 'Cinzel', serif;
-  padding: 2rem;
-  border-radius: 15px;
-  z-index: 99999;
-  width: 90%;
-  max-width: 500px;
-  text-align: center;
-  display: none;
-}
-
-.explicit-popup.show {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.explicit-popup p {
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-  width: 100%;
-  text-align: center;
-}
-
-/* Popup Buttons */
+/* General Buttons */
 .popup-buttons {
   display: flex;
   flex-direction: row;
@@ -1857,7 +1598,7 @@ a {
   margin: 0;
   padding: 15px 30px;
   min-width: 180px;
-  background: #1D1D1F;
+  background: #2a2a53;
   color: #A6886D;
   border: 3px solid #A6886D;
   font-family: 'Cinzel', serif;
@@ -1876,11 +1617,11 @@ a {
 }
 
 .popup-buttons button:hover {
-  background: #A6886D;
-  color: #1D1D1F;
+  background: #38210c;
+  color: #0000ff;
   transform: translateY(-2px);
   box-shadow:
-    0 0 25px rgba(166, 136, 109, 0.6),
+    0 0 25px rgba(145, 67, 0, 0.6),
     0 0 50px rgba(64, 37, 28, 0.4),
     inset 0 0 20px rgba(29, 29, 31, 0.3);
   text-shadow: none;
@@ -2477,6 +2218,98 @@ button {
 }
 .swallow__icon--down span:after {
   transform: rotate(-40deg) !important;
+}
+
+
+    /* Warning Dialog Styles */
+    .warning-dialog {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(45deg, rgba(24, 24, 24, 0.95), rgba(36, 36, 36, 0.95));
+      padding: 2rem;
+      border: 3px solid #A6886D;
+      border-radius: 15px;
+      z-index: 10003;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+    }
+
+    .warning-dialog h2 {
+      color: #A6886D;
+      font-family: 'Cinzel', serif;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .warning-dialog p {
+      color: #e2d3b6;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+
+    .warning-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .warning-buttons button {
+      padding: 0.8rem 1.5rem;
+      border: 2px solid #A6886D;
+      border-radius: 8px;
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      min-width: 120px;
+    }
+
+    .proceed-btn {
+      background-color: #A6886D;
+      color: #1D1D1F;
+    }
+
+    .stay-btn {
+      background-color: transparent;
+      color: #A6886D;
+    }
+
+    .proceed-btn:hover {
+      background-color: #8a6d54;
+      border-color: #8a6d54;
+    }
+
+    .stay-btn:hover {
+      background-color: rgba(166, 136, 109, 0.2);
+    }
+
+#blur-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 997;
+  backdrop-filter: none;
+  background-color: rgba(0, 0, 0, 0);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+#blur-overlay.active {
+  backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  pointer-events: auto;
 }
 
 

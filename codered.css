@@ -1092,12 +1092,14 @@ main, section, header {
 }
 
 
-.trailer-video iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
+.trailer-video video {
+  max-width: 100%;
+  max-height: 200005px; /* or whatever max height you want */
+  width: auto;
+  height: auto;
+  display: block;
 }
+
 
 .team-section {
     max-width: min(1000px, 85vw);

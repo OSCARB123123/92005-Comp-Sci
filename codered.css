@@ -2222,76 +2222,116 @@ button {
   transform: rotate(-40deg) !important;
 }
 
+/* Warning Dialog Styles */
+.warning-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(145deg, rgba(24, 24, 24, 0.96), rgba(36, 36, 36, 0.96));
+  padding: 2rem;
+  border: 2px solid #A6886D;
+  border-radius: 12px;
+  z-index: 10003;
+  max-width: 500px;
+  width: 92%;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  animation: fadeInScale 0.3s ease forwards;
 
-    /* Warning Dialog Styles */
-    .warning-dialog {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: linear-gradient(45deg, rgba(24, 24, 24, 0.95), rgba(36, 36, 36, 0.95));
-      padding: 2rem;
-      border: 3px solid #A6886D;
-      border-radius: 15px;
-      z-index: 10003;
-      max-width: 500px;
-      width: 90%;
-      text-align: center;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(10px);
-    }
+}
 
-    .warning-dialog h2 {
-      color: #A6886D;
-      font-family: 'Cinzel', serif;
-      margin-bottom: 1.5rem;
-      font-size: 1.8rem;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    }
+/* Heading */
+.warning-dialog h2 {
+  color: #A6886D;
+  font-family: 'Cinzel', serif;
+  margin-bottom: 1rem;
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
 
-    .warning-dialog p {
-      color: #e2d3b6;
-      margin-bottom: 1rem;
-      line-height: 1.6;
-      font-size: 1.1rem;
-    }
+/* Body text */
+.warning-dialog p {
+  color: #e2d3b6;
+  margin-bottom: 1.2rem;
+  line-height: 1.6;
+  font-size: clamp(1rem, 3.5vw, 1.1rem);
+}
 
-    .warning-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
+/* Buttons container */
+.warning-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
 
-    .warning-buttons button {
-      padding: 0.8rem 1.5rem;
-      border: 2px solid #A6886D;
-      border-radius: 8px;
-      font-family: 'Cinzel', serif;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      min-width: 120px;
-    }
+/* Base button styles */
+.warning-buttons button {
+  padding: 0.7rem 1.2rem;
+  border: 2px solid #A6886D;
+  border-radius: 8px;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.9rem, 3.5vw, 1rem);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  min-width: 110px;
+}
 
-    .proceed-btn {
-      background-color: #A6886D;
-      color: #1D1D1F;
-    }
+/* Proceed button */
+.proceed-btn {
+  background-color: transparent;
+  color: #A6886D;
+}
 
-    .stay-btn {
-      background-color: transparent;
-      color: #A6886D;
-    }
+.proceed-btn:hover {
+  background-color: #ffffff;
+  color: #000000;
 
-    .proceed-btn:hover {
-      background-color: #8a6d54;
-      border-color: #8a6d54;
-    }
+}
 
-    .stay-btn:hover {
-      background-color: rgba(166, 136, 109, 0.2);
-    }
+/* Stay button */
+.stay-btn {
+  background-color: transparent;
+  color: #A6886D;
+}
+
+.stay-btn:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Animation for popup */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -45%) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Small screen tweaks */
+@media (max-width: 500px) {
+  .warning-dialog {
+    padding: 1.2rem;
+    border-radius: 10px;
+  }
+  
+  .warning-buttons {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .warning-buttons button {
+    width: 100%;
+  }
+}
+
 
 #blur-overlay {
   position: fixed;

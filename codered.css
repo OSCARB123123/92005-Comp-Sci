@@ -2098,7 +2098,7 @@ a {
 /* For mobile screens */
 @media (max-width: 700px) {
     .slide-show-container {
-        width: 101vw; /* increase width on small screens */
+        width: 103vw; /* increase width on small screens */
     }
 }
 

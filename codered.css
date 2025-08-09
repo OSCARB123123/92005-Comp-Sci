@@ -2105,7 +2105,7 @@ a {
 
 @media (min-width: 700px) {
 .gallery, .gallery-content {
-    margin-top: 180px; /* Adjust margin for larger screens */
+    margin-top: 200px; /* Adjust margin for larger screens */
     height: 100vh;
     max-height: 100vh;
     display: flex;

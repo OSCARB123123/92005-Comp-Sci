@@ -2080,6 +2080,7 @@ a {
 
 /* Force fixed heights for gallery and slideshow elements */
 .gallery, .gallery-content {
+
     height: 100vh;
     max-height: 100vh;
     display: flex;
@@ -2101,6 +2102,18 @@ a {
         width: 103vw; /* increase width on small screens */
     }
 }
+
+@media (min-width: 700px) {
+.gallery, .gallery-content {
+    margin-top: 180px; /* Adjust margin for larger screens */
+    height: 100vh;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+}
+
 
 
 /* Prevent scrollbars on landing page only */

@@ -218,20 +218,16 @@
 
         
         <script>
-    // Explicit content warning functions
 function showExplicitWarning(event) {
     event.preventDefault();
     const warning = document.getElementById('explicit-warning');
     const overlay = document.getElementById('blur-overlay');
-    const pageContent = document.body;  // blur the whole body
-    
+
     warning.style.display = 'block';
     overlay.style.display = 'block';
-    warning.setAttribute('aria-hidden', 'false');
-    overlay.setAttribute('aria-hidden', 'false');
+    overlay.classList.add('active'); // <-- Add blur effect
 
-    // Add blur class to page content
-    pageContent.classList.add('blurred');  // <--- Added here
+    document.body.classList.add('blurred');
 
     // Trap focus within the warning dialog
     const focusableElements = warning.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
@@ -276,13 +272,12 @@ function proceedToGallery() {
 function stayOnLanding() {
     const warning = document.getElementById('explicit-warning');
     const overlay = document.getElementById('blur-overlay');
-    const pageContent = document.body;  // blur the whole body
 
     warning.style.display = 'none';
     overlay.style.display = 'none';
+    overlay.classList.remove('active'); // <-- Remove blur effect
 
-    // Remove blur class from page content
-    pageContent.classList.remove('blurred');  // <--- Added here
+    document.body.classList.remove('blurred');
 }
     // Floating menu toggle logic
     const floatingButton = document.querySelector('.floating-button');

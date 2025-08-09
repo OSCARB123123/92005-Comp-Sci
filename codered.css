@@ -270,6 +270,8 @@ main, section, header {
 
 }
 
+
+
 /* Each line positioned absolutely around the spinner center */
 .spinner div {
   position: absolute;
@@ -309,6 +311,18 @@ main, section, header {
     50% { transform: rotate(var(--rotation)) translateY(-200%); }
     100% { transform: rotate(var(--rotation)) translateY(-150%); }
 }
+
+
+
+main.gallery {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertically centers content */
+  margin: 0;
+  padding: 0;
+}
+
 
  .faq-grid {
           display: grid;
@@ -1488,29 +1502,20 @@ main, section, header {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    padding: 20px;
+    padding: 10px;
     color: #A6886D;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 60px;
     transition: 0.6s ease;
     user-select: none;
-    border: 5px solid #A6886D;
+
     border-radius: 13px;
     z-index: 2;
-        box-shadow:
-        0 0 10px #A6886D,
-        0 0 20px #40251C,
-        2px 2px 8px #100D04,
-        0 0 2px #575945;
-            text-shadow:
-        0 0 10px #A6886D,
-        0 0 20px #40251C,
-        2px 2px 8px #100D04,
-        0 0 2px #575945;
+
 }
 
-.prev { left: -80px; } /* Reduced distance from container */
-.next { right: -80px;  }
+.prev { left: -100px; } /* Reduced distance from container */
+.next { right: -100px;  }
 
 /* Caption Text */
 .Caption {

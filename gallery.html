@@ -6,45 +6,33 @@
     <title>Gallery Page</title>
     <meta name="description" content="" >
     <meta name="viewport" content="width=device-width, initial-scale=1" >
-    
+     <!-- Add this line to load Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
     <link rel="stylesheet" href="codered.css" >
 </head>
 <body>
     <!-- Canvas for background animation -->
     <canvas id="background-canvas" aria-hidden="true"></canvas>
 
-    <!-- Accessibility Menu Button -->
-    <button
-        class="accessibility-menu"
-        aria-haspopup="true"
-        aria-expanded="false"
-        aria-controls="accessibilityMenu"
-        onclick="toggleAccessibilityMenu()"
-    >
-        Menu
+<!-- Floating Soviet-style Icon Menu -->
+<div class="floating-container" aria-label="Accessibility and contact menu" role="navigation">
+  <div class="floating-button" aria-expanded="false" aria-controls="floatingMenu" aria-label="Toggle menu">+</div>
+  <div class="element-container" id="floatingMenu">
+    <!-- Removed phone and email buttons -->
+    <a href="form.html" title="Chat" aria-label="Chat">
+      <span class="float-element"><i class="material-icons">chat</i></span>
+    </a>
+    <button class="float-element" onclick="toggleHighContrastMode()" title="Toggle High Contrast Mode" aria-pressed="false" id="highContrastToggle" aria-label="Toggle High Contrast Mode">
+      <i class="material-icons">invert_colors</i>
     </button>
+    <button class="float-element" onclick="toggleExtraReadableFont()" title="Toggle Extra Readable Font" aria-pressed="false" id="readableFontToggle" aria-label="Toggle Extra Readable Font">
+      <i class="material-icons">format_size</i>
+    </button>
+  </div>
+</div>
 
-    <!-- Accessibility menu as a complementary region -->
-    <aside class="accessibility-menu-content" id="accessibilityMenu" aria-label="Accessibility Menu" hidden>
-        <h2>Accessibility Menu</h2>
-        <hr style="background-color: #A6886D; height: 2px; border: none;" >
-        <form>
-            <label>
-                <input type="checkbox" id="highContrastMode" onchange="toggleHighContrastMode()" >
-                High Contrast Mode
-            </label><br >
-            <label>
-                <input type="checkbox" id="extraReadableFont" onchange="toggleExtraReadableFont()" >
-                Extra Readable Font
-            </label>
-        </form>
 
-        <h2>Contact / Feedback Form</h2>
-        <hr style="background-color: #A6886D; height: 2px; border: none;">
-        <button class="button" onclick="window.location.href='form.html'">
-            <span>Form</span>
-        </button>
-    </aside>
 
     <!-- Loading screen -->
     <section class="LoadingScreen" role="status" aria-live="polite" aria-label="Loading content">
@@ -345,29 +333,23 @@
             }
         });
 
-        // Accessibility menu toggle with ARIA updates
-        function toggleAccessibilityMenu() {
-            const menu = document.getElementById('accessibilityMenu');
-            const button = document.querySelector('.accessibility-menu');
-            const isShown = menu.classList.toggle('show');
+       const floatingButton = document.querySelector('.floating-button');
+const floatingMenu = document.getElementById('floatingMenu');
 
-            // Toggle hidden attribute for screen readers
-            menu.hidden = !isShown;
+floatingButton.addEventListener('click', (e) => {
+  e.stopPropagation(); // Prevent event bubbling
+  const isShown = floatingMenu.classList.toggle('show');
+  floatingButton.setAttribute('aria-expanded', isShown);
+});
 
-            // Update aria-expanded attribute
-            button.setAttribute('aria-expanded', isShown);
-        }
+// Close floating menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (!floatingMenu.contains(e.target) && !floatingButton.contains(e.target)) {
+    floatingMenu.classList.remove('show');
+    floatingButton.setAttribute('aria-expanded', 'false');
+  }
+});
 
-        // Close accessibility menu when clicking outside
-        document.addEventListener('click', function (event) {
-            const menu = document.getElementById('accessibilityMenu');
-            const button = document.querySelector('.accessibility-menu');
-            if (!menu.contains(event.target) && !button.contains(event.target)) {
-                menu.classList.remove('show');
-                menu.hidden = true;
-                button.setAttribute('aria-expanded', 'false');
-            }
-        });
 
 function stayOnLanding() {
   const warning = document.getElementById('explicit-warning');
@@ -388,33 +370,25 @@ function proceedToGallery() {
 }
 
 
-        // Toggle extra readable font setting
-        function toggleExtraReadableFont() {
-            const checkbox = document.getElementById('extraReadableFont');
-            const body = document.body;
+  function toggleHighContrastMode() {
+  const body = document.body;
+  const isActive = body.classList.toggle('high-contrast-mode');
+  localStorage.setItem('highContrastMode', isActive ? 'true' : 'false');
 
-            if (checkbox.checked) {
-                body.classList.add('extra-readable-font');
-                localStorage.setItem('extraReadableFont', 'true');
-            } else {
-                body.classList.remove('extra-readable-font');
-                localStorage.setItem('extraReadableFont', 'false');
-            }
-        }
+  // Update aria-pressed on the button for accessibility
+  const btn = document.getElementById('highContrastToggle');
+  if (btn) btn.setAttribute('aria-pressed', isActive);
+}
 
-        // Toggle high contrast mode setting
-        function toggleHighContrastMode() {
-            const checkbox = document.getElementById('highContrastMode');
-            const body = document.body;
+function toggleExtraReadableFont() {
+  const body = document.body;
+  const isActive = body.classList.toggle('extra-readable-font');
+  localStorage.setItem('extraReadableFont', isActive ? 'true' : 'false');
 
-            if (checkbox.checked) {
-                body.classList.add('high-contrast-mode');
-                localStorage.setItem('highContrastMode', 'true');
-            } else {
-                body.classList.remove('high-contrast-mode');
-                localStorage.setItem('highContrastMode', 'false');
-            }
-        }
+  const btn = document.getElementById('readableFontToggle');
+  if (btn) btn.setAttribute('aria-pressed', isActive);
+}
+
 
         // Apply saved accessibility preferences on DOMContentLoaded
         document.addEventListener('DOMContentLoaded', () => {

@@ -369,6 +369,25 @@
             }
         });
 
+function stayOnLanding() {
+  const warning = document.getElementById('explicit-warning');
+  const overlay = document.getElementById('blur-overlay');
+
+  warning.style.display = 'none';
+  overlay.classList.remove('active'); // Hide blur overlay
+
+  warning.setAttribute('aria-hidden', 'true');
+  overlay.setAttribute('aria-hidden', 'true');
+}
+
+function proceedToGallery() {
+  localStorage.setItem('galleryWarningAccepted', 'true');
+  document.getElementById('explicit-warning').style.display = 'none';
+  document.getElementById('blur-overlay').classList.remove('active'); // Hide blur overlay
+  window.location.href = 'gallery.html';
+}
+
+
         // Toggle extra readable font setting
         function toggleExtraReadableFont() {
             const checkbox = document.getElementById('extraReadableFont');

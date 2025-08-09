@@ -219,60 +219,71 @@
         
         <script>
     // Explicit content warning functions
-    function showExplicitWarning(event) {
-        event.preventDefault();
-        const warning = document.getElementById('explicit-warning');
-        const overlay = document.getElementById('blur-overlay');
-        warning.style.display = 'block';
-        overlay.style.display = 'block';
-        warning.setAttribute('aria-hidden', 'false');
-        overlay.setAttribute('aria-hidden', 'false');
-        
-        // Trap focus within the warning dialog
-        const focusableElements = warning.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-        const firstFocusableElement = focusableElements[0];
-        const lastFocusableElement = focusableElements[focusableElements.length - 1];
-        
-        // Focus the first button
-        firstFocusableElement.focus();
-        
-        // Handle keyboard navigation
-        function handleTab(e) {
-            if (e.key === 'Tab') {
-                if (e.shiftKey) {
-                    if (document.activeElement === firstFocusableElement) {
-                        e.preventDefault();
-                        lastFocusableElement.focus();
-                    }
-                } else {
-                    if (document.activeElement === lastFocusableElement) {
-                        e.preventDefault();
-                        firstFocusableElement.focus();
-                    }
+function showExplicitWarning(event) {
+    event.preventDefault();
+    const warning = document.getElementById('explicit-warning');
+    const overlay = document.getElementById('blur-overlay');
+    const pageContent = document.body;  // blur the whole body
+    
+    warning.style.display = 'block';
+    overlay.style.display = 'block';
+    warning.setAttribute('aria-hidden', 'false');
+    overlay.setAttribute('aria-hidden', 'false');
+
+    // Add blur class to page content
+    pageContent.classList.add('blurred');  // <--- Added here
+
+    // Trap focus within the warning dialog
+    const focusableElements = warning.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    const firstFocusableElement = focusableElements[0];
+    const lastFocusableElement = focusableElements[focusableElements.length - 1];
+
+    // Focus the first button
+    firstFocusableElement.focus();
+
+    // Handle keyboard navigation
+    function handleTab(e) {
+        if (e.key === 'Tab') {
+            if (e.shiftKey) {
+                if (document.activeElement === firstFocusableElement) {
+                    e.preventDefault();
+                    lastFocusableElement.focus();
+                }
+            } else {
+                if (document.activeElement === lastFocusableElement) {
+                    e.preventDefault();
+                    firstFocusableElement.focus();
                 }
             }
-            if (e.key === 'Escape') {
-                stayOnLanding();
-            }
         }
-        
-        warning.addEventListener('keydown', handleTab);
-        return false;
-    }
-
-    function proceedToGallery() {
-        const hasAccepted = localStorage.getItem('galleryWarningAccepted');
-        if (!hasAccepted) {
-            localStorage.setItem('galleryWarningAccepted', 'true');
+        if (e.key === 'Escape') {
+            stayOnLanding();
         }
-        window.location.href = 'gallery.html';
     }
 
-    function stayOnLanding() {
-        document.getElementById('explicit-warning').style.display = 'none';
-        document.getElementById('blur-overlay').style.display = 'none';
-    }
+    warning.addEventListener('keydown', handleTab);
+    return false;
+}
 
+function proceedToGallery() {
+    const hasAccepted = localStorage.getItem('galleryWarningAccepted');
+    if (!hasAccepted) {
+        localStorage.setItem('galleryWarningAccepted', 'true');
+    }
+    window.location.href = 'gallery.html';
+}
+
+function stayOnLanding() {
+    const warning = document.getElementById('explicit-warning');
+    const overlay = document.getElementById('blur-overlay');
+    const pageContent = document.body;  // blur the whole body
+
+    warning.style.display = 'none';
+    overlay.style.display = 'none';
+
+    // Remove blur class from page content
+    pageContent.classList.remove('blurred');  // <--- Added here
+}
     // Floating menu toggle logic
     const floatingButton = document.querySelector('.floating-button');
     const floatingMenu = document.getElementById('floatingMenu');

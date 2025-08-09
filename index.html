@@ -72,7 +72,7 @@ function showExplicitWarning(event) {
   const overlay = document.getElementById('blur-overlay');
 
   warning.style.display = 'block';
-  overlay.classList.add('active'); // Use class instead of display
+  overlay.classList.add('active'); // Show blur via class, don't set display
 
   warning.setAttribute('aria-hidden', 'false');
   overlay.setAttribute('aria-hidden', 'false');
@@ -116,8 +116,14 @@ function proceedToGallery() {
 }
 
 function stayOnLanding() {
-  document.getElementById('explicit-warning').style.display = 'none';
-  document.getElementById('blur-overlay').classList.remove('active'); // Remove blur
+  const warning = document.getElementById('explicit-warning');
+  const overlay = document.getElementById('blur-overlay');
+
+  warning.style.display = 'none';
+  overlay.classList.remove('active'); // Hide blur by removing class
+
+  warning.setAttribute('aria-hidden', 'true');
+  overlay.setAttribute('aria-hidden', 'true');
 }
 
     // Wrap letters with flicker and float animation

@@ -332,85 +332,107 @@
 
         <script>
 
+// --- EXPLICIT CONTENT WARNING HANDLING ---
+
 function showExplicitWarning(event) {
-      event.preventDefault();
-      const warning = document.getElementById('explicit-warning');
-      const overlay = document.getElementById('blur-overlay');
+  if (event) event.preventDefault();
 
-      warning.style.display = 'block';
-      overlay.classList.add('active');
-      warning.setAttribute('aria-hidden', 'false');
-      overlay.setAttribute('aria-hidden', 'false');
+  const warning = document.getElementById('explicit-warning');
+  const overlay = document.getElementById('blur-overlay');
 
-      const focusableElements = warning.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-      const firstFocusableElement = focusableElements[0];
-      const lastFocusableElement = focusableElements[focusableElements.length - 1];
-      firstFocusableElement.focus();
+  if (!warning || !overlay) {
+    console.warn('Explicit warning or blur overlay element missing.');
+    return;
+  }
 
-      function handleTab(e) {
-        if (e.key === 'Tab') {
-          if (e.shiftKey) {
-            if (document.activeElement === firstFocusableElement) {
-              e.preventDefault();
-              lastFocusableElement.focus();
-            }
-          } else {
-            if (document.activeElement === lastFocusableElement) {
-              e.preventDefault();
-              firstFocusableElement.focus();
-            }
-          }
+  warning.style.display = 'block';
+  overlay.classList.add('active');
+
+  warning.setAttribute('aria-hidden', 'false');
+  overlay.setAttribute('aria-hidden', 'false');
+
+  const focusableElements = warning.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+  const firstFocusableElement = focusableElements[0];
+  const lastFocusableElement = focusableElements[focusableElements.length - 1];
+  firstFocusableElement.focus();
+
+  // Focus trap inside the modal
+  function handleTab(e) {
+    if (e.key === 'Tab') {
+      if (e.shiftKey) { // Shift + Tab
+        if (document.activeElement === firstFocusableElement) {
+          e.preventDefault();
+          lastFocusableElement.focus();
         }
-        if (e.key === 'Escape') {
-          stayOnLanding();
+      } else { // Tab
+        if (document.activeElement === lastFocusableElement) {
+          e.preventDefault();
+          firstFocusableElement.focus();
         }
       }
-      warning.addEventListener('keydown', handleTab);
-      return false;
     }
-
-    function proceedToGallery() {
-      localStorage.setItem('galleryWarningAccepted', 'true');
-      document.getElementById('explicit-warning').style.display = 'none';
-      document.getElementById('blur-overlay').classList.remove('active');
-      window.location.href = 'gallery.html';
+    if (e.key === 'Escape') {
+      stayOnLanding();
     }
+  }
+  // Remove any previous listener before adding to avoid duplicates
+  warning.removeEventListener('keydown', handleTab);
+  warning.addEventListener('keydown', handleTab);
+  
+  return false;
+}
 
-    function stayOnLanding() {
-      document.getElementById('explicit-warning').style.display = 'none';
-      document.getElementById('blur-overlay').classList.remove('active');
-    }
+function proceedToGallery() {
+  localStorage.setItem('galleryWarningAccepted', 'true');
+  const warning = document.getElementById('explicit-warning');
+  const overlay = document.getElementById('blur-overlay');
 
-        // Wrap letters for flicker and float animation
-        function wrapLetters(selector, delayIncrement = 0.3) {
-            const el = document.querySelector(selector);
-            if (!el) return;
-            const text = el.textContent;
-            el.innerHTML = '';
-            [...text].forEach((char, index) => {
-                const span = document.createElement('span');
-                span.textContent = char;
-                if (char === ' ') span.classList.add('space');
-                const floatDelay = (index * delayIncrement).toFixed(2);
-                span.style.animation = `flicker 3s infinite ease-in-out 0s, floatSingle 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1) ${floatDelay}s`;
-                el.appendChild(span);
-            });
-        }
+  if (warning) warning.style.display = 'none';
+  if (overlay) overlay.classList.remove('active');
 
-        // Call wrapLetters with your selectors
-        wrapLetters('.aboutus-content-inner');
-        wrapLetters('.team-intro');
+  window.location.href = 'gallery.html';
+}
+
+function stayOnLanding() {
+  const warning = document.getElementById('explicit-warning');
+  const overlay = document.getElementById('blur-overlay');
+
+  if (warning) warning.style.display = 'none';
+  if (overlay) overlay.classList.remove('active');
+}
+
+// --- END EXPLICIT CONTENT WARNING ---
+
+// Wrap letters for flicker and float animation
+function wrapLetters(selector, delayIncrement = 0.3) {
+  const el = document.querySelector(selector);
+  if (!el) return;
+  const text = el.textContent;
+  el.innerHTML = '';
+  [...text].forEach((char, index) => {
+    const span = document.createElement('span');
+    span.textContent = char;
+    if (char === ' ') span.classList.add('space');
+    const floatDelay = (index * delayIncrement).toFixed(2);
+    span.style.animation = `flicker 3s infinite ease-in-out 0s, floatSingle 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1) ${floatDelay}s`;
+    el.appendChild(span);
+  });
+}
+
+// Call wrapLetters with your selectors
+wrapLetters('.aboutus-content-inner');
+wrapLetters('.team-intro');
 
 // Loading screen logic
 const currentPage = window.location.pathname.split('/').pop();
 const loadingScreen = document.querySelector('.LoadingScreen');
 if (document.referrer === '' || !document.referrer.includes(currentPage)) {
-  loadingScreen.style.display = 'flex';
+  if (loadingScreen) loadingScreen.style.display = 'flex';
 } else {
-  loadingScreen.style.display = 'none';
+  if (loadingScreen) loadingScreen.style.display = 'none';
 }
 window.addEventListener('load', () => {
-  if (loadingScreen.style.display === 'flex') {
+  if (loadingScreen && loadingScreen.style.display === 'flex') {
     setTimeout(() => {
       loadingScreen.style.opacity = '0';
       setTimeout(() => {
@@ -420,7 +442,7 @@ window.addEventListener('load', () => {
   }
 });
 setTimeout(() => {
-  if (loadingScreen.style.display === 'flex') {
+  if (loadingScreen && loadingScreen.style.display === 'flex') {
     loadingScreen.style.opacity = '0';
     setTimeout(() => {
       loadingScreen.style.display = 'none';
@@ -453,39 +475,37 @@ if (floatingButton && floatingMenu) {
 
 // Accessibility toggles for high contrast and extra readable font with localStorage persistence
 
-    // Accessibility toggles with persistence
-    function toggleHighContrastMode() {
-        const isActive = document.body.classList.toggle('high-contrast-mode');
-        localStorage.setItem('highContrastMode', isActive);
-        // Update toggle button aria-pressed if exists
-        const btn = document.getElementById('highContrastToggle');
-        if(btn) btn.setAttribute('aria-pressed', isActive);
-    }
+function toggleHighContrastMode() {
+  const isActive = document.body.classList.toggle('high-contrast-mode');
+  localStorage.setItem('highContrastMode', isActive);
+  const btn = document.getElementById('highContrastToggle');
+  if (btn) btn.setAttribute('aria-pressed', isActive);
+}
 
-    function toggleExtraReadableFont() {
-        const isActive = document.body.classList.toggle('extra-readable-font');
-        localStorage.setItem('extraReadableFont', isActive);
-        const btn = document.getElementById('readableFontToggle');
-        if(btn) btn.setAttribute('aria-pressed', isActive);
-    }
+function toggleExtraReadableFont() {
+  const isActive = document.body.classList.toggle('extra-readable-font');
+  localStorage.setItem('extraReadableFont', isActive);
+  const btn = document.getElementById('readableFontToggle');
+  if (btn) btn.setAttribute('aria-pressed', isActive);
+}
 
-    // Load persisted accessibility preferences on DOM ready
-    document.addEventListener('DOMContentLoaded', () => {
-        if (localStorage.getItem('highContrastMode') === 'true') {
-            document.body.classList.add('high-contrast-mode');
-            const btn = document.getElementById('highContrastToggle');
-            if(btn) btn.setAttribute('aria-pressed', true);
-        }
-        if (localStorage.getItem('extraReadableFont') === 'true') {
-            document.body.classList.add('extra-readable-font');
-            const btn = document.getElementById('readableFontToggle');
-            if(btn) btn.setAttribute('aria-pressed', true);
-        }
-    });
+// Load persisted accessibility preferences on DOM ready
+document.addEventListener('DOMContentLoaded', () => {
+  if (localStorage.getItem('highContrastMode') === 'true') {
+    document.body.classList.add('high-contrast-mode');
+    const btn = document.getElementById('highContrastToggle');
+    if (btn) btn.setAttribute('aria-pressed', true);
+  }
+  if (localStorage.getItem('extraReadableFont') === 'true') {
+    document.body.classList.add('extra-readable-font');
+    const btn = document.getElementById('readableFontToggle');
+    if (btn) btn.setAttribute('aria-pressed', true);
+  }
+});
 
 // Scroll indicator fade on scroll
 const scrollIndicator = document.querySelector('.scroll-indicator');
-if(scrollIndicator){
+if (scrollIndicator) {
   window.addEventListener('scroll', () => {
     if (window.scrollY > 100) {
       scrollIndicator.style.opacity = '0';
@@ -526,7 +546,7 @@ if (canvas) {
   }
   function animate() {
     ctx.clearRect(0, 0, width, height);
-    for (let p of particles) {
+    for (const p of particles) {
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
       ctx.fillStyle = `rgba(166, 136, 109, ${p.alpha})`;

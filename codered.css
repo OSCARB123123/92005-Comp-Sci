@@ -140,15 +140,7 @@ main, section, header {
     pointer-events: none;
     }
 
-.LoadingScreen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    z-index: 9999;
-}
+
 
 .extra-readable-font,
 .extra-readable-font *,
@@ -247,57 +239,69 @@ main, section, header {
     color: #f1b900;      /* text color */
   }
 
+
 .LoadingScreen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #00161a;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; /* avoid scrollbar offset issue */
+  height: 100%;
+  background-color: #00161a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  overflow: hidden;
 }
 
 .high-contrast .LoadingScreen {
-    background-color: #000000;
+  background-color: #000000;
 }
 
+/* Container uses flexbox to center spinner exactly */
 .spinner {
-    position: relative;
-    width: 60px;  /* Reduced from 90px */
-    height: 60px; /* Reduced from 90px */
-    margin: auto;
+  position: relative;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto; /* horizontally center container itself */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
 
+/* Each line positioned absolutely around the spinner center */
 .spinner div {
-    position: absolute;
-    width: 2px;    /* Reduced from 4px */
-    height: 25px;  /* Reduced from 40px */
-    background: #A6886D;
-    border-radius: 2px;
-    box-shadow: 0 0 10px #A6886D;
-    transform-origin: center 150%;
+  position: absolute;
+  top: 50%;      /* center vertically */
+  left: 50%;     /* center horizontally */
+  width: 2px;
+  height: 25px;
+  background: #A6886D;
+  border-radius: 2px;
+  box-shadow: 0 0 10px #A6886D;
+  /* Pivot at bottom center of each line */
+  transform-origin: center bottom;
 }
 
+/* High contrast mode */
 .high-contrast .spinner div {
-    background: #FFFFFF;
-    box-shadow: none;
-    border: 1px solid #FFFFFF;
+  background: #FFFFFF;
+  box-shadow: none;
+  border: 1px solid #FFFFFF;
 }
 
-/* Sequential rotations for clean circular arrangement */
-.spinner div:nth-child(1) { transform: rotate(0deg); animation: spinLine 1s 0.0s infinite; }
-.spinner div:nth-child(2) { transform: rotate(36deg); animation: spinLine 1s 0.1s infinite; }
-.spinner div:nth-child(3) { transform: rotate(72deg); animation: spinLine 1s 0.2s infinite; }
-.spinner div:nth-child(4) { transform: rotate(108deg); animation: spinLine 1s 0.3s infinite; }
-.spinner div:nth-child(5) { transform: rotate(144deg); animation: spinLine 1s 0.4s infinite; }
-.spinner div:nth-child(6) { transform: rotate(180deg); animation: spinLine 1s 0.5s infinite; }
-.spinner div:nth-child(7) { transform: rotate(216deg); animation: spinLine 1s 0.6s infinite; }
-.spinner div:nth-child(8) { transform: rotate(252deg); animation: spinLine 1s 0.7s infinite; }
-.spinner div:nth-child(9) { transform: rotate(288deg); animation: spinLine 1s 0.8s infinite; }
-.spinner div:nth-child(10) { transform: rotate(324deg); animation: spinLine 1s 0.9s infinite; }
+/* Rotations with animation delays */
+.spinner div:nth-child(1) { transform: rotate(0deg) translateY(-25px); animation: spinLine 1s 0.0s infinite; }
+.spinner div:nth-child(2) { transform: rotate(36deg) translateY(-25px); animation: spinLine 1s 0.1s infinite; }
+.spinner div:nth-child(3) { transform: rotate(72deg) translateY(-25px); animation: spinLine 1s 0.2s infinite; }
+.spinner div:nth-child(4) { transform: rotate(108deg) translateY(-25px); animation: spinLine 1s 0.3s infinite; }
+.spinner div:nth-child(5) { transform: rotate(144deg) translateY(-25px); animation: spinLine 1s 0.4s infinite; }
+.spinner div:nth-child(6) { transform: rotate(180deg) translateY(-25px); animation: spinLine 1s 0.5s infinite; }
+.spinner div:nth-child(7) { transform: rotate(216deg) translateY(-25px); animation: spinLine 1s 0.6s infinite; }
+.spinner div:nth-child(8) { transform: rotate(252deg) translateY(-25px); animation: spinLine 1s 0.7s infinite; }
+.spinner div:nth-child(9) { transform: rotate(288deg) translateY(-25px); animation: spinLine 1s 0.8s infinite; }
+.spinner div:nth-child(10) { transform: rotate(324deg) translateY(-25px); animation: spinLine 1s 0.9s infinite; }
 
 /* Single animation keyframe for all lines */
 @keyframes spinLine {

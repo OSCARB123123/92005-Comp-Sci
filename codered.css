@@ -1455,13 +1455,7 @@ main.gallery {
     /* No background color here, only gradient on ::before */
 }
 
-/* Clean up any extra backgrounds - REMOVE this rule to allow gradient and noise overlay in normal mode */
-/* .gallery::after,
-.gallery::before,
-.gallery *::after,
-.gallery *::before {
-    display: none;
-} */
+
 
 
 /* Clean up slide show container */
@@ -1573,12 +1567,12 @@ main.gallery {
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 700px) and (max-width: 1000px) {
     .gallery {
         padding: 60px 60px;
     }
-    .prev { left: -50px; }
-    .next { right: -50px; }
+    .prev { left: -60px; }
+    .next { right: -60px; }
 }
 /* Link Styling */
 a {
@@ -2070,6 +2064,14 @@ a {
     max-height: 80vh;
     overflow: hidden;
 }
+
+/* For mobile screens */
+@media (max-width: 700px) {
+    .slide-show-container {
+        width: 101vw; /* increase width on small screens */
+    }
+}
+
 
 /* Prevent scrollbars on landing page only */
 body.landing-page, html.landing-page {

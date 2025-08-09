@@ -1574,6 +1574,36 @@ main.gallery {
     .prev { left: -60px; }
     .next { right: -60px; }
 }
+
+.mySlides {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+
+
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Prevent clicks on invisible slides */
+}
+
+.mySlides.active {
+  opacity: 1;
+  pointer-events: auto; /* Enable clicks on active slide */
+  position: relative; /* So active slide takes place in layout */
+  display: block; /* Make sure it's visible */
+}
+
+.blur-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  /* ... other styles ... */
+  display: none; /* or block only when active */
+}
+
+.explicit-popup {
+  position: fixed;
+  /* centered styling */
+  display: none; /* only when active */
+}
 /* Link Styling */
 a {
   text-decoration: none;

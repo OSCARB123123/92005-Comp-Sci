@@ -162,331 +162,329 @@
     </nav>
 
     <script>
-        // Explicit content warning functions
-        function showExplicitWarning(event) {
-            event.preventDefault();
-            const warning = document.getElementById('explicit-warning');
-            const overlay = document.getElementById('blur-overlay');
-            warning.style.display = 'block';
-            overlay.style.display = 'block';
-            warning.setAttribute('aria-hidden', 'false');
-            overlay.setAttribute('aria-hidden', 'false');
-            
-            // Trap focus within the warning dialog
-            const focusableElements = warning.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-            const firstFocusableElement = focusableElements[0];
-            const lastFocusableElement = focusableElements[focusableElements.length - 1];
-            
-            // Focus the first button
-            firstFocusableElement.focus();
-            
-            // Handle keyboard navigation
-            function handleTab(e) {
-                if (e.key === 'Tab') {
-                    if (e.shiftKey) {
-                        if (document.activeElement === firstFocusableElement) {
-                            e.preventDefault();
-                            lastFocusableElement.focus();
-                        }
-                    } else {
-                        if (document.activeElement === lastFocusableElement) {
-                            e.preventDefault();
-                            firstFocusableElement.focus();
-                        }
-                    }
-                }
-                if (e.key === 'Escape') {
-                    stayOnLanding();
-                }
+// ============================
+// Explicit content warning functions
+// ============================
+function showExplicitWarning(event) {
+    event.preventDefault(); // Prevent default navigation or action
+
+    const warning = document.getElementById('explicit-warning');
+    const overlay = document.getElementById('blur-overlay');
+
+    // Show the popup and blur overlay
+    warning.style.display = 'block';
+    overlay.style.display = 'block';
+    warning.setAttribute('aria-hidden', 'false');
+    overlay.setAttribute('aria-hidden', 'false');
+    
+    // Accessibility: trap focus inside the dialog so tabbing doesn't escape it
+    const focusableElements = warning.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    const firstFocusableElement = focusableElements[0];
+    const lastFocusableElement = focusableElements[focusableElements.length - 1];
+
+    firstFocusableElement.focus(); // Put focus on the first button immediately
+
+    function handleTab(e) {
+        if (e.key === 'Tab') {
+            // Shift+Tab on first element → wrap focus to last element
+            if (e.shiftKey && document.activeElement === firstFocusableElement) {
+                e.preventDefault();
+                lastFocusableElement.focus();
             }
-            
-            warning.addEventListener('keydown', handleTab);
-            return false;
+            // Tab on last element → wrap focus to first element
+            else if (!e.shiftKey && document.activeElement === lastFocusableElement) {
+                e.preventDefault();
+                firstFocusableElement.focus();
+            }
         }
-
-        function proceedToGallery() {
-            const hasAccepted = localStorage.getItem('galleryWarningAccepted');
-            if (!hasAccepted) {
-                localStorage.setItem('galleryWarningAccepted', 'true');
-            }
-            document.getElementById('explicit-warning').style.display = 'none';
-            document.getElementById('blur-overlay').style.display = 'none';
+        // Escape key closes the warning
+        if (e.key === 'Escape') {
+            stayOnLanding();
         }
+    }
+    warning.addEventListener('keydown', handleTab);
 
-        function stayOnLanding() {
-            window.location.href = 'index.html';
-        }
-
-        // Check if user has already accepted the warning
-        document.addEventListener('DOMContentLoaded', () => {
-            const hasAccepted = localStorage.getItem('galleryWarningAccepted');
-            if (!hasAccepted) {
-                showExplicitWarning({ preventDefault: () => {} });
-            }
-        });
-
-        // Wrap letters for animation effect on given selectors
-        function wrapLetters(selector, delayIncrement = 0.3) {
-            const el = document.querySelector(selector);
-            if (!el) return;
-            const text = el.textContent;
-            el.innerHTML = '';
-            [...text].forEach((char, index) => {
-                const span = document.createElement('span');
-                span.textContent = char;
-                if (char === ' ') {
-                    span.classList.add('space');
-                }
-                const floatDelay = (index * delayIncrement).toFixed(2);
-                span.style.animation = `flicker 3s infinite ease-in-out 0s, floatSingle 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1) ${floatDelay}s`;
-                el.appendChild(span);
-            });
-        }
-
-        // Apply text animations to info page elements
-        wrapLetters('.gallery-inner');
-        wrapLetters('.gallery-item');
-
-        // Loading screen logic
-        const currentPage = window.location.pathname.split('/').pop();
-        const loadingScreen = document.querySelector('.LoadingScreen');
-        const loadingContent = document.querySelector('.loading-content-inner');
-
-        // Show loading screen only for actual page transitions
-        if (document.referrer === '' || !document.referrer.includes(currentPage)) {
-            loadingScreen.style.display = 'flex';
-        } else {
-            loadingScreen.style.display = 'none';
-        }
-
-        // Hide loading screen on load after delay
-        window.addEventListener('load', () => {
-            if (loadingScreen.style.display === 'flex') {
-                setTimeout(() => {
-                    loadingScreen.style.opacity = '0';
-                    setTimeout(() => {
-                        loadingScreen.style.display = 'none';
-                    }, 1000);
-                }, 2000);
-            }
-        });
-
-        // Fallback timeout to hide loading screen
-        setTimeout(() => {
-            if (loadingScreen.style.display === 'flex') {
-                loadingScreen.style.opacity = '0';
-                setTimeout(() => {
-                    loadingScreen.style.display = 'none';
-                }, 1000);
-            }
-        }, 5000);
-
-        // Check if href matches current page
-        function isCurrentPage(href) {
-            return window.location.pathname.endsWith(href);
-        }
-
-        // Slideshow functionality
-        let slideIndex = 1;
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-        function currentSlide(n) {
-            showSlides(slideIndex = n);
-        }
-        function showSlides(n) {
-            let slides = document.getElementsByClassName("mySlides");
-            let dots = document.getElementsByClassName("dot");
-
-            if (n > slides.length) {
-                slideIndex = 1;
-            }
-            if (n < 1) {
-                slideIndex = slides.length;
-            }
-
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-                slides[i].style.opacity = "0";
-            }
-
-            for (let i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active", "");
-            }
-
-            slides[slideIndex - 1].style.display = "block";
-            setTimeout(() => {
-                slides[slideIndex - 1].style.opacity = "1";
-            }, 10);
-            dots[slideIndex - 1].className += " active";
-        }
-
-        // Initialize slideshow on page load
-        showSlides(slideIndex);
-
-        // Keyboard navigation for slideshow
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'ArrowLeft') {
-                plusSlides(-1);
-            } else if (event.key === 'ArrowRight') {
-                plusSlides(1);
-            }
-        });
-
-       const floatingButton = document.querySelector('.floating-button');
-const floatingMenu = document.getElementById('floatingMenu');
-
-floatingButton.addEventListener('click', (e) => {
-  e.stopPropagation(); // Prevent event bubbling
-  const isShown = floatingMenu.classList.toggle('show');
-  floatingButton.setAttribute('aria-expanded', isShown);
-});
-
-// Close floating menu when clicking outside
-document.addEventListener('click', (e) => {
-  if (!floatingMenu.contains(e.target) && !floatingButton.contains(e.target)) {
-    floatingMenu.classList.remove('show');
-    floatingButton.setAttribute('aria-expanded', 'false');
-  }
-});
-
-
-function stayOnLanding() {
-  const warning = document.getElementById('explicit-warning');
-  const overlay = document.getElementById('blur-overlay');
-
-  warning.style.display = 'none';
-  overlay.classList.remove('active'); // Hide blur overlay
-
-  warning.setAttribute('aria-hidden', 'true');
-  overlay.setAttribute('aria-hidden', 'true');
+    return false;
 }
 
 function proceedToGallery() {
-  localStorage.setItem('galleryWarningAccepted', 'true');
-  document.getElementById('explicit-warning').style.display = 'none';
-  document.getElementById('blur-overlay').classList.remove('active'); // Hide blur overlay
-  window.location.href = 'gallery.html';
+    // Save user's consent so warning won't show again
+    if (!localStorage.getItem('galleryWarningAccepted')) {
+        localStorage.setItem('galleryWarningAccepted', 'true');
+    }
+    // Hide warning and overlay
+    document.getElementById('explicit-warning').style.display = 'none';
+    document.getElementById('blur-overlay').style.display = 'none';
 }
 
+function stayOnLanding() {
+    // Redirect user back to landing page if they decline
+    window.location.href = 'index.html';
+}
 
-  function toggleHighContrastMode() {
-  const body = document.body;
-  const isActive = body.classList.toggle('high-contrast-mode');
-  localStorage.setItem('highContrastMode', isActive ? 'true' : 'false');
+// Show explicit warning automatically if user hasn't accepted it before
+document.addEventListener('DOMContentLoaded', () => {
+    const hasAccepted = localStorage.getItem('galleryWarningAccepted');
+    if (!hasAccepted) {
+        showExplicitWarning({ preventDefault: () => {} }); // Fake event to open popup
+    }
+});
 
-  // Update aria-pressed on the button for accessibility
-  const btn = document.getElementById('highContrastToggle');
-  if (btn) btn.setAttribute('aria-pressed', isActive);
+// ============================
+// Letter animation wrapper
+// ============================
+function wrapLetters(selector, delayIncrement = 0.3) {
+    const el = document.querySelector(selector);
+    if (!el) return;
+
+    const text = el.textContent;
+    el.innerHTML = ''; // Clear text so we can rebuild it as individual spans
+
+    [...text].forEach((char, index) => {
+        const span = document.createElement('span');
+        span.textContent = char;
+
+        if (char === ' ') {
+            span.classList.add('space'); // Preserve spaces visually
+        }
+
+        // Each letter "floats" into view with a staggered delay
+        const floatDelay = (index * delayIncrement).toFixed(2);
+        span.style.animation = 
+            `flicker 3s infinite ease-in-out 0s, 
+             floatSingle 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1) ${floatDelay}s`;
+        
+        el.appendChild(span);
+    });
+}
+
+wrapLetters('.gallery-inner');
+wrapLetters('.gallery-item');
+
+// ============================
+// Loading screen handling
+// ============================
+const currentPage = window.location.pathname.split('/').pop();
+const loadingScreen = document.querySelector('.LoadingScreen');
+
+// Only show loading screen for page transitions, not reloads from same page
+if (document.referrer === '' || !document.referrer.includes(currentPage)) {
+    loadingScreen.style.display = 'flex';
+} else {
+    loadingScreen.style.display = 'none';
+}
+
+// Hide loading screen after content loads (with fade-out)
+window.addEventListener('load', () => {
+    if (loadingScreen.style.display === 'flex') {
+        setTimeout(() => {
+            loadingScreen.style.opacity = '0';
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 1000);
+        }, 2000); // Show for 2 seconds
+    }
+});
+
+// Backup: force hide after 5 seconds in case load event fails
+setTimeout(() => {
+    if (loadingScreen.style.display === 'flex') {
+        loadingScreen.style.opacity = '0';
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+        }, 1000);
+    }
+}, 5000);
+
+// ============================
+// Slideshow logic
+// ============================
+let slideIndex = 1;
+
+function plusSlides(n) { showSlides(slideIndex += n); }
+function currentSlide(n) { showSlides(slideIndex = n); }
+
+function showSlides(n) {
+    const slides = document.getElementsByClassName("mySlides");
+    const dots = document.getElementsByClassName("dot");
+
+    // Wrap around slideshow
+    if (n > slides.length) slideIndex = 1;
+    if (n < 1) slideIndex = slides.length;
+
+    // Hide all slides first
+    for (let slide of slides) {
+        slide.style.display = "none";
+        slide.style.opacity = "0";
+    }
+
+    // Deactivate all dots
+    for (let dot of dots) {
+        dot.className = dot.className.replace(" active", "");
+    }
+
+    // Show selected slide with fade-in
+    slides[slideIndex - 1].style.display = "block";
+    setTimeout(() => {
+        slides[slideIndex - 1].style.opacity = "1";
+    }, 10);
+    dots[slideIndex - 1].className += " active";
+}
+
+// Init slideshow
+showSlides(slideIndex);
+
+// Allow arrow keys to navigate
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowLeft') plusSlides(-1);
+    else if (event.key === 'ArrowRight') plusSlides(1);
+});
+
+// ============================
+// Floating menu toggle
+// ============================
+const floatingButton = document.querySelector('.floating-button');
+const floatingMenu = document.getElementById('floatingMenu');
+
+floatingButton.addEventListener('click', (e) => {
+    e.stopPropagation(); // Stop click from triggering document click listener
+    const isShown = floatingMenu.classList.toggle('show');
+    floatingButton.setAttribute('aria-expanded', isShown);
+});
+
+// Close floating menu if clicked outside
+document.addEventListener('click', (e) => {
+    if (!floatingMenu.contains(e.target) && !floatingButton.contains(e.target)) {
+        floatingMenu.classList.remove('show');
+        floatingButton.setAttribute('aria-expanded', 'false');
+    }
+});
+
+// ============================
+// Accessibility toggle functions
+// ============================
+function toggleHighContrastMode() {
+    const body = document.body;
+    const isActive = body.classList.toggle('high-contrast-mode');
+    localStorage.setItem('highContrastMode', isActive ? 'true' : 'false');
+
+    // ARIA feedback
+    const btn = document.getElementById('highContrastToggle');
+    if (btn) btn.setAttribute('aria-pressed', isActive);
 }
 
 function toggleExtraReadableFont() {
-  const body = document.body;
-  const isActive = body.classList.toggle('extra-readable-font');
-  localStorage.setItem('extraReadableFont', isActive ? 'true' : 'false');
+    const body = document.body;
+    const isActive = body.classList.toggle('extra-readable-font');
+    localStorage.setItem('extraReadableFont', isActive ? 'true' : 'false');
 
-  const btn = document.getElementById('readableFontToggle');
-  if (btn) btn.setAttribute('aria-pressed', isActive);
+    const btn = document.getElementById('readableFontToggle');
+    if (btn) btn.setAttribute('aria-pressed', isActive);
 }
 
+// Restore accessibility settings from localStorage
+document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('extraReadableFont') === 'true') {
+        document.body.classList.add('extra-readable-font');
+    }
+    if (localStorage.getItem('highContrastMode') === 'true') {
+        document.body.classList.add('high-contrast-mode');
+    }
+});
 
-        // Apply saved accessibility preferences on DOMContentLoaded
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedFont = localStorage.getItem('extraReadableFont');
-            if (savedFont === 'true') {
-                document.body.classList.add('extra-readable-font');
-                document.getElementById('extraReadableFont').checked = true;
-            }
+// ============================
+// Particle animation background
+// ============================
+const canvas = document.getElementById('background-canvas');
+const ctx = canvas.getContext('2d');
+let width = window.innerWidth;
+let height = window.innerHeight;
 
-            const savedContrast = localStorage.getItem('highContrastMode');
-            if (savedContrast === 'true') {
-                document.body.classList.add('high-contrast-mode');
-                document.getElementById('highContrastMode').checked = true;
-            }
-        });
+canvas.width = width;
+canvas.height = height;
+canvas.style.position = 'fixed';
+canvas.style.top = 0;
+canvas.style.left = 0;
+canvas.style.zIndex = '1';
+canvas.style.width = '100vw';
+canvas.style.height = '100vh';
+canvas.style.pointerEvents = 'none';
 
-        // Background canvas particle animation
-        const canvas = document.getElementById('background-canvas');
-        const ctx = canvas.getContext('2d');
-        let width = window.innerWidth;
-        let height = window.innerHeight;
-        canvas.width = width;
-        canvas.height = height;
-        canvas.style.position = 'fixed';
-        canvas.style.top = 0;
-        canvas.style.left = 0;
-        canvas.style.zIndex = '1'; // Above background but below content
-        canvas.style.width = '100vw';
-        canvas.style.height = '100vh';
-        canvas.style.pointerEvents = 'none';
+const particles = [];
+const particleCount = 60;
 
-        const particles = [];
-        const particleCount = 60;
-        for (let i = 0; i < particleCount; i++) {
-            particles.push({
-                x: Math.random() * width,
-                y: Math.random() * height,
-                r: 1 + Math.random() * 2,
-                dx: -0.5 + Math.random(),
-                dy: -0.5 + Math.random(),
-                alpha: 0.1 + Math.random() * 0.3
-            });
+// Generate particles with random positions, directions, sizes, and transparency
+for (let i = 0; i < particleCount; i++) {
+    particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: 1 + Math.random() * 2,
+        dx: -0.5 + Math.random(),
+        dy: -0.5 + Math.random(),
+        alpha: 0.1 + Math.random() * 0.3
+    });
+}
+
+function animate() {
+    ctx.clearRect(0, 0, width, height);
+    for (let p of particles) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
+        ctx.fillStyle = `rgba(166, 136, 109, ${p.alpha})`;
+        ctx.shadowColor = '#A6886D';
+        ctx.shadowBlur = 8;
+        ctx.fill();
+
+        // Move particle
+        p.x += p.dx;
+        p.y += p.dy;
+
+        // Bounce off edges
+        if (p.x < 0 || p.x > width) p.dx *= -1;
+        if (p.y < 0 || p.y > height) p.dy *= -1;
+    }
+    requestAnimationFrame(animate);
+}
+animate();
+
+// Update canvas size when window resizes
+window.addEventListener('resize', () => {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+});
+
+// ============================
+// Swipe gesture support for slideshow
+// ============================
+let touchStartX = 0;
+let touchEndX = 0;
+const slideShowContainer = document.querySelector('.slide-show-container');
+
+slideShowContainer.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+}, false);
+
+slideShowContainer.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleGesture();
+}, false);
+
+function handleGesture() {
+    const swipeThreshold = 50; // Minimum distance in pixels to count as swipe
+    const diffX = touchEndX - touchStartX;
+
+    if (Math.abs(diffX) > swipeThreshold) {
+        if (diffX > 0) {
+            plusSlides(-1); // Swipe right → previous slide
+        } else {
+            plusSlides(1); // Swipe left → next slide
         }
-
-        function animate() {
-            ctx.clearRect(0, 0, width, height);
-            for (let p of particles) {
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
-                ctx.fillStyle = `rgba(166, 136, 109, ${p.alpha})`;
-                ctx.shadowColor = '#A6886D';
-                ctx.shadowBlur = 8;
-                ctx.fill();
-                p.x += p.dx;
-                p.y += p.dy;
-                if (p.x < 0 || p.x > width) p.dx *= -1;
-                if (p.y < 0 || p.y > height) p.dy *= -1;
-            }
-            requestAnimationFrame(animate);
-        }
-        animate();
-
-        window.addEventListener('resize', () => {
-            width = window.innerWidth;
-            height = window.innerHeight;
-            canvas.width = width;
-            canvas.height = height;
-        });
-
-
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        const slideShowContainer = document.querySelector('.slide-show-container');
-
-        slideShowContainer.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-        }, false);
-
-        slideShowContainer.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleGesture();
-        }, false);
-
-        function handleGesture() {
-        const swipeThreshold = 50; // minimum px swipe distance to trigger
-        const diffX = touchEndX - touchStartX;
-
-        if (Math.abs(diffX) > swipeThreshold) {
-            if (diffX > 0) {
-            // Swiped right, show previous slide
-            plusSlides(-1);
-            } else {
-            // Swiped left, show next slide
-            plusSlides(1);
-            }
-        }
-        }
+    }
+}
 
         
     </script>

@@ -32,51 +32,6 @@ body {
 }
 
 
-@media screen and (max-width: 1200px) {
-    .trailer-content-sub {
-        font-size: 1.4rem;
-        line-height: 1.7;
-        padding: 1.8rem;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .trailer {
-        padding: 1.3rem 1rem;
-    }
-    
-    .trailer-content-inner {
-        font-size: 2.8rem;
-    }
-    
-    .trailer-content-sub {
-        font-size: 1.3rem;
-        line-height: 1.6;
-        padding: 1.5rem;
-        width: 95%;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .trailer {
-        padding: 1.5rem 1rem;
-    }
-
-    .trailer-video {
-        padding: 0 10px;
-    }
-    
-    .trailer-content-inner {
-        font-size: 2.5rem;
-    }
-    
-    .trailer-content-sub {
-        font-size: 1.2rem;
-        line-height: 1.5;
-        padding: 1.2rem;
-        width: 100%;
-    }
-}
 .trailer {
     min-height: 100vh;
     display: flex;
@@ -84,40 +39,102 @@ body {
     justify-content: space-between;
     padding: 2rem 1rem;
     box-sizing: border-box;
+    min-height: 100vh;
+    background-image: url('Pictures/background 3.jpg');
+    background-size: 200% 200%;
+    animation: gradientShift 20s ease infinite;
+    position: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    color: #A6886D;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    padding: 80px 20px 20px;
 }
 
 .trailer-video {
-    margin: 2rem auto;
-    padding: 0 20px;
-    max-width: 800px;
-    width: 100%;
+    width: clamp(800px, 90%, 900px); /* min 800px, preferred 90% of container, max 900px */
+    margin: 6vw auto;
+    aspect-ratio: 16/9;
+    padding: 2px;
+    background: #403D44;
+    border-radius: 18px;
+    box-shadow: 0 4px 32px #100D04;
+    overflow: hidden;
     text-align: center;
     position: relative;
 }
 
-.trailer-video iframe {
-    max-width: 100%;
-    box-shadow: 0 0 20px rgba(166, 136, 109, 0.3);
-    border: 3px solid #A6886D;
-    border-radius: 12px;
-    aspect-ratio: 16/9;
-    width: 100%;
-    height: auto;
-}
 
 .trailer-content-sub {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 1.5rem;
-    font-size: 1.2rem;
+    max-width: 90%;
+    margin: 6rem auto;
+    padding: 15px;
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1rem, 2vw, 1.8rem);
     line-height: 1.6;
     text-align: center;
-    color: #e2d3b6;
+    letter-spacing: 0.2em;
+    color: #dba576;
+
     background: rgba(0, 0, 0, 0.4);
+    border: 2px solid #A6886D;
     border-radius: 12px;
     box-shadow: 0 0 15px rgba(166, 136, 109, 0.2);
-    border: 2px solid #A6886D;
+
+    text-shadow:
+        0 0 10px #A6886D,
+        0 0 20px #40251C,
+        2px 2px 8px #100D04,
+        0 0 2px #575945;
+
+    position: relative;
+    z-index: 2;
+
+    animation: flicker 2.5s infinite alternate;
 }
+
+
+.trailer-content {
+    position: relative;
+    z-index: 2;
+    color: #A6886D;
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    text-shadow: #40251C 4px 4px 5px;
+}
+
+.trailer-content-inner {
+    position: relative;
+    z-index: 2;
+    color: #dba576;
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-size: 6vw;
+    top: -30px;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    letter-spacing: 0.3em;
+    text-shadow:
+        0 0 10px #A6886D,
+        0 0 20px #40251C,
+        2px 2px 8px #100D04,
+        0 0 2px #575945;
+    animation: flicker 2.5s infinite alternate;
+}
+
+.trailer-video video {
+  max-width: 100%;
+  max-height: 200005px; /* or whatever max height you want */
+  width: auto;
+  height: auto;
+  display: block;
+}
+
 
 
 /* Remove default top margins that cause gaps */
@@ -377,13 +394,7 @@ main.gallery {
           margin: 0;
           text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
         }
-        @media (max-width: 768px) {
-          .faq-grid {
-            grid-template-columns: 1fr;
-            padding: 15px;
-            gap: 20px;
-          }
-        }
+
         button {
           border: none;
           background: none;
@@ -476,23 +487,21 @@ main.gallery {
     letter-spacing: 0.1em; /* Added for better spacing */
 } 
 
-
-.trailer { 
-    min-height: 100vh;
-    background-image: url('Pictures/background 3.jpg');
-    background-size: 200% 200%;
-    animation: gradientShift 20s ease infinite;
+.landing-content-sub {
     position: relative;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    flex-direction: column;
-    color: #A6886D;
-    justify-content: flex-start;
-    align-items: center;
+    z-index: 2;
+    color: #dba576;
     text-align: center;
-    font-family: 'Cinzel', serif;
-    padding: 80px 20px 20px;
+    font-family: 'Cinzel', serif;   
+    font-size: 4vw;
+    top: 20px;
+    letter-spacing: 0.3em;
+    text-shadow:
+        0 0 10px #A6886D,
+        0 0 20px #40251C,
+        2px 2px 8px #100D04,
+        0 0 2px #575945;
+    animation: flicker 2.5s infinite alternate;
 }
 
 
@@ -513,6 +522,57 @@ main.gallery {
     text-align: center;
     font-family: 'Cinzel', serif;
     padding-top: 120px;
+}
+
+.pricing-content {
+    position: relative;
+    z-index: 2;
+    color: #dba576;
+    text-shadow:
+        0 0 10px #A6886D,
+        0 0 20px #40251C,
+        2px 2px 8px #100D04,
+        0 0 2px #575945;
+    animation: flicker 2.5s infinite alternate;
+}
+
+.pricing-content-inner {
+    position: relative;
+    z-index: 2;
+    color: #dba576;
+    text-align: center;
+    font-family: 'Cinzel', serif;    
+    font-size: 3.5vw;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    letter-spacing: 0.2em;
+    text-shadow:
+        0 0 10px #A6886D,
+        0 0 20px #40251C,
+        2px 2px 8px #100D04,
+        0 0 2px #575945;
+    animation: flicker 2.5s infinite alternate;
+}
+
+.pricing-content-sub {
+    position: relative;
+    z-index: 2;
+    color: #dba576;
+    text-align: center;
+    font-family: 'Cinzel', serif;   
+    font-size: 2vw;
+    top:  50px;
+    margin-left: 50px;
+    margin-right: 60px;
+    margin-bottom: 20px;
+    letter-spacing: 0.5em;
+    text-shadow:
+        0 0 10px #A6886D,
+        0 0 20px #40251C,
+        2px 2px 8px #100D04,
+        0 0 2px #575945;
+    animation: flicker 2.5s infinite alternate;
+    
 }
 
 
@@ -709,11 +769,6 @@ main.gallery {
     100% { background-position: 0% 50%; }
 }
 
-/* Remove any duplicate animations */
-.pricing, .aboutus, .trailer, .gallery {
-    background-size: 200% 200%;
-    /* Remove the animation from here since it's on the ::before element */
-}
 
 .pricing::after, .aboutus::after, .trailer::after, .gallery::after, .landing::after {
     content: "";
@@ -788,67 +843,11 @@ main.gallery {
     animation: flicker 2.5s infinite alternate;
 }
 
-.trailer-content {
-    position: relative;
-    z-index: 2;
-    color: #A6886D;
-    text-align: center;
-    font-family: 'Cinzel', serif;
-    text-shadow: #40251C 4px 4px 5px;
-}
-
-.trailer-content-inner {
-    position: relative;
-    z-index: 2;
-    color: #dba576;
-    text-align: center;
-    font-family: 'Cinzel', serif;
-    font-size: 6vw;
-    top: -30px;
-    margin-top: 4rem;
-    margin-bottom: 4rem;
-    letter-spacing: 0.3em;
-    text-shadow:
-        0 0 10px #A6886D,
-        0 0 20px #40251C,
-        2px 2px 8px #100D04,
-        0 0 2px #575945;
-    animation: flicker 2.5s infinite alternate;
-}
 
 
 
 
 
-.pricing-content {
-    position: relative;
-    z-index: 2;
-    color: #dba576;
-    text-shadow:
-        0 0 10px #A6886D,
-        0 0 20px #40251C,
-        2px 2px 8px #100D04,
-        0 0 2px #575945;
-    animation: flicker 2.5s infinite alternate;
-}
-
-.pricing-content-inner {
-    position: relative;
-    z-index: 2;
-    color: #dba576;
-    text-align: center;
-    font-family: 'Cinzel', serif;    
-    font-size: 3.5vw;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    letter-spacing: 0.2em;
-    text-shadow:
-        0 0 10px #A6886D,
-        0 0 20px #40251C,
-        2px 2px 8px #100D04,
-        0 0 2px #575945;
-    animation: flicker 2.5s infinite alternate;
-}
 
 
 
@@ -893,46 +892,6 @@ main.gallery {
 }
 
 
-
-.landing-content-sub {
-    position: relative;
-    z-index: 2;
-    color: #dba576;
-    text-align: center;
-    font-family: 'Cinzel', serif;   
-    font-size: 4vw;
-    top: 20px;
-    letter-spacing: 0.3em;
-    text-shadow:
-        0 0 10px #A6886D,
-        0 0 20px #40251C,
-        2px 2px 8px #100D04,
-        0 0 2px #575945;
-    animation: flicker 2.5s infinite alternate;
-}
-
-
-
-.trailer-content-sub {
-    position: relative;
-    z-index: 2;
-    color: #dba576;
-    text-align: center;
-    font-family: 'Cinzel', serif;   
-   font-size: clamp(1rem, 2vw, 1.8rem);
-    margin: 6rem auto;
-    max-width: 90%;
-    padding: 15px;
-    letter-spacing: 0.2em;
-    text-shadow:
-        0 0 10px #A6886D,
-        0 0 20px #40251C,
-        2px 2px 8px #100D04,
-        0 0 2px #575945;
-    animation: flicker 2.5s infinite alternate;
-    
-}
-
 /* High Contrast Mode for trailer-content-sub */
 .high-contrast .trailer-content-sub {
     color: #fff !important;
@@ -941,26 +900,7 @@ main.gallery {
     text-shadow: 0 0 2px #fff, 0 0 8px #000 !important;
 }
 
-.pricing-content-sub {
-    position: relative;
-    z-index: 2;
-    color: #dba576;
-    text-align: center;
-    font-family: 'Cinzel', serif;   
-    font-size: 2vw;
-    top:  50px;
-    margin-left: 50px;
-    margin-right: 60px;
-    margin-bottom: 20px;
-    letter-spacing: 0.5em;
-    text-shadow:
-        0 0 10px #A6886D,
-        0 0 20px #40251C,
-        2px 2px 8px #100D04,
-        0 0 2px #575945;
-    animation: flicker 2.5s infinite alternate;
-    
-}
+
 
 /* High Contrast Mode for pricing-content-sub */
 .high-contrast .pricing-content-sub {
@@ -997,6 +937,60 @@ main.gallery {
     background: #000 !important;
     border: 2px solid #fff !important;
     text-shadow: 0 0 2px #fff, 0 0 8px #000 !important;
+}
+
+/* Gallery Container */
+.gallery {
+
+    background-size: 200% 200%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 150px 20px 150px; /* Increased top padding */
+    color: #A6886D;
+    font-family: 'Cinzel', serif;
+    font-size: 9vw;
+        text-shadow:
+        0 0 10px #A6886D,
+        0 0 20px #40251C,
+        2px 2px 8px #100D04,
+        0 0 2px #575945;
+    animation: flicker 2.5s infinite alternate;
+    
+    height: 100vh;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+ 
+.gallery-content {
+    position: relative;
+    z-index: 2 !important; /* Ensure content is above canvas */
+    color: #A6886D;
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    text-shadow: #40251C 4px 4px 5px;
+    background: transparent !important;
+    
+    height: 100vh;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Ensure gallery gradient is visible and not covered */
+.gallery {
+    position: relative;
+    z-index: 1;
+    /* No background color here, only gradient on ::before */
+}
+
+.gallery-content {
+    position: relative;
+    z-index: 2 !important;
 }
 
 
@@ -1046,6 +1040,8 @@ main.gallery {
     text-shadow: 0 0 10px #A6886D;
 }
 
+
+
 .navbar {
     position: fixed;
     top: 0;
@@ -1092,30 +1088,6 @@ main.gallery {
     color: #dba576; /* lighter on hover */
     text-decoration: underline;
     text-shadow: 0 12px 40px #7c7980, 0 4px 16px #71706c;
-}
-
-
-
-.trailer-video {
-    position: relative;
-    width: clamp(800px, 90%, 900px); /* min 300px, preferred 70% of container, max 900px */
-    margin: 10rem auto;
-    margin-top: 6vw;
-    aspect-ratio: 16/9;
-    padding: 2px;
-    background: #403D44;
-    border-radius: 18px;
-    box-shadow: 0 4px 32px #100D04;
-    overflow: hidden;
-}
-
-
-.trailer-video video {
-  max-width: 100%;
-  max-height: 200005px; /* or whatever max height you want */
-  width: auto;
-  height: auto;
-  display: block;
 }
 
 
@@ -1263,139 +1235,6 @@ main.gallery {
     box-shadow: none !important;
 }
 
-/* Media Queries */
-@media screen and (max-width: 1200px) {
-    .landing {
-        font-size: 10vw;
-    }
-    
-    .landing-content-inner {
-        font-size: 10vw;
-    }
-    
-    .landing-content-sub {
-        font-size: 4vw;
-    }
-
-    .nav-links {
-        gap: 0.75rem;
-    }
-    .nav-links li a {
-        padding: 6px 10px;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .landing {
-        font-size: 11vw;
-        letter-spacing: 0.15em;
-    }
-    
-    .landing-content-inner {
-        font-size: 10vw;
-        letter-spacing: 0.1em;
-    }
-    
-    .landing-content-sub {
-        font-size: 4vw;
-        letter-spacing: 0.2em;
-    }
-
-    .navbar {
-        padding: 10px;
-    }
-    .nav-links {
-        gap: 0.5rem;
-        width: 100%;
-        justify-content: space-around;
-    }
-    .nav-links li a {
-        padding: 5px 8px;
-    }
-
-    .trailer-video {
-        width: 90vw;
-    }
-
-    .pricing-cards {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-    }
-
-    .price-card {
-        width: 80%;
-        max-width: 300px;
-    }
-
-    .team-section {
-        margin: 20px;
-        padding: 15px;
-    }
-
-    .aboutus {
-        padding-top: 100px;
-    }
-
-
-    .aboutus-content-sub {
-        font-size: 2.5vw;
-        margin: 1rem 2rem;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .landing {
-        font-size: 9vw;
-        letter-spacing: 0.1em;
-    }
-    
-    .landing-content-inner {
-        font-size: 9vw;
-        letter-spacing: 0.2em;
-    }
-    
-    .landing-content-sub {
-        font-size: 5vw;
-        letter-spacing: 0.1em;
-        top: 10px;
-    }
-
-    .navbar {
-        padding: 8px 5px;
-    }
-    .nav-links {
-        gap: 0.25rem;
-    }
-    .nav-links li a {
-        padding: 4px 6px;
-        letter-spacing: 0.2em;
-    }
-
-    .features {
-        grid-template-columns: 1fr;
-    }
-
-    .pricing-content-sub {
-        font-size: 3vw;
-        margin: 10px 20px;
-    }
-
-    .aboutus-content-sub {
-        font-size: 3vw;
-        margin: 10px 20px;
-    }
-
-    .aboutus-content-inner {
-        font-size: 8vw;
-    }
-
-    .aboutus-content-sub {
-        font-size: 3.5vw;
-        margin: 1rem;
-        letter-spacing: 0.1em;
-    }
-}
 
 /* Update the navbar position to be more responsive */
 .navbar {
@@ -1416,47 +1255,6 @@ main.gallery {
     box-sizing: border-box;
     padding-top: 100px;
 }
-
-
-/* Gallery Container */
-.gallery {
-
-    background-size: 200% 200%;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 120px 150px 20px 150px; /* Increased top padding */
-    color: #A6886D;
-    font-family: 'Cinzel', serif;
-    font-size: 9vw;
-        text-shadow:
-        0 0 10px #A6886D,
-        0 0 20px #40251C,
-        2px 2px 8px #100D04,
-        0 0 2px #575945;
-    animation: flicker 2.5s infinite alternate;
-}
- 
-.gallery-content {
-    position: relative;
-    z-index: 2 !important; /* Ensure content is above canvas */
-    color: #A6886D;
-    text-align: center;
-    font-family: 'Cinzel', serif;
-    text-shadow: #40251C 4px 4px 5px;
-    background: transparent !important;
-}
-
-/* Ensure gallery gradient is visible and not covered */
-.gallery {
-    position: relative;
-    z-index: 1;
-    /* No background color here, only gradient on ::before */
-}
-
-
-
 
 /* Clean up slide show container */
 .slide-show-container {
@@ -1559,20 +1357,6 @@ main.gallery {
         0 0 20px #40251C,
         2px 2px 8px #100D04,
         0 0 2px #575945;
-}
-/* Media Queries */
-@media screen and (max-width: 1200px) {
-    .gallery {
-        padding: 40px 80px;
-    }
-}
-
-@media screen and (min-width: 700px) and (max-width: 1000px) {
-    .gallery {
-        padding: 60px 60px;
-    }
-    .prev { left: -60px; }
-    .next { right: -60px; }
 }
 
 .mySlides {
@@ -2078,15 +1862,6 @@ a {
     display: none;
 }
 
-/* Force fixed heights for gallery and slideshow elements */
-.gallery, .gallery-content {
-
-    height: 100vh;
-    max-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
 
 .slide-show-container {
     width: 80vw;
@@ -2096,23 +1871,6 @@ a {
     overflow: hidden;
 }
 
-/* For mobile screens */
-@media (max-width: 700px) {
-    .slide-show-container {
-        width: 103vw; /* increase width on small screens */
-    }
-}
-
-@media (min-width: 700px) {
-.gallery, .gallery-content {
-    margin-top: 200px; /* Adjust margin for larger screens */
-    height: 100vh;
-    max-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-}
 
 
 
@@ -2150,10 +1908,6 @@ body.high-contrast-mode .gallery::after {
 }
 #background-canvas {
     z-index: 1 !important;
-}
-.gallery-content {
-    position: relative;
-    z-index: 2 !important;
 }
 
 /* Ensure .gallery::before is fixed and covers the viewport for correct stacking */
@@ -2369,23 +2123,6 @@ button {
   }
 }
 
-/* Small screen tweaks */
-@media (max-width: 500px) {
-  .warning-dialog {
-    padding: 1.2rem;
-    border-radius: 10px;
-  }
-  
-  .warning-buttons {
-    flex-direction: column;
-    gap: 0.6rem;
-  }
-
-  .warning-buttons button {
-    width: 100%;
-  }
-}
-
 
 #blur-overlay {
   position: fixed;
@@ -2409,3 +2146,247 @@ button {
 }
 
 
+
+
+/* MEDIA QUERIES */
+/* Trailer Section */
+@media screen and (max-width: 1200px) {
+    .trailer-content-sub {
+        font-size: 1.4rem;
+        line-height: 1.7;
+        padding: 1.8rem;
+    }
+}
+/* Trailer Section */
+@media screen and (max-width: 768px) {
+    .trailer {
+        padding: 1.3rem 1rem;
+    }
+    
+    .trailer-content-inner {
+        font-size: 2.8rem;
+    }
+    
+    .trailer-content-sub {
+        font-size: 1.3rem;
+        line-height: 1.6;
+        padding: 1.5rem;
+        width: 95%;
+    }
+}
+/* Trailer Section */
+@media screen and (max-width: 480px) {
+    .trailer {
+        padding: 1.5rem 1rem;
+    }
+
+    .trailer-video {
+        padding: 0 10px;
+    }
+    
+    .trailer-content-inner {
+        font-size: 2.5rem;
+    }
+    
+    .trailer-content-sub {
+        font-size: 1.2rem;
+        line-height: 1.5;
+        padding: 1.2rem;
+        width: 100%;
+    }
+}
+
+/* FAQ Section */
+ @media (max-width: 768px) {
+          .faq-grid {
+            grid-template-columns: 1fr;
+            padding: 15px;
+            gap: 20px;
+          }
+        }
+
+/* Large screen tweaks */
+@media screen and (max-width: 1200px) {
+    .landing {
+        font-size: 10vw;
+    }
+    
+    .landing-content-inner {
+        font-size: 10vw;
+    }
+    
+    .landing-content-sub {
+        font-size: 4vw;
+    }
+
+    .nav-links {
+        gap: 0.75rem;
+    }
+    .nav-links li a {
+        padding: 6px 10px;
+    }
+}
+
+/* Medium screen tweaks */
+@media screen and (max-width: 768px) {
+    .landing {
+        font-size: 11vw;
+        letter-spacing: 0.15em;
+    }
+    
+    .landing-content-inner {
+        font-size: 10vw;
+        letter-spacing: 0.1em;
+    }
+    
+    .landing-content-sub {
+        font-size: 4vw;
+        letter-spacing: 0.2em;
+    }
+
+    .navbar {
+        padding: 10px;
+    }
+    .nav-links {
+        gap: 0.5rem;
+        width: 100%;
+        justify-content: space-around;
+    }
+    .nav-links li a {
+        padding: 5px 8px;
+    }
+
+    .trailer-video {
+        width: 90vw;
+    }
+
+    .pricing-cards {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .price-card {
+        width: 80%;
+        max-width: 300px;
+    }
+
+    .team-section {
+        margin: 20px;
+        padding: 15px;
+    }
+
+    .aboutus {
+        padding-top: 100px;
+    }
+
+
+    .aboutus-content-sub {
+        font-size: 2.5vw;
+        margin: 1rem 2rem;
+    }
+}
+
+/* For very small screens */
+@media screen and (max-width: 480px) {
+    .landing {
+        font-size: 9vw;
+        letter-spacing: 0.1em;
+    }
+    
+    .landing-content-inner {
+        font-size: 9vw;
+        letter-spacing: 0.2em;
+    }
+    
+    .landing-content-sub {
+        font-size: 5vw;
+        letter-spacing: 0.1em;
+        top: 10px;
+    }
+
+    .navbar {
+        padding: 8px 5px;
+    }
+    .nav-links {
+        gap: 0.25rem;
+    }
+    .nav-links li a {
+        padding: 4px 6px;
+        letter-spacing: 0.2em;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .pricing-content-sub {
+        font-size: 3vw;
+        margin: 10px 20px;
+    }
+
+    .aboutus-content-sub {
+        font-size: 3vw;
+        margin: 10px 20px;
+    }
+
+    .aboutus-content-inner {
+        font-size: 8vw;
+    }
+
+    .aboutus-content-sub {
+        font-size: 3.5vw;
+        margin: 1rem;
+        letter-spacing: 0.1em;
+    }
+}
+
+/* Small screen tweaks */
+@media (max-width: 500px) {
+  .warning-dialog {
+    padding: 1.2rem;
+    border-radius: 10px;
+  }
+  
+  .warning-buttons {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .warning-buttons button {
+    width: 100%;
+  }
+}
+
+/* For mobile screens */
+@media (max-width: 700px) {
+    .slide-show-container {
+        width: 103vw; /* increase width on small screens */
+    }
+}
+
+@media (min-width: 700px) {
+.gallery, .gallery-content {
+    margin-top: 200px; /* Adjust margin for larger screens */
+    height: 100vh;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+}
+
+/* Media Queries */
+@media screen and (max-width: 1200px) {
+    .gallery {
+        padding: 40px 80px;
+    }
+}
+
+@media screen and (min-width: 700px) and (max-width: 1000px) {
+    .gallery {
+        padding: 60px 60px;
+    }
+    .prev { left: -60px; }
+    .next { right: -60px; }
+}

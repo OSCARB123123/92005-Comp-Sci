@@ -1052,21 +1052,21 @@ main.gallery {
 }
 
 
-
+/* ensure navbar is ready for transform animation */
 .navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    padding: 15px;
-    letter-spacing: 0.5em;
-    background: none;
-    box-shadow: none;
-    display: flex; /* FLEXBOX: Creates flexible team member layout */
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-    box-sizing: border-box; /* Include padding in width calculation */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transform: translateY(0);
+  transition: transform 320ms cubic-bezier(.2,.8,.2,1);
+  will-change: transform;
+  z-index: 1000; /* ensures it's above your canvas */
+}
+
+/* class applied to hide the navbar */
+.navbar--hidden {
+  transform: translateY(-110%); /* move it fully out of view */
 }
 
 .nav-links {

@@ -305,6 +305,54 @@
       canvas.width = width;
       canvas.height = height;
     });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const navbar = document.querySelector('.navbar');
+  if (!navbar) {
+    console.warn('Navbar element not found (.navbar).');
+    return;
+  }
+
+  // Start from current scroll so first tiny scroll doesn't toggle
+  let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  const hideThreshold = 60;      // only hide after scrolling down 60px
+  const minDelta = 6;            // ignore very small scrolls (px)
+  let ticking = false;
+
+  function handleScroll() {
+    const current = window.pageYOffset || document.documentElement.scrollTop;
+
+    // ignore tiny scrolls to avoid flicker
+    if (Math.abs(current - lastScrollTop) <= minDelta) {
+      lastScrollTop = current <= 0 ? 0 : current;
+      return;
+    }
+
+    if (current > lastScrollTop && current > hideThreshold) {
+      // scrolling down
+      navbar.classList.add('navbar--hidden');
+    } else {
+      // scrolling up
+      navbar.classList.remove('navbar--hidden');
+    }
+
+    lastScrollTop = current <= 0 ? 0 : current;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        handleScroll();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+});
+</script>
+
+
   </script>
 </body>
 </html>
